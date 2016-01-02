@@ -1,0 +1,44 @@
+{
+  "name": "anycode-components",
+  "version": "0.1.0",
+  "description": "anycode-components A set of RiotJS tags commonly used by Anycode",
+  "main": "anycode-components.min.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "karma start",
+    "pub-pack": "node scripts/pack.js index.js *.tag anycode-components.js",
+    "pub-minify": "uglifyjs anycode-components.js --compress --screw-ie8 --mangle > anycode-components.min.js",
+    "pub-build": "npm run pub-pack && npm run pub-minify && npm run test",
+    "pub-npm": "npm version patch && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/any-code/anycode-components.git"
+  },
+  "keywords": ["anycode","components","A","set","of","RiotJS","tags","commonly","used","by","Anycode","any-code","qrb","Lee Tagg"],
+  "author": {
+    "name": "Lee Tagg",
+    "email": "lee@anycode.io",
+    "url": "https://github.com/qrb"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/any-code/anycode-components/issues"
+  },
+  "homepage": "https://github.com/any-code/anycode-components#readme",
+  "dependencies": {
+    "riot": ">=2.3.11"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "karma": "^0.13.15",
+    "karma-mocha": "^0.2.1",
+    "karma-mocha-reporter": "^1.1.3",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "karma-riot": "^1.0.1",
+    "mocha": "^2.3.4",
+    "phantomjs": "^1.9.19"
+  }
+}

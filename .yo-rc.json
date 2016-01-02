@@ -1,0 +1,13 @@
+{
+  "generator-riot-tag-module": {
+    "name": "anycode-components",
+    "description": "A set of RiotJS tags commonly used by Anycode",
+    "github": "any-code",
+    "username": "qrb",
+    "developer": "Lee Tagg",
+    "email": "lee@anycode.io",
+    "year": 2016,
+    "repo": "anycode-components",
+    "keywords": "[\"anycode\",\"components\",\"A\",\"set\",\"of\",\"RiotJS\",\"tags\",\"commonly\",\"used\",\"by\",\"Anycode\",\"any-code\",\"qrb\",\"Lee Tagg\"],"
+  }
+}
