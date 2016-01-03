@@ -1,24 +1,14 @@
-/*
-        anycode-components
- */
+function Module(exports, riot, colorTool, validator) {
+    var _reference = [];
 
-(function(def){
-    def(['riot'], function(riot) {
+    //
+    //
+    // Am i a mixin?
+    // riot.mixin('animation-context', { animation-context: library })
 
-        function Library() {
-            this.name = "anycode-components"
-        }
-
-        var library = new Library()
-
-        //
-        //
-        // Am i a mixin?
-        // riot.mixin('anycode-components', { anycode-components: library })
-
-        //
-        //
-        //BEGIN RIOT TAGS
+    //
+    //
+    //BEGIN RIOT TAGS
 riot.tag2('demo', '<yield></yield>', '', '', function(opts) {
         this.on('mount', function() {
             this.root.className = '';
@@ -187,19 +177,18 @@ riot.tag2('iconic-navigation', '<yield></yield>', 'iconic-navigation,[riot-tag="
 
 
         //END RIOT TAGS
-        //
-        //
+    //
+    //
+}
 
-        return library;
+Module.prototype.dependencies = ['riot', 'classlist-polyfill']
+Module.prototype.global = "anycode-components";
 
-    });
-}( (function(darr, name){
-    if (typeof require === 'undefined') {
-        return function (deps, factory) { this[name] = factory.apply(this, darr.map(function(arg) { return window[arg] })); }
-    } else if (typeof exports === 'undefined') {
-        return function (deps, factory) { define(name, deps, factory); }
-    } else {
-        require('riot'); // must find a solution to why require needs to be called with primitive
-        return function (deps, factory) { module.exports = factory.apply(this, deps.map(require)); }
-    }
-})(['riot'], 'anycode-components') ));
+// Module UMD Loader
+(function (g, f) {
+    var d=Module.prototype.dependencies,gn=Module.prototype.global
+    if (typeof define==='function'&&define.amd){define(['exports'].concat(d||[]),f)}else if(typeof exports==='object'&&
+        typeof exports.nodeName!=='string'){f.apply(this,[exports].concat(d?d.map(require):[]))}else{if(typeof gn==='string'
+    )gn=[gn];g[gn[0]]={};gn.splice(1).map(function(d){g[d]=g[gn[0]]});f.apply(this, [g[gn[0]]].concat(d?d.map(function(d
+    ){return g[d]}):[]))}
+}(this, Module));
