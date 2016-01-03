@@ -1,14 +1,15 @@
 <iconic-navigation>
+    <iconic-button size="4.2" color="#bbb" onclick="{ expand }"><i class="fa fa-bars"></i></iconic-button>
+
     <yield/>
     <style scoped>
-
         :scope {
             display: block;
             position: relative;
             margin: 0;
             padding: 0;
-            width: 25rem;
             height: auto;
+            background: #D6FFF7;
         }
 
         :scope.fixed-left {
@@ -39,8 +40,11 @@
             margin: 0;
             padding: 0;
             right: auto;
-            top: 0;
-            width: 25rem;
+            top: 4.2rem;
+            width: 4.2rem;
+            overflow: hidden;
+            white-space: nowrap;
+            transition: all 200ms ease-in-out;
         }
 
         :scope.fixed-left > ul {
@@ -53,10 +57,6 @@
             list-style: none;
         }
 
-
-        :scope > ul li:first-child a {
-            border-top: none;
-        }
 
         :scope > ul li a {
             font-size: 2rem;
@@ -105,6 +105,26 @@
         :scope > ul .active {
             background: #00d4b4;
             color: #FFF;
+        }
+
+        :scope > ul.expand {
+            z-index: 500;
+            width: 25rem;
+        }
+
+
+        :scope > ul.expand {
+            background: #D6FFF7;
+            width: 25rem;
+            box-shadow: 10px 5px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        @media (min-width: 750px) {
+            :scope > ul {
+                top: 0rem;
+                width: 25rem;
+            }
         }
     </style>
     <script>
@@ -173,5 +193,24 @@
             this.initializeReferences()
             this.initializeScrollListener()
         })
+
+        this.cancelExpander = function() {
+            this.navigation.classList.remove('expand');
+            document.removeEventListener('click', this.cancelExpander);
+        }.bind(this)
+
+        this.expand = function() {
+            document.removeEventListener('click');
+            if (this.navigation.classList.contains('expand')) {
+                this.navigation.classList.remove('expand');
+            } else {
+                this.navigation.classList.add('expand');
+                setTimeout(function() {
+                    document.addEventListener('click', this.cancelExpander);
+                }.bind(this), 0);
+
+            }
+
+        }.bind(this)
     </script>
 </iconic-navigation>

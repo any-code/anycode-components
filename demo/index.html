@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Anycode Components - Demo</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.0/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css">
@@ -19,8 +19,8 @@
 <demo>
 <iconic-navigation data-fixed="left">
     <ul>
-        <li><a href="#iconic-button"><iconic-button float="left" size="3.2" inset color="#0B9" hotkey="a">a</iconic-button>&nbsp;iconic-button</a></li>
-        <li><a href="#iconic-navigation"><iconic-button float="left" size="3.2" inset color="#0B9" hotkey="b">b</iconic-button>&nbsp;iconic-navigation</a></li>
+        <li><a href="#iconic-button"><iconic-button float="left" size="3.2" inset color="#09B391" hotkey="a">a</iconic-button>&nbsp;iconic-button</a></li>
+        <li><a href="#iconic-navigation"><iconic-button float="left" size="3.2" inset color="#09B391" hotkey="b">b</iconic-button>&nbsp;iconic-navigation</a></li>
     </ul>
 </iconic-navigation>
 </demo>
@@ -269,13 +269,14 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
 <script src="../node_modules/anycode-mbs-footer/mbs-footer.min.js"></script>
 <script src="../node_modules/classlist-polyfill/src/index.js"></script>
-<script src="../anycode-components.min.js"></script>
+<script src="../anycode-components.js"></script>
+
 <script>
     riot.mount('demo', {
         alert: function(e) {
             console.log("YOU PRESSED", e.target.innerText);
         }
-    })
+    });
 </script>
 </body>
 </html>

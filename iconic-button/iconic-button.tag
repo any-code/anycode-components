@@ -48,14 +48,10 @@
                 }
             }.bind(this))
 
-            console.log("MOUNT AND ADD KEYDOWN")
             addEvent('keydown', function(event) {
-                console.log("KD!!!!", event)
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" || name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
-
-                console.log(event);
 
                 if (event.shiftKey) {
                     if (this.keyCode) {

@@ -26,12 +26,7 @@ td:first-child {
 	font-weight: bolder;
 }
 
-blockquote {
-	font-size: 2.5rem;
-	color: #AAA;
-	padding-left:0;
-	margin-left:0;
-}
+
 
 demo {
 	position: relative;
@@ -68,6 +63,8 @@ mbs-footer {
 
 .tag-name {
 	white-space: nowrap;
+	text-overflow: ellipsis;
+
 }
 
 .code-box {
@@ -82,4 +79,22 @@ mbs-footer {
 
 .code-box pre[class*=language-]>code[data-language]::before {
 	display: none;
+}
+
+blockquote {
+	font-size: 2.5rem;
+	color: #AAA;
+	padding-left:0;
+	margin-left:0;
+}
+
+
+article.right {
+	padding: 4rem 6rem 0 6rem;
+}
+
+@media (min-width: 750px) {
+	article.right {
+		padding: 4rem 6rem 0 32rem;
+	}
 }
