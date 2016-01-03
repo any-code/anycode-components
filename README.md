@@ -1,8 +1,8 @@
-# anycode-components riot tag (anycode-components)
+# anycode-components library (anycode-components)
 
 [![Build Status](https://travis-ci.org/any-code/anycode-components.svg?branch=master)](https://travis-ci.org/any-code/anycode-components)
 
-> A set of RiotJS tags commonly used by Anycode
+> (RiotJS Tag Library) - A set of common RiotJS tags used by Anycode
 
 ## Getting Started
 
@@ -20,19 +20,18 @@ npm install anycode-components
    
 ```
 
-``` html
+### Inclusions
 
-<anycode-components>
-    tag content
-</anycode-components>
+- iconic-button
+- iconic-navigation
 
-<script>
-    riot.mount('anycode-components');
-</script>
-```
+### Demonstration
+
+a demonstration is available at -
+[demo/index.html](demo/index.html "demo/index.html")
 
 ## Copyright and license
-Copyright (c) 2016 any-code qrb <lee@anycode.io>
+Copyright (c) 2016, [Anycode](https://anycode.io/ "Anycode") <lee@anycode.io>
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above

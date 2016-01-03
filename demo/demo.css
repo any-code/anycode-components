@@ -1,0 +1,85 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #FFF;
+}
+
+article {
+	display: block;
+	position: relative;
+}
+
+article.right {
+	padding: 4rem 6rem 0 32rem;
+}
+
+article.left {
+	padding: 4rem 32rem 0 6rem;
+}
+
+
+td {
+	vertical-align: top;
+}
+
+td:first-child {
+	font-weight: bolder;
+}
+
+blockquote {
+	font-size: 2.5rem;
+	color: #AAA;
+	padding-left:0;
+	margin-left:0;
+}
+
+demo {
+	position: relative;
+	clear: both;
+	content: "";
+	display: table;
+	margin-bottom: 0rem;
+}
+
+article demo {
+	margin-bottom: 3rem;
+}
+
+
+header:first-child {
+	padding-top: 0rem;
+	border-top: none;
+}
+
+header {
+	border-top: 1px solid #DDD;
+	padding-top: 6rem;
+}
+
+
+mbs-footer {
+	margin-top: 4rem;
+	z-index: 2;
+}
+
+.not-ready {
+	display: none;
+}
+
+.tag-name {
+	white-space: nowrap;
+}
+
+.code-box {
+	clear: both;
+	margin-top: 4rem;
+}
+
+.code-box pre {
+	border: 1px solid #BEBEBE;
+	background: #D3D3D3;
+}
+
+.code-box pre[class*=language-]>code[data-language]::before {
+	display: none;
+}

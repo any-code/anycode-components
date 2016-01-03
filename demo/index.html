@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anycode Components - Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.0/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css">
+    <link rel="stylesheet" href="demo.css">
+    <style>
+        .separator {
+            float: left;
+            margin-right: 1rem;
+        }
+    </style>
+</head>
+<body>
+<demo>
+<iconic-navigation data-fixed="left">
+    <ul>
+        <li><a href="#iconic-button"><iconic-button float="left" size="3.2" inset color="#0B9" hotkey="a">a</iconic-button>&nbsp;iconic-button</a></li>
+        <li><a href="#iconic-navigation"><iconic-button float="left" size="3.2" inset color="#0B9" hotkey="b">b</iconic-button>&nbsp;iconic-navigation</a></li>
+    </ul>
+</iconic-navigation>
+</demo>
+<article class="right">
+    <header><a id="iconic-button"></a><h1><span class="tag-name">&lt;<b>iconic-button</b>/&gt;</span></h1></header>
+    <blockquote>
+        <b>iconic-button</b> is a keyboard aware visual button. It contains a single icon, sized in root ems. <b>iconic-button</b> can be
+        used with an icon font symbol or just plain text providing a consistent look and feel to icon and button UI elements
+    </blockquote>
+    <section>
+        <a id="iconic-button-samples"></a>
+        <h3>Samples</h3>
+        <h4>Default - Text</h4>
+        <demo class="not-ready">
+            <div class="separator">
+                <iconic-button float="left" size="10" color="#069" onclick="{ opts.alert }" hotkey="0">+</iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="9" color="#079" onclick="{ opts.alert }" hotkey="9">-</iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="8" color="#089" onclick="{ opts.alert }" hotkey="8">&times;</iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="7" color="#099" onclick="{ opts.alert }" hotkey="7">&divide;</iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="6" color="#0A9" onclick="{ opts.alert }" hotkey="6">+</iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="5" color="#0B9" onclick="{ opts.alert }" hotkey="5">-</iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="4" color="#0C9" onclick="{ opts.alert }" hotkey="4">&times;</iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="3" color="#0D9" onclick="{ opts.alert }" hotkey="3">&divide;</iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="2" color="#0E9" onclick="{ opts.alert }" hotkey="2">+</iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="1" color="#0F9" onclick="{ opts.alert }" hotkey="1">-</iconic-button>
+            </div>
+        </demo>
+        <h4>Inset</h4>
+        <demo class="not-ready">
+            <div class="separator"><iconic-button inset float="left" size="10" color="#069" onclick="{ opts.alert }">+</iconic-button></div>
+            <div class="separator"><iconic-button inset float="left" size="9" color="#079" onclick="{ opts.alert }">-</iconic-button></div>
+            <div class="separator"><iconic-button inset float="left" size="8" color="#089" onclick="{ opts.alert }">&times;</iconic-button></div>
+            <div class="separator"><iconic-button inset float="left" size="7" color="#099" onclick="{ opts.alert }">&divide;</iconic-button></div>
+            <div class="separator"><iconic-button inset float="left" size="6" color="#0A9" onclick="{ opts.alert }">+</iconic-button></div>
+            <div class="separator"><iconic-button inset float="left" size="5" color="#0B9" onclick="{ opts.alert }">-</iconic-button></div>
+            <div class="separator"><iconic-button inset float="left" size="4" color="#0C9" onclick="{ opts.alert }">&times;</iconic-button></div>
+            <div class="separator"><iconic-button inset float="left" size="3" color="#0D9" onclick="{ opts.alert }">&divide;</iconic-button></div>
+            <div class="separator"><iconic-button inset float="left" size="2" color="#0E9" onclick="{ opts.alert }">+</iconic-button></div>
+            <div class="separator"><iconic-button inset float="left" size="1" color="#0F9" onclick="{ opts.alert }">-</iconic-button></div>
+        </demo>
+        <h4>Default - Icon Font</h4>
+        <demo class="not-ready">
+            <div class="separator">
+                <iconic-button float="left" size="10" color="#07F" onclick="{ opts.alert }" ><i class="fa fa-birthday-cake"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="9" color="#17E" onclick="{ opts.alert }" ><i class="fa fa-camera"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="8" color="#27D" onclick="{ opts.alert }" ><i class="fa fa-building-o"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="7" color="#37C" onclick="{ opts.alert }" ><i class="fa fa-bug"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="6" color="#47B" onclick="{ opts.alert }" ><i class="fa fa-close"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="5" color="#57A" onclick="{ opts.alert }" ><i class="fa fa-compass"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="4" color="#679" onclick="{ opts.alert }"><i class="fa fa-arrows-h"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="3" color="#778" onclick="{ opts.alert }"><i class="fa fa-plus"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="2" color="#877" onclick="{ opts.alert }"><i class="fa fa-plus"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button float="left" size="1" color="#976" onclick="{ opts.alert }"><i class="fa fa-plus"></i></iconic-button>
+            </div>
+        </demo>
+        <h4>Inset - Icon Font</h4>
+        <demo class="not-ready" style="scale: 0.5;">
+            <div class="separator">
+                <iconic-button inset float="left" size="10" color="#07F" onclick="{ opts.alert }" hotkey="c"><i class="fa fa-birthday-cake"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button inset float="left" size="9" color="#17E" onclick="{ opts.alert }" hotkey="m"><i class="fa fa-camera"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button inset float="left" size="8" color="#27D" onclick="{ opts.alert }" hotkey="o"><i class="fa fa-building-o"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button inset float="left" size="7" color="#37C" onclick="{ opts.alert }" hotkey="u"><i class="fa fa-bug"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button inset float="left" size="6" color="#47B" onclick="{ opts.alert }" hotkey="x"><i class="fa fa-close"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button inset float="left" size="5" color="#57A" onclick="{ opts.alert }" hotkey="s"><i class="fa fa-compass"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button inset float="left" size="4" color="#679" onclick="{ opts.alert }" hotkey="r"><i class="fa fa-arrows-h"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button inset float="left" size="3" color="#778" onclick="{ opts.alert }" hotkey="a"><i class="fa fa-plus"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button inset float="left" size="2" color="#877" onclick="{ opts.alert }"><i class="fa fa-plus"></i></iconic-button>
+            </div>
+            <div class="separator">
+                <iconic-button inset float="left" size="1" color="#976" onclick="{ opts.alert }"><i class="fa fa-plus"></i></iconic-button>
+            </div>
+        </demo>
+        <a id="iconic-button-attributes"></a>
+        <h3>Attributes</h3>
+        <table class="u-full-width">
+            <thead>
+            <tr>
+                <th>Attribute Name</th>
+                <th>Purpose</th>
+                <th>Value</th>
+                <th>Default</th>
+                <th>Required</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>name</td>
+                <td>A unique name by which a containing riot-tag can reference the iconic-button<br><code>this.tags.butonName</code></td>
+                <td><code>buttonName</code></td>
+                <td>not named</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>float</td>
+                <td>Control the layout for different containers by assigning a float instruction</td>
+                <td><code>left | right | none</code></td>
+                <td>none</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>size</td>
+                <td>Control the size of the iconic-button.</td>
+                <td><code>1..10</code></td>
+                <td>none</td>
+                <td>*</td>
+            </tr>
+            <tr>
+                <td>hotkey</td>
+                <td>a keyboard character that can be used to trigger the buttons onclick event</td>
+                <td><code>a..z, 0..9</code></td>
+                <td>none</td>
+                <td></td>
+            </tr>
+            </tbody>
+            <p>By holding the <code>shift</code> key all <b>iconic-button</b>'s with hotkeys assigned will transform to show their hotkey</p>
+        </table>
+        <a id="iconic-button-code"></a>
+        <h4>Code Sample</h4>
+        <div class="code-box">
+            <pre><code class="language-css">iconic-button {
+    margin-right: 4rem;
+    margin-bottom: 2rem;
+}</code></pre>
+            <pre><code class="language-markup">&lt;app&gt;
+    &lt;iconic-button name="buttonName" float="left" size="10" color="#0A9" onclick="{ opts.alert }"&gt;+&lt;/iconic-button&gt;
+    &lt;iconic-button name="buttonName" float="left" size="1" color="#0A9" onclick="{ opts.alert }"&gt;+&lt;/iconic-button&gt;
+&lt;/app&gt;</code></pre>
+            <pre><code class="language-javascript">riot.mount('app', {
+    alert: function(e) {
+        alert(e.target.outerHTML);
+    }
+})</code></pre>
+        </div>
+    </section>
+    <br/><br/>
+    <header><a id="iconic-navigation"></a><h1><span class="tag-name">&lt;<b>iconic-navigation</b>/&gt;</span></h1></header>
+    <blockquote>
+        <b>iconic-navigation</b> is a vertical navigation list composed of iconic naviagtion items
+    </blockquote>
+    <section>
+        <a id="iconic-navigation-samples"></a>
+        <h3>Sample</h3>
+        <demo class="not-ready">
+            <iconic-navigation>
+                <ul>
+                    <li><a href="#iconic-button"><iconic-button float="left" size="3.2" inset color="#0B9">y</iconic-button>&nbsp;Yes</a></li>
+                    <li><a href="#iconic-navigation"><iconic-button float="left" size="3.2" inset color="#0B9">n</iconic-button>&nbsp;No</a></li>
+                </ul>
+            </iconic-navigation>
+        </demo>
+        <h3>Content</h3>
+        <p>A standard <code>ul</code> element is provided as content</p>
+        <h3>Attributes</h3>
+        <table class="u-full-width">
+            <thead>
+            <tr>
+                <th>Attribute Name</th>
+                <th>Purpose</th>
+                <th>Value</th>
+                <th>Default</th>
+                <th>Required</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>data-fixed</td>
+                    <td>specify if iconic-navigation should be fixed to the left or right of the viewport</td>
+                    <td><code>left | right | none</code></td>
+                    <td>none</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <a id="iconic-navigation-code"></a>
+        <h4>Code Sample</h4>
+        <div class="code-box">
+            <pre><code class="language-markup">&lt;app&gt;
+    &lt;iconic-navigation data-fixed="left">
+        &lt;ul>
+            &lt;li>&lt;a href="#iconic-button">&lt;iconic-button float="left" size="3.2" inset color="#0B9" hotkey="a">a&lt;/iconic-button>&nbsp;iconic-button&lt;/a>&lt;/li>
+            &lt;li>&lt;a href="#iconic-navigation">&lt;iconic-button float="left" size="3.2" inset color="#0B9" hotkey="b">b&lt;/iconic-button>&nbsp;iconic-navigation&lt;/a>&lt;/li>
+        &lt;/ul>
+    &lt;/iconic-navigation>
+&lt;/app&gt;</code></pre>
+            <pre><code class="language-javascript">riot.mount('app')</code></pre>
+        </div>
+    </section>
+</article>
+<demo>
+    <mbs-footer product-name="anycode-components" browser-stack privacy-links></mbs-footer>
+</demo>
+
+<script src="//cdn.jsdelivr.net/riot/2.3/riot+compiler.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
+<script src="../node_modules/anycode-mbs-footer/mbs-footer.min.js"></script>
+<script src="../anycode-components.js"></script>
+<script>
+    riot.mount('demo', {
+        alert: function(e) {
+            console.log("YOU PRESSED", e.target.innerText);
+        }
+    })
+</script>
+</body>
+</html>

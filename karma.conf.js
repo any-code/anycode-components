@@ -8,9 +8,12 @@ module.exports = function(config) {
             'karma-phantomjs-launcher',
             'karma-riot'
         ],
+        exclude: [
+            'node_modules/**/*.tag'
+        ],
         files: [
             'node_modules/expect.js/index.js',
-            '*.tag',
+            '**/*.tag',
             'test/*.spec.js'
         ],
         preprocessors: {
