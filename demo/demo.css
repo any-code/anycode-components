@@ -134,3 +134,7 @@ section {
 		overflow: hidden;
 	}
 }
+
+iconic-button i {
+	display: inline-flex;
+}

@@ -16,6 +16,22 @@ riot.tag2('demo', '<yield></yield>', '', '', function(opts) {
 });
 
 
+riot.tag2('iconic-announcement', '<yield></yield>', 'iconic-announcement,[riot-tag="iconic-announcement"] { background: #2C2C2C; color: #999; padding: 4rem; display: block; position: fixed; top: -16rem; left: 0; right: 0; height: 8rem; transition: all 300ms ease-in-out; overflow: hidden; z-index: 200; font-size: 6rem; } iconic-announcement.show,[riot-tag="iconic-announcement"].show { top: 0rem; }', '', function(opts) {
+        var DEFAULT_TIMEOUT = 3000;
+
+        this.show = function(timeout) {
+            this.root.classList.add('show')
+            setTimeout(function() {
+                this.hide();
+            }.bind(this), timeout || DEFAULT_TIMEOUT);
+        }.bind(this)
+
+        this.hide = function() {
+            this.root.classList.remove('show')
+        }.bind(this)
+});
+
+
 riot.tag2('iconic-button', '<div name="container" riot-style=" border-radius: {radius}rem; "> <div name="text" riot-style="height: {size}rem;"><yield></yield></div> <div name="hotkey" riot-style="height: {size}rem; width: {size}rem; border-radius: {radius}rem; ">{keyHelp[0]}</div> </div>', 'iconic-button,[riot-tag="iconic-button"] { display: block; position: relative; cursor: pointer; } iconic-button.inset,[riot-tag="iconic-button"].inset { border-radius: 0.4rem; } iconic-button.size-10,[riot-tag="iconic-button"].size-10 { height: 10rem; width: 10rem; font-size: 8rem; line-height: 8rem; border-radius: 1rem; } @-webkit-keyframes iconicButtonFlash { from { background: rgba(255,255,255, 0.5); } to { background: rgba(255,255,255, 0.3); } } @keyframes iconicButtonFlash { from { background: rgba(255,255,255, 0.5); } to { background: rgba(255,255,255, 0.3); } } iconic-button div[name="container"],[riot-tag="iconic-button"] div[name="container"] { background: rgba(255,255,255, 0); transition: all 400ms ease-in-out; transition-delay: 0ms; } iconic-button.inset div[name="container"],[riot-tag="iconic-button"].inset div[name="container"] { border-radius: 0.4rem; } iconic-button div[name="container"]:hover,[riot-tag="iconic-button"] div[name="container"]:hover { background: rgba(255,255,255, 0.3); } iconic-button div[name="container"]:active,[riot-tag="iconic-button"] div[name="container"]:active { -webkit-animation: iconicButtonFlash 200ms 1; -o-animation: iconicButtonFlash 200ms 1; animation: iconicButtonFlash 200ms 1; } iconic-button div[name="container"].activated,[riot-tag="iconic-button"] div[name="container"].activated { -webkit-animation: iconicButtonFlash 200ms 1; -o-animation: iconicButtonFlash 200ms 1; animation: iconicButtonFlash 200ms 1; } iconic-button div[name="text"],[riot-tag="iconic-button"] div[name="text"] { color: rgba(255,255,255,0.7); font-weight: bolder; text-align: center; vertical-align: center; transition: all 600ms ease-in-out; transition-delay: 0ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; margin-top: 0%; font-size: 100%; } iconic-button div[name="hotkey"],[riot-tag="iconic-button"] div[name="hotkey"] { display: table-cell; opacity: 0; background: rgba(255,255,255,0.8); position: absolute; z-index: 5; top: 0; left: 0; color: rgba(0,0,0,0.4); font-weight: bolder; text-align: center; vertical-align: center; transition: all 200ms ease-in-out; transition-delay: 0ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; margin-top: 0%; font-size: 100%; } iconic-button div[name="hotkey"].help,[riot-tag="iconic-button"] div[name="hotkey"].help { opacity: 1; } iconic-button div[name="text"] i,[riot-tag="iconic-button"] div[name="text"] i { margin-top: 22%; font-size: 75%; } iconic-button.inset div[name="text"] i,[riot-tag="iconic-button"].inset div[name="text"] i { margin-top: 20%; font-size: 69%; }', 'class="{inset: inset}" riot-style="background: {color}; float: {float}; height: {size}rem; width: {size}rem; line-height: {fontSize}rem; font-size: {fontSize}rem; border-radius: {radius}rem; margin: {margin}rem;"', function(opts) {
         var addEvent = window.document.addEventListener
 
@@ -25,7 +41,7 @@ riot.tag2('iconic-button', '<div name="container" riot-style=" border-radius: {r
                 var key = event.which, name = event.target.nodeName.toUpperCase();
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
                     name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
-                if (this.keyHelp.indexOf(String.fromCharCode(key)) > -1) {
+                if (this.keyHelp && this.keyHelp.indexOf(String.fromCharCode(key)) > -1) {
                     this.activated = key;
                     return false;
                 }

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.0/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css">
+    <link rel="stylesheet" href="iconic-font.css">
     <link rel="stylesheet" href="demo.css">
     <link rel="stylesheet" href="prism.css">
 </head>
@@ -13,10 +14,39 @@
 <demo>
     <iconic-navigation data-fixed="left">
         <ul>
-            <li><a href="#iconic-button"><iconic-button float="left" size="3.2" inset color="#777" hotkey="a">a</iconic-button>&nbsp;<i1-8n>iconic-button</i1-8n></a></li>
-            <li><a href="#iconic-navigation"><iconic-button float="left" size="3.2" inset color="#777" hotkey="b">b</iconic-button>&nbsp;<i1-8n>iconic-navigation</i1-8n></a></li>
+            <li><a href="#iconic-announcement"><iconic-button float="left" size="3.2" inset color="#777" hotkey="a"><i class="icon-announcement"></i></iconic-button>&nbsp;<i1-8n>iconic-announcement</i1-8n></a></li>
+            <li><a href="#iconic-button"><iconic-button float="left" size="3.2" inset color="#777" hotkey="b"><i class="icon-button"></i></iconic-button>&nbsp;<i1-8n>iconic-button</i1-8n></a></li>
+            <li><a href="#iconic-navigation"><iconic-button float="left" size="3.2" inset color="#777" hotkey="n"><i class="icon-navigation"></i></iconic-button>&nbsp;<i1-8n>iconic-navigation</i1-8n></a></li>
         </ul>
     </iconic-navigation>
+    <a id="iconic-announcement"></a>
+    <article class="right">
+        <header>
+            <h1><span class="tag-name">&lt;<b><i1-8n>iconic-announcement</i1-8n></b>/&gt;</span></h1>
+        </header>
+        <blockquote>
+            <b><i1-8n>iconic-announcement</i1-8n></b> is a flash/toaster message suitable for displaying short-lived announcements and notifications
+        </blockquote>
+        <section>
+            <h3>Demonstration</h3>
+            <button data-me onclick="{ opts.showAnnouncement }">Show Announcement</button>
+            <iconic-announcement name="flash">
+                This is an announcement
+            </iconic-announcement>
+        </section>
+        <section>
+            <h3>Content</h3>
+            <p>Any HTML snippet can be provided as content</p>
+        </section>
+        <section>
+            <h3>Content</h3>
+            <p>Any HTML snippet can be provided as content</p>
+        </section>
+        <section>
+            <h3>Content</h3>
+            <p>Any HTML snippet can be provided as content</p>
+        </section>
+    </article>
     <a id="iconic-button"></a>
     <article class="right">
         <header>
@@ -133,7 +163,6 @@
             </div>
         </section>
     </article>
-
     <mbs-footer product-name="anycode-components" browser-stack privacy-links></mbs-footer>
 </demo>
 <script src="prism.js"></script>
@@ -153,6 +182,9 @@
     })
 
     riot.mount('demo', {
+        showAnnouncement: function() {
+            this.tags.flash.show(500)
+        },
         alert: function(e) {
             console.log("YOU CLICKED", e.target.innerText);
         }
