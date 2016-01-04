@@ -5,13 +5,6 @@
     </div>
     <script>
         var addEvent = window.document.addEventListener
-        this.initializeHotKey = function() {
-            if (!opts.hotkey) {
-                return undefined;
-            }
-
-            return opts.hotkey.length == 1 ? opts.hotkey.toUpperCase().charCodeAt(0) : parseInt(opts.hotkey, 10)
-        }
 
 
         this.size = parseFloat(opts.size)|| 4;
@@ -19,6 +12,25 @@
         this.inset = false;
 
         this.on('mount', function() {
+            addEvent('keypress', function(event) {
+                var key = event.which, name = event.target.nodeName.toUpperCase();
+                if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" || name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
+
+
+
+
+                var otherKey = key - 32;
+                if (key >= 65 && key <= 90) {
+                    otherKey = key + 32;
+                }
+
+                if (String.fromCharCode(key) === this.keyHelp || String.fromCharCode(otherKey) === this.keyHelp) {
+                    this.activated = key;
+                    return false;
+                }
+
+            }.bind(this))
+
             addEvent('keyup', function(event) {
                 event = event || window.event;
 
@@ -49,21 +61,17 @@
             }.bind(this))
 
             addEvent('keydown', function(event) {
+
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" || name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
 
                 if (event.shiftKey) {
-                    if (this.keyCode) {
+                    if (this.keyHelp) {
                         this.hotkey.classList.add('help')
                     }
                 } else {
                     this.hotkey.classList.remove('help')
-                }
-
-                if (key === this.keyCode) {
-                    this.activated = true;
-                    return false;
                 }
 
                 return true;
@@ -71,7 +79,6 @@
         })
 
         this.on('mount update', function() {
-            this.keyCode = this.initializeHotKey();
             this.keyHelp = opts.hotkey || undefined;
             this.color = opts.color || 'transparent';
             this.float = opts.float || 'none';

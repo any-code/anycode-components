@@ -4,6 +4,78 @@ body {
 	background: #FFF;
 }
 
+div.attributes ul {
+	list-style: none;
+}
+
+div.attributes > ul > li {
+	display: block;
+	padding-bottom: 1rem;
+	margin-bottom: 3rem;
+	clear: both;
+}
+
+div.attributes > ul > li > ul {
+	clear: both;
+}
+
+div.attributes li > h5 {
+	border-bottom: 1px solid #DDD;
+}
+
+div.attributes li > h5 > label {
+	display: inline;
+	padding: 0 0 0 0.5rem;
+	margin: 0;
+	font-size: 2rem;
+	font-weight: normal;
+}
+
+div.attributes li > h5 > p {
+	display: inline;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+div.attributes > ul > li > ul > li {
+	min-height: 3rem;
+	clear: both;
+}
+
+div.attributes li > label {
+	float: left;
+	height: 3rem;
+	width: 9rem;
+	padding: 0 1rem 0 1rem;
+	font-size: 1.5rem;
+}
+
+div.attributes li > p {
+	font-size: 1.5rem;
+}
+
+section {
+	padding-top: 4rem;
+	display: block;
+	position: relative;
+	clear: both;
+}
+
+.button-sample {
+	clear: both;
+	padding: 3rem;
+	display: block;
+	position: relative;
+}
+
+.button-sample > h6 {
+	font-weight: bolder;
+}
+
+.button-sample > iconic-button {
+	margin-left: 1rem;
+}
+
 article {
 	display: block;
 	position: relative;
@@ -26,16 +98,6 @@ td:first-child {
 	font-weight: bolder;
 }
 
-
-
-demo {
-	position: relative;
-	clear: both;
-	content: "";
-	display: table;
-	margin-bottom: 0rem;
-}
-
 article demo {
 	margin-bottom: 3rem;
 }
@@ -50,7 +112,6 @@ header {
 	border-top: 1px solid #DDD;
 	padding-top: 6rem;
 }
-
 
 mbs-footer {
 	margin-top: 4rem;
@@ -67,27 +128,12 @@ mbs-footer {
 
 }
 
-.code-box {
-	clear: both;
-	margin-top: 4rem;
-}
-
-.code-box pre {
-	border: 1px solid #BEBEBE;
-	background: #D3D3D3;
-}
-
-.code-box pre[class*=language-]>code[data-language]::before {
-	display: none;
-}
-
 blockquote {
 	font-size: 2.5rem;
 	color: #AAA;
 	padding-left:0;
 	margin-left:0;
 }
-
 
 article.right {
 	padding: 4rem 6rem 0 6rem;

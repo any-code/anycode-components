@@ -15,7 +15,7 @@ function Module(exports, riot) {
     //
 }
 
-Module.prototype.dependencies = ['riot', 'classlist-polyfill']
+Module.prototype.dependencies = ['riot', 'riot-i18n', 'classlist-polyfill']
 Module.prototype.global = "anycode-components";
 
 // Module UMD Loader

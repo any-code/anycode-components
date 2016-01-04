@@ -1,5 +1,5 @@
 <iconic-navigation>
-    <iconic-button size="4.2" color="#bbb" onclick="{ expand }"><i class="fa fa-bars"></i></iconic-button>
+    <iconic-button size="4.2" color="#bbb" onclick="{ expand }" hotkey="="><i class="fa fa-bars"></i></iconic-button>
 
     <yield/>
     <style scoped>
@@ -116,7 +116,7 @@
         :scope > ul.expand {
             background: #D6FFF7;
             width: 25rem;
-            box-shadow: 10px 5px 10px rgba(0,0,0,0.2);
+            box-shadow: 10px 0px 15px rgba(0,0,0,0.095);
             z-index: 100;
         }
 
@@ -124,6 +124,10 @@
             :scope > ul {
                 top: 0rem;
                 width: 25rem;
+            }
+
+            :scope > ul.expand {
+                box-shadow: none;
             }
         }
     </style>
