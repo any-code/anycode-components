@@ -1,5 +1,5 @@
 <iconic-navigation>
-    <iconic-button size="4.2" color="#bbb" onclick="{ expand }" hotkey="="><i class="fa fa-bars"></i></iconic-button>
+    <iconic-button name="menuButton" size="4.2" color="#bbb" onclick="{ expand }" hotkey="="><i class="fa fa-bars"></i></iconic-button>
 
     <yield/>
     <style scoped>
@@ -9,7 +9,9 @@
             margin: 0;
             padding: 0;
             height: auto;
-            background: #D6FFF7;
+            background: #bbb;
+            width: 4.2rem;
+            transition: all 200ms ease-in-out;
         }
 
         :scope.fixed-left {
@@ -30,6 +32,16 @@
             top: 0;
         }
 
+        iconic-button[name="menuButton"] {
+            display: none;
+        }
+
+        :scope[class^="fixed"] iconic-button[name="menuButton"] {
+            display: block;
+        }
+
+
+
         :scope > ul {
             position: relative;
             background: #D6FFF7;
@@ -40,15 +52,32 @@
             margin: 0;
             padding: 0;
             right: auto;
-            top: 4.2rem;
+            top: 0rem;
             width: 4.2rem;
             overflow: hidden;
             white-space: nowrap;
             transition: all 200ms ease-in-out;
         }
 
-        :scope.fixed-left > ul {
+        :scope:not([class^="fixed"]) {
+            width: auto;
+        }
+
+        :scope:not([class^="fixed"]) ul {
+            width: auto;
+        }
+
+        :scope[class^="fixed"] > ul {
+            top: 4.2rem;
+        }
+
+        :scope[class^="fixed"] > ul {
             position: absolute;
+        }
+
+        :scope.expand {
+            width: 25rem;
+            box-shadow: 10px 0px 15px rgba(0,0,0,0.095);
         }
 
         :scope > ul li {
@@ -107,27 +136,30 @@
             color: #FFF;
         }
 
-        :scope > ul.expand {
+        :scope.expand > ul {
             z-index: 500;
             width: 25rem;
         }
 
 
-        :scope > ul.expand {
+        :scope.expand > ul {
             background: #D6FFF7;
             width: 25rem;
-            box-shadow: 10px 0px 15px rgba(0,0,0,0.095);
             z-index: 100;
         }
 
         @media (min-width: 750px) {
+            :scope[class^="fixed"] > ul {
+                top: 0rem;
+            }
+
+            :scope.expand {
+                box-shadow: none;
+            }
+
             :scope > ul {
                 top: 0rem;
                 width: 25rem;
-            }
-
-            :scope > ul.expand {
-                box-shadow: none;
             }
         }
     </style>
@@ -199,22 +231,20 @@
         })
 
         this.cancelExpander = function() {
-            this.navigation.classList.remove('expand');
+            this.root.classList.remove('expand');
             document.removeEventListener('click', this.cancelExpander);
         }.bind(this)
 
         this.expand = function() {
             document.removeEventListener('click');
-            if (this.navigation.classList.contains('expand')) {
-                this.navigation.classList.remove('expand');
+            if (this.root.classList.contains('expand')) {
+                this.root.classList.remove('expand');
             } else {
-                this.navigation.classList.add('expand');
+                this.root.classList.add('expand');
                 setTimeout(function() {
                     document.addEventListener('click', this.cancelExpander);
                 }.bind(this), 0);
-
             }
-
         }.bind(this)
     </script>
 </iconic-navigation>

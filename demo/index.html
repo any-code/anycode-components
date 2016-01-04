@@ -8,12 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css">
     <link rel="stylesheet" href="demo.css">
     <link rel="stylesheet" href="prism.css">
-    <style>
-        .separator {
-            float: left;
-            margin-right: 1rem;
-        }
-    </style>
 </head>
 <body>
 <demo>
@@ -36,17 +30,17 @@
             <h3>Demonstration</h3>
             <div class="button-sample">
                 <h6>Text</h6>
-                <iconic-button size="10" inset float="left" color="#069" onclick="{ opts.alert }" hotkey="0">+</iconic-button>
-                <iconic-button size="9" inset float="left" color="#079" onclick="{ opts.alert }" hotkey="9">-</iconic-button>
-                <iconic-button size="8" inset float="left" color="#089" onclick="{ opts.alert }" hotkey="8">&times;</iconic-button>
-                <iconic-button size="7" inset float="left"color="#099" onclick="{ opts.alert }" hotkey="7">&divide;</iconic-button>
+                <iconic-button size="10" inset float="left" color="#069" onclick="{ opts.alert }" hotkey="0)">+</iconic-button>
+                <iconic-button size="9" inset float="left" color="#079" onclick="{ opts.alert }" hotkey="9(">-</iconic-button>
+                <iconic-button size="8" inset float="left" color="#089" onclick="{ opts.alert }" hotkey="8*">&times;</iconic-button>
+                <iconic-button size="7" inset float="left" color="#099" onclick="{ opts.alert }" hotkey="7&">&divide;</iconic-button>
             </div>
             <div class="button-sample">
                 <h6>Icon Font</h6>
-                <iconic-button inset float="left" size="7" color="#07F" onclick="{ opts.alert }" hotkey="c"><i class="fa fa-birthday-cake"></i></iconic-button>
-                <iconic-button inset float="left" size="8" color="#17E" onclick="{ opts.alert }" hotkey="m"><i class="fa fa-camera"></i></iconic-button>
-                <iconic-button inset float="left" size="9" color="#27D" onclick="{ opts.alert }" hotkey="o"><i class="fa fa-building-o"></i></iconic-button>
-                <iconic-button inset float="left" size="10" color="#37C" onclick="{ opts.alert }" hotkey="u"><i class="fa fa-bug"></i></iconic-button>
+                <iconic-button inset float="left" size="7" color="#07F" onclick="{ opts.alert }" hotkey="cC"><i class="fa fa-birthday-cake"></i></iconic-button>
+                <iconic-button inset float="left" size="8" color="#17E" onclick="{ opts.alert }" hotkey="mM"><i class="fa fa-camera"></i></iconic-button>
+                <iconic-button inset float="left" size="9" color="#27D" onclick="{ opts.alert }" hotkey="oO"><i class="fa fa-building-o"></i></iconic-button>
+                <iconic-button inset float="left" size="10" color="#37C" onclick="{ opts.alert }" hotkey="uU"><i class="fa fa-bug"></i></iconic-button>
             </div>
         </section>
         <section>
@@ -65,16 +59,16 @@
             <div class="attributes">
                 <ul>
                     <li>
-                        <h5><p>name</p><label>attribute</label></h5>
+                        <h5><span>name</span><label>attribute</label></h5>
                         <ul>
-                            <li><label>Purpose</label> <p>A unique name by which a containing riot-tag can reference the iconic-button<br><code>this.tags.butonName</code></p></li>
+                            <li><label>Purpose</label> <p>A unique name by which a containing riot-tag can reference the iconic-button<br><code>this.tags.buttonName</code></p></li>
                             <li><label>Value</label> <p>buttonName</p></li>
                             <li><label>Default</label> <p>not named</p></li>
                             <li><label>Required</label></li>
                         </ul>
                     </li>
                     <li>
-                        <h5><p>float</p><label>attribute</label></h5>
+                        <h5><span>float</span><label>attribute</label></h5>
                         <ul>
                             <li><label>Purpose</label> <p>Control the layout for different containers by assigning a float instruction</p></li>
                             <li><label>Value</label> <p>buttonName</p></li>
@@ -82,7 +76,7 @@
                         </ul>
                     </li>
                     <li>
-                        <h5><p>size</p><label>attribute</label></h5>
+                        <h5><span>size</span><label>attribute</label></h5>
                         <ul>
                             <li><label>Purpose</label> <p>Control the size of the iconic-button</p></li>
                             <li><label>Value</label> <p>any numeric value in rems</p></li>
@@ -91,12 +85,12 @@
                         </ul>
                     </li>
                     <li>
-                        <h5><p>hotkey</p><label>attribute</label></h5>
+                        <h5><span>hotkey</span><label>attribute</label></h5>
                         <ul>
                             <li><label>Purpose</label> <p>A keyboard character that can be used to trigger the buttons onclick event</p></li>
                             <li><label>Value</label> <p>a..z, 0..9</p></li>
                             <li><label>Default</label> <p>none</p></li>
-                            <li><label>More Info</label> <p>By holding the <code>shift</code> key all <b><i1-8n>iconic-button</i1-8n></b>'s with hotkeys assigned will transform to show their hotkey</p></li>
+                            <li><label>More Info</label> <p>By holding the <code>shift</code> key all <b><i1-8n>iconic-button</i1-8n></b>'s with assigned hotkey's will transform to show their hotkey</p></li>
                         </ul>
                     </li>
                 </ul>
@@ -109,7 +103,7 @@
             <h1><span class="tag-name">&lt;<b><i1-8n>iconic-navigation</i1-8n></b>/&gt;</span></h1>
         </header>
         <blockquote>
-            <b><i1-8n>iconic-navigation</i1-8n></b> is a vertical navigation list composed of iconic naviagtion items
+            <b><i1-8n>iconic-navigation</i1-8n></b> is a vertical navigation list composed of iconic navigation items
         </blockquote>
         <section>
             <h3>Demonstration</h3>
@@ -128,7 +122,7 @@
             <div class="attributes">
                 <ul>
                     <li>
-                        <h5><p>data-fixed</p><label>attribute</label></h5>
+                        <h5><span>data-fixed</span><label>attribute</label></h5>
                         <ul>
                             <li><label>Purpose</label> <p>specify if iconic-navigation should be fixed to the left or right of the viewport</p></li>
                             <li><label>Value</label> <p>left | right | none</p></li>

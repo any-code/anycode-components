@@ -1,110 +1,38 @@
 body {
+	background: #FFF;
 	margin: 0;
 	padding: 0;
-	background: #FFF;
-}
-
-div.attributes ul {
-	list-style: none;
-}
-
-div.attributes > ul > li {
-	display: block;
-	padding-bottom: 1rem;
-	margin-bottom: 3rem;
-	clear: both;
-}
-
-div.attributes > ul > li > ul {
-	clear: both;
-}
-
-div.attributes li > h5 {
-	border-bottom: 1px solid #DDD;
-}
-
-div.attributes li > h5 > label {
-	display: inline;
-	padding: 0 0 0 0.5rem;
-	margin: 0;
-	font-size: 2rem;
-	font-weight: normal;
-}
-
-div.attributes li > h5 > p {
-	display: inline;
-	font-size: 2rem;
-	font-weight: bold;
-}
-
-div.attributes > ul > li > ul > li {
-	min-height: 3rem;
-	clear: both;
-}
-
-div.attributes li > label {
-	float: left;
-	height: 3rem;
-	width: 9rem;
-	padding: 0 1rem 0 1rem;
-	font-size: 1.5rem;
-}
-
-div.attributes li > p {
-	font-size: 1.5rem;
-}
-
-section {
-	padding-top: 4rem;
-	display: block;
-	position: relative;
-	clear: both;
-}
-
-.button-sample {
-	clear: both;
-	padding: 3rem;
-	display: block;
-	position: relative;
-}
-
-.button-sample > h6 {
-	font-weight: bolder;
-}
-
-.button-sample > iconic-button {
-	margin-left: 1rem;
 }
 
 article {
 	display: block;
+	padding: 4rem 6rem 0 6rem;
 	position: relative;
-}
-
-article.right {
-	padding: 4rem 6rem 0 32rem;
-}
-
-article.left {
-	padding: 4rem 32rem 0 6rem;
-}
-
-
-td {
-	vertical-align: top;
-}
-
-td:first-child {
-	font-weight: bolder;
 }
 
 article demo {
 	margin-bottom: 3rem;
 }
 
+@media (min-width: 750px) {
+	article.right {
+		padding: 4rem 6rem 0 32rem;
+	}
+
+	article.left {
+		padding: 4rem 32rem 0 6rem;
+	}
+}
+
+blockquote {
+	color: #AAA;
+	font-size: 2.5rem;
+	margin-left: 0;
+	padding-left: 0;
+}
 
 header:first-child {
-	padding-top: 0rem;
+	padding-top: 0;
 	border-top: none;
 }
 
@@ -118,29 +46,91 @@ mbs-footer {
 	z-index: 2;
 }
 
+section {
+	clear: both;
+	display: block;
+	padding-top: 4rem;
+	position: relative;
+}
+
+.attributes ul {
+	list-style: none;
+}
+
+.attributes > ul > li {
+	clear: both;
+	display: block;
+	margin-bottom: 3rem;
+	padding-bottom: 1rem;
+}
+
+.attributes > ul > li > ul {
+	clear: both;
+}
+
+.attributes li > h5 {
+	border-bottom: 1px solid #DDD;
+}
+
+.attributes li > h5 > label {
+	display: inline;
+	font-size: 2rem;
+	font-weight: normal;
+	margin: 0;
+	padding: 0 0 0 0.5rem;
+}
+
+.attributes li > h5 > span {
+	display: inline;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.attributes > ul > li > ul > li {
+	clear: both;
+	min-height: 3rem;
+}
+
+.attributes li > label {
+	float: left;
+	font-size: 1.5rem;
+	height: 3rem;
+	width: 9rem;
+	padding: 0 1rem 0 1rem;
+}
+
+.attributes li > p {
+	font-size: 1.5rem;
+}
+
+.button-sample {
+	clear: both;
+	display: block;
+	padding: 3rem;
+	position: relative;
+}
+
+.button-sample > h6 {
+	font-weight: bolder;
+}
+
+.button-sample > iconic-button {
+	margin-left: 1rem;
+}
+
 .not-ready {
 	display: none;
 }
 
 .tag-name {
-	white-space: nowrap;
 	text-overflow: ellipsis;
-
-}
-
-blockquote {
-	font-size: 2.5rem;
-	color: #AAA;
-	padding-left:0;
-	margin-left:0;
-}
-
-article.right {
-	padding: 4rem 6rem 0 6rem;
+	font-size: 4rem;
 }
 
 @media (min-width: 750px) {
-	article.right {
-		padding: 4rem 6rem 0 32rem;
+	.tag-name {
+		font-size: 5.5rem;
+		white-space: nowrap;
+		overflow: hidden;
 	}
 }

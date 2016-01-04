@@ -1,42 +1,28 @@
 <iconic-button class="{ inset: inset }" style="background: { color }; float: { float }; height: { size }rem; width: { size }rem; line-height: { fontSize }rem; font-size: { fontSize }rem; border-radius: { radius }rem; margin: { margin }rem;" >
     <div name="container" style=" border-radius: { radius }rem; ">
         <div name="text" style="height: { size }rem;"><yield/></div>
-        <div name="hotkey" style="height: { size }rem; width: { size }rem; border-radius: { radius }rem; ">{ keyHelp }</div>
+        <div name="hotkey" style="height: { size }rem; width: { size }rem; border-radius: { radius }rem; ">{ keyHelp[0] }</div>
     </div>
     <script>
         var addEvent = window.document.addEventListener
 
-
-        this.size = parseFloat(opts.size)|| 4;
-        this.fontSize = parseFloat(opts.size) * 0.8;
-        this.inset = false;
-
         this.on('mount', function() {
             addEvent('keypress', function(event) {
+                event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
-                if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" || name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
-
-
-
-
-                var otherKey = key - 32;
-                if (key >= 65 && key <= 90) {
-                    otherKey = key + 32;
-                }
-
-                if (String.fromCharCode(key) === this.keyHelp || String.fromCharCode(otherKey) === this.keyHelp) {
+                if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
+                    name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
+                if (this.keyHelp.indexOf(String.fromCharCode(key)) > -1) {
                     this.activated = key;
                     return false;
                 }
-
             }.bind(this))
 
             addEvent('keyup', function(event) {
                 event = event || window.event;
-
                 var key = event.which, name = event.target.nodeName.toUpperCase();
-                if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" || name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
-
+                if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
+                    name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
 
                 var visualClick = function() {
                     if (this.activated) {
@@ -61,19 +47,15 @@
             }.bind(this))
 
             addEvent('keydown', function(event) {
-
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
-                if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" || name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
-
-                if (event.shiftKey) {
-                    if (this.keyHelp) {
-                        this.hotkey.classList.add('help')
-                    }
+                if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
+                    name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
+                if (event.shiftKey && this.keyHelp) {
+                    this.hotkey.classList.add('help')
                 } else {
                     this.hotkey.classList.remove('help')
                 }
-
                 return true;
             }.bind(this));
         })
@@ -87,7 +69,6 @@
             this.radius = 0;
             this.margin = 0;
             this.fontSize = parseFloat(this.buttonSize) * 0.8;
-
             this.inset = opts.inset !== undefined
             if (this.inset) {
                 this.radius = '' + parseFloat(this.buttonSize) * 0.1;
