@@ -18,14 +18,16 @@
             <li><a href="#iconic-announcement"><iconic-button float="left" size="3.2" inset color="#777" hotkey="a"><i class="icon-announcement"></i></iconic-button>&nbsp;<i1-8n>iconic-announcement</i1-8n></a></li>
             <li><a href="#iconic-button"><iconic-button float="left" size="3.2" inset color="#777" hotkey="b"><i class="icon-button"></i></iconic-button>&nbsp;<i1-8n>iconic-button</i1-8n></a></li>
             <li><a href="#iconic-navigation"><iconic-button float="left" size="3.2" inset color="#777" hotkey="n"><i class="icon-navigation"></i></iconic-button>&nbsp;<i1-8n>iconic-navigation</i1-8n></a></li>
+            <li><a href="#iconic-tip"><iconic-button float="left" size="3.2" inset color="#777" hotkey="t"><i class="icon-tip"></i></iconic-button>&nbsp;<i1-8n>iconic-tip</i1-8n></a></li>
         </ul>
     </iconic-navigation>
     <a id="iconic-announcement"></a>
     <article class="right">
         <header>
             <h1><span class="tag-name">&lt;<b><i1-8n>iconic-announcement</i1-8n></b>/&gt;</span></h1>
+
         </header>
-        <blockquote>
+        <blockquote><i class="icon-announcement icon"></i>
             <b><i1-8n>iconic-announcement</i1-8n></b> is a flash/toaster message suitable for displaying short-lived announcements and notifications. <b><i1-8n>iconic-announcement</i1-8n></b> displays a visual dismissal cue which can be halted by clicking the content of the announcement.
         </blockquote>
         <section>
@@ -39,25 +41,14 @@
                 <em>Congratulations</em><br>You've successfully clicked the <em>Show Announcement</em> button.
             </iconic-announcement>
         </section>
-        <section>
-            <h3>Content</h3>
-            <p>Any HTML snippet can be provided as content</p>
-        </section>
-        <section>
-            <h3>Content</h3>
-            <p>Any HTML snippet can be provided as content</p>
-        </section>
-        <section>
-            <h3>Content</h3>
-            <p>Any HTML snippet can be provided as content</p>
-        </section>
     </article>
     <a id="iconic-button"></a>
     <article class="right">
         <header>
             <h1><span class="tag-name">&lt;<b><i1-8n>iconic-button</i1-8n></b>/&gt;</span></h1>
+
         </header>
-        <blockquote>
+        <blockquote><i class="icon-button icon"></i>
             <b><i1-8n>iconic-button</i1-8n></b> is a keyboard aware visual button. It contains a single icon, sized in root ems. <b><i1-8n>iconic-button</i1-8n></b> can be
             used with an icon font symbol or just plain text providing a consistent look and feel to icon and button UI elements
         </blockquote>
@@ -136,8 +127,9 @@
     <article class="right">
         <header>
             <h1><span class="tag-name">&lt;<b><i1-8n>iconic-navigation</i1-8n></b>/&gt;</span></h1>
+
         </header>
-        <blockquote>
+        <blockquote><i class="icon-navigation icon"></i>
             <b><i1-8n>iconic-navigation</i1-8n></b> is a vertical navigation list composed of iconic navigation items
         </blockquote>
         <section>
@@ -166,6 +158,41 @@
                     </li>
                 </ul>
             </div>
+        </section>
+    </article>
+    <a id="iconic-tip"></a>
+    <article class="right">
+        <header>
+            <h1><span class="tag-name">&lt;<b><i1-8n>iconic-tip</i1-8n></b>/&gt;</span></h1>
+        </header>
+        <blockquote><i class="icon-tip icon"></i>
+            <b><i1-8n>iconic-tip</i1-8n></b> is a tool tip
+        </blockquote>
+        <section>
+            <h3>Try It</h3>
+            <h6>Above</h6>
+            <button data-me data-tip="tip-above">Hover over me</button>
+            <iconic-tip position="above" name="tip-above">
+                <h5>BUT I'M ONLY A TOOLTIP</h5>
+                <iconic-navigation name="tooltip-nav">
+                    <ul>
+                        <li><a href="#">This one</a href></li>
+                        <li><a href="#">That one</a href></li>
+                        <li><a href="#">Another one</a href></li>
+                    </ul>
+                </iconic-navigation>
+                <iconic-button size="4" color="#C11">NOPE</iconic-button>
+                <iconic-button size="4" color="#0C8">YEP</iconic-button>
+            </iconic-tip>
+            <h6>Below</h6>
+            <button data-me data-tip="tip-below">Hover over me</button>
+            <iconic-tip position="below" name="tip-below">Help me I'm lost</iconic-tip>
+            <h6>Right</h6>
+            <button data-me data-tip="tip-right">Hover over me</button>
+            <iconic-tip position="right" name="tip-right">Help me I'm lost</iconic-tip>
+            <h6>Left</h6>
+            <button data-me data-tip="tip-left">Hover over me</button>
+            <iconic-tip position="left" name="tip-left">Help me I'm lost</iconic-tip>
         </section>
     </article>
     <mbs-footer product-name="anycode-components" browser-stack privacy-links></mbs-footer>

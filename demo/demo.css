@@ -44,6 +44,18 @@ header {
 	padding-top: 6rem;
 }
 
+blockquote .icon {
+	font-size: 6rem;
+	color: rgba(200,200,200,0.11);
+	left: 0rem;
+	top: 3rem;
+	margin-right: 2rem;
+	z-index: -1;
+	vertical-align: bottom;
+	float: left;
+	height: 6rem;
+}
+
 mbs-footer {
 	margin-top: 4rem;
 	z-index: 2;
