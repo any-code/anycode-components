@@ -3,7 +3,9 @@
     <div name="right"  class="arrow-right"></div>
     <div name="up" class="arrow-up"></div>
     <div name="down" class="arrow-down"></div>
-    <yield/>
+    <div name="content">
+        <yield/>
+    </div>
     <style scoped>
         :scope {
             position: absolute;
@@ -23,6 +25,12 @@
         :scope.fixed {
             position: fixed!important;
         }
+
+        .content {
+            padding: 0;
+            margin: 0;
+        }
+
 
         .arrow-up {
             position: absolute;
@@ -172,13 +180,23 @@
             }.bind(this), TRANSITION_TIMESPAN))
         }.bind(this)
 
+        this.on('show', function() {
+
+        })
+
         this.show = function(event) {
-            this.clearTimed()
-            this.timed.push(setTimeout(function() {
-                this['move' + (opts.position || 'right')].call(this, this._findTarget(event.target))
-                this.root.classList.add('active')
-                this.root.classList.add('show')
-            }.bind(this), parseInt(opts.delay,10) || 1000))
+            var proceed = true;
+            if (this.beforeShow !== undefined) {
+                proceed = this.beforeShow();
+            }
+            if (proceed) {
+                this.clearTimed()
+                this.timed.push(setTimeout(function() {
+                    this['move' + (opts.position || 'right')].call(this, this._findTarget(event.target))
+                    this.root.classList.add('active')
+                    this.root.classList.add('show')
+                }.bind(this), parseInt(opts.delay,10) || 1000))
+            }
         }.bind(this)
 
         this._sendToBack = function() {

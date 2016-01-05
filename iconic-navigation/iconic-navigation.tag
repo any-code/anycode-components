@@ -1,6 +1,6 @@
 <iconic-navigation>
+    <iconic-tip position="right" delay="1" name="navigation-tip"></iconic-tip>
     <iconic-button name="menuButton" size="4.2" color="#bbb" onclick="{ expand }" hotkey="="><i class="fa fa-bars"></i></iconic-button>
-
     <yield/>
     <style scoped>
         :scope {
@@ -160,6 +160,7 @@
     <script>
         this.viewing = undefined;
 
+
         this._mapLinkToAnchor = function(element) {
             return this._elFromHref(element.href)
         }.bind(this)
@@ -220,8 +221,22 @@
             if (opts.dataFixed) {
                 this.root.classList.add("fixed-" + opts.dataFixed);
             }
+
+            this.tags['navigation-tip'].beforeShow = function() {
+                var el = this.navigation.querySelector('li:hover')
+                if (this.navigation.clientWidth !== 42 || el === null || el.innerText.trim().length === 0) {
+                    return false;
+                }
+                this.tags['navigation-tip'].content.innerHTML = this.navigation.querySelector('li:hover').innerHTML
+                return true;
+            }.bind(this)
+
             this.initializeReferences()
             this.initializeScrollListener()
+            this.tip = "iconic-navigation";
+            this.tags['navigation-tip'].content.innerText = this.tip;
+            this.tags['navigation-tip'].update();
+            console.log(this.tags['navigation-tip'])
         })
 
         this.cancelExpander = function() {

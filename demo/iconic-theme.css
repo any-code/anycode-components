@@ -92,6 +92,13 @@ iconic-navigation > ul a.active:hover {
 	color: #FFF;
 }
 
+iconic-navigation iconic-tip a, iconic-navigation iconic-tip a i1-8n * {
+	color: #fff;
+	font-size: 2rem;
+	text-decoration: none;
+}
+
+
 .best-orange {
 	background: #ff886c;
 }
