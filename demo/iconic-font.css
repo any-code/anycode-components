@@ -50,3 +50,15 @@
 .icon-tip:before {
 	content: "\63";
 }
+.icon-burger:before {
+	content: "\3d";
+}
+.icon-home:before {
+	content: "\68";
+}
+.icon-browser:before {
+	content: "\77";
+}
+.icon-list:before {
+	content: "\6c";
+}
