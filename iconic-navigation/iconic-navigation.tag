@@ -9,9 +9,9 @@
             margin: 0;
             padding: 0;
             height: auto;
-            background: #bbb;
             width: 4.2rem;
             transition: all 200ms ease-in-out;
+            overflow: hidden;
         }
 
         :scope.fixed-left {
@@ -44,7 +44,6 @@
 
         :scope > ul {
             position: relative;
-            background: #D6FFF7;
             bottom: 0rem;
             height: auto;
             left: 0;
@@ -92,11 +91,8 @@
             text-align: left;
             display: block;
             padding: 0.5rem;
-            -webkit-transition: .5s all ease-out;
-            -moz-transition: .5s all ease-out;
-            transition: .5s all ease-out;
+            transition: all 80ms ease-in-out;
             border-top: 1px solid white;
-            color: #999;
             text-decoration: none;
         }
 
@@ -123,17 +119,7 @@
             -moz-transition: .5s all ease-out;
             transition: .5s all ease-out;
             border-top: 1px solid white;
-            color: #aaa;
             text-decoration: none;
-        }
-
-        :scope > ul a:hover {
-            color: #000;
-        }
-
-        :scope > ul .active {
-            background: #00d4b4;
-            color: #FFF;
         }
 
         :scope.expand > ul {
@@ -143,7 +129,6 @@
 
 
         :scope.expand > ul {
-            background: #D6FFF7;
             width: 25rem;
             z-index: 100;
         }
@@ -155,6 +140,10 @@
 
             :scope.expand {
                 box-shadow: none;
+            }
+
+            :scope {
+                width: 25rem;
             }
 
             :scope > ul {

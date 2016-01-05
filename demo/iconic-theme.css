@@ -1,0 +1,97 @@
+/* <iconic-announcement/> */
+
+iconic-announcement {
+	background: rgba(100,100,100,0.9);
+	color: rgba(255,255,255,0.8);
+}
+
+iconic-announcement .badge {
+	background: rgba(100,100,100,0.3);
+	border-right: 1px solid rgba(255,255,255,0.1);
+	color: rgba(255,255,255,0.3);
+}
+
+iconic-announcement em {
+	font-style: normal;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+iconic-announcement.warning {
+	background: rgba(200,100,100,0.9);
+	color: rgba(255,255,255,0.8);
+}
+
+iconic-announcement.warning .badge {
+	background: rgba(255,0,0,0.4);
+	border-right: 1px solid rgba(255,255,255,0.1);
+	color: rgba(255,255,255,0.3);
+}
+
+iconic-announcement.warning .content {
+	background: rgba(255,0,0,0.3);
+}
+
+iconic-announcement.warning em {
+	font-style: normal;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+iconic-announcement.success {
+	background: #089;
+	color: rgba(255,255,255,0.8);
+}
+
+iconic-announcement.success .badge {
+	background: #089;
+	border-right: 1px solid rgba(255,255,255,0.1);
+	color: rgba(255,255,255,0.3);
+}
+
+iconic-announcement.success .content {
+	background: #089;
+}
+
+iconic-announcement.success em {
+	font-style: normal;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+/* <iconic-button/> */
+
+iconic-button i {
+	display: inline-flex;
+}
+
+/* <iconic-navigation/> */
+
+iconic-navigation {
+	background: #cdcdcd;
+}
+
+iconic-navigation > ul {
+	background: #d6fff7;
+}
+
+iconic-navigation > ul a {
+	color: #999;
+	background: #d6fff7;
+}
+
+iconic-navigation > ul a:hover {
+	color: #FFF;
+	background: #95f2e2;
+}
+
+iconic-navigation > ul a.active {
+	background: #00d4b4;
+	color: #FFF;
+}
+
+iconic-navigation > ul a.active:hover {
+	background: #00b4a9;
+	color: #FFF;
+}
+
+.best-orange {
+	background: #ff886c;
+}

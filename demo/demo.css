@@ -4,6 +4,9 @@ body {
 	padding: 0;
 }
 
+
+
+
 article {
 	display: block;
 	padding: 4rem 6rem 0 6rem;
@@ -133,8 +136,4 @@ section {
 		white-space: nowrap;
 		overflow: hidden;
 	}
-}
-
-iconic-button i {
-	display: inline-flex;
 }

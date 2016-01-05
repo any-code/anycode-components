@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.0/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css">
+    <link rel="stylesheet" href="iconic-theme.css">
     <link rel="stylesheet" href="iconic-font.css">
     <link rel="stylesheet" href="demo.css">
     <link rel="stylesheet" href="prism.css">
@@ -25,13 +26,17 @@
             <h1><span class="tag-name">&lt;<b><i1-8n>iconic-announcement</i1-8n></b>/&gt;</span></h1>
         </header>
         <blockquote>
-            <b><i1-8n>iconic-announcement</i1-8n></b> is a flash/toaster message suitable for displaying short-lived announcements and notifications
+            <b><i1-8n>iconic-announcement</i1-8n></b> is a flash/toaster message suitable for displaying short-lived announcements and notifications. <b><i1-8n>iconic-announcement</i1-8n></b> displays a visual dismissal cue which can be halted by clicking the content of the announcement.
         </blockquote>
         <section>
-            <h3>Demonstration</h3>
+            <h3>Try It</h3>
             <button data-me onclick="{ opts.showAnnouncement }">Show Announcement</button>
-            <iconic-announcement name="flash">
-                This is an announcement
+            <button data-me onclick="{ opts.showWarning }">Show Warning</button>
+            <iconic-announcement name="warning" class="warning">
+                <em>WARNING</em><br>You are running on reserve inspiration. Be creative immediately!
+            </iconic-announcement>
+            <iconic-announcement name="announcement" class="success">
+                <em>Congratulations</em><br>You've successfully clicked the <em>Show Announcement</em> button.
             </iconic-announcement>
         </section>
         <section>
@@ -182,8 +187,11 @@
     })
 
     riot.mount('demo', {
+        showWarning: function() {
+            this.tags.warning.show(6000)
+        },
         showAnnouncement: function() {
-            this.tags.flash.show(500)
+            this.tags.announcement.show(2000)
         },
         alert: function(e) {
             console.log("YOU CLICKED", e.target.innerText);
