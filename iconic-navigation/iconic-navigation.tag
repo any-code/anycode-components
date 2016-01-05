@@ -96,6 +96,11 @@
             text-decoration: none;
         }
 
+        :scope > ul li.separator {
+            height: 0;
+            border-top: 6px solid white;
+        }
+
         :scope > ul li:first-child a {
             border-top: none;
         }

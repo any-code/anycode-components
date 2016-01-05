@@ -9,6 +9,21 @@ function Module(exports, riot) {
     //
     //
     //BEGIN RIOT TAGS
+riot.tag2('basic-button', '<div name="container"> <div name="text" riot-style="height: {size}rem; "><yield></yield></div> </div>', 'basic-button,[riot-tag="basic-button"] { display: block; position: relative; cursor: pointer; margin-right: 0.5rem; } basic-button.inset,[riot-tag="basic-button"].inset { border-radius: 0.4rem; } @-webkit-keyframes iconicButtonFlash { from { background: rgba(255,255,255, 0.5); } to { background: rgba(255,255,255, 0.3); } } @keyframes iconicButtonFlash { from { background: rgba(255,255,255, 0.5); } to { background: rgba(255,255,255, 0.3); } } basic-button div[name="container"],[riot-tag="basic-button"] div[name="container"] { background: rgba(255,255,255, 0); transition: all 400ms ease-in-out; transition-delay: 0ms; padding-left: 2rem; padding-right: 2rem; } basic-button.inset div[name="container"],[riot-tag="basic-button"].inset div[name="container"] { border-radius: 0.4rem; } basic-button div[name="container"]:hover,[riot-tag="basic-button"] div[name="container"]:hover { background: rgba(255,255,255, 0.3); } basic-button div[name="container"]:active,[riot-tag="basic-button"] div[name="container"]:active { -webkit-animation: iconicButtonFlash 200ms 1; -o-animation: iconicButtonFlash 200ms 1; animation: iconicButtonFlash 200ms 1; } basic-button div[name="text"],[riot-tag="basic-button"] div[name="text"] { color: rgba(255,255,255,0.7); font-weight: bolder; text-align: center; vertical-align: center; transition: all 600ms ease-in-out; transition-delay: 0ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }', 'class="{inset: inset}" riot-style="background: {color}; float: {float}; height: {size}rem; line-height: {size}rem; font-size: {fontSize}rem;"', function(opts) {
+        this.size = parseFloat(opts.size)|| 4;
+        this.fontSize = parseFloat(opts.size) * 0.8;
+        this.inset = false;
+
+        this.on('mount update', function() {
+            this.color = opts.color || 'transparent';
+            this.float = opts.float || 'none';
+            this.inset = opts.inset !== undefined
+            this.size = parseFloat(opts.size)|| 4;
+            this.fontSize = parseFloat(opts.size) * 0.55;
+        });
+}, '{ }');
+
+
 riot.tag2('demo', '<yield></yield>', '', '', function(opts) {
         this.on('mount', function() {
             this.root.className = '';
@@ -190,7 +205,7 @@ riot.tag2('iconic-button', '<div name="container" riot-style=" border-radius: {r
 }, '{ }');
 
 
-riot.tag2('iconic-navigation', '<iconic-button name="menuButton" size="4.2" color="#bbb" onclick="{expand}" hotkey="="><i class="fa fa-bars"></i></iconic-button> <yield></yield>', 'iconic-navigation,[riot-tag="iconic-navigation"] { display: block; position: relative; margin: 0; padding: 0; height: auto; width: 4.2rem; transition: all 200ms ease-in-out; overflow: hidden; } iconic-navigation.fixed-left,[riot-tag="iconic-navigation"].fixed-left { position: fixed; z-index: 1; bottom: 0rem; left: 0; right: auto; top: 0; } iconic-navigation.fixed-right,[riot-tag="iconic-navigation"].fixed-right { position: fixed; z-index: 1; bottom: 0rem; left: auto; right: 0; top: 0; } iconic-navigation iconic-button[name="menuButton"],[riot-tag="iconic-navigation"] iconic-button[name="menuButton"] { display: none; } iconic-navigation[class^="fixed"] iconic-button[name="menuButton"],[riot-tag="iconic-navigation"][class^="fixed"] iconic-button[name="menuButton"] { display: block; } iconic-navigation > ul,[riot-tag="iconic-navigation"] > ul { position: relative; bottom: 0rem; height: auto; left: 0; list-style: none; margin: 0; padding: 0; right: auto; top: 0rem; width: 4.2rem; overflow: hidden; white-space: nowrap; transition: all 200ms ease-in-out; } iconic-navigation:not([class^="fixed"]),[riot-tag="iconic-navigation"]:not([class^="fixed"]) { width: auto; } iconic-navigation:not([class^="fixed"]) ul,[riot-tag="iconic-navigation"]:not([class^="fixed"]) ul { width: auto; } iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { top: 4.2rem; } iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { position: absolute; } iconic-navigation.expand,[riot-tag="iconic-navigation"].expand { width: 25rem; box-shadow: 10px 0px 15px rgba(0,0,0,0.095); } iconic-navigation > ul li,[riot-tag="iconic-navigation"] > ul li { padding: 0; margin: 0; list-style: none; } iconic-navigation > ul li a,[riot-tag="iconic-navigation"] > ul li a { font-size: 2rem; text-align: left; display: block; padding: 0.5rem; transition: all 80ms ease-in-out; border-top: 1px solid white; text-decoration: none; } iconic-navigation > ul li:first-child a,[riot-tag="iconic-navigation"] > ul li:first-child a { border-top: none; } iconic-navigation > ul li ul,[riot-tag="iconic-navigation"] > ul li ul { padding: 0; margin: 0; } iconic-navigation > ul li ul li,[riot-tag="iconic-navigation"] > ul li ul li { padding: 0; margin: 0; list-style: none; } iconic-navigation > ul li ul li a,[riot-tag="iconic-navigation"] > ul li ul li a { font-size: 1rem; display: block; padding: 0.1rem 0.1rem 0.1rem 2rem; -webkit-transition: .5s all ease-out; -moz-transition: .5s all ease-out; transition: .5s all ease-out; border-top: 1px solid white; text-decoration: none; } iconic-navigation.expand > ul,[riot-tag="iconic-navigation"].expand > ul { z-index: 500; width: 25rem; } iconic-navigation.expand > ul,[riot-tag="iconic-navigation"].expand > ul { width: 25rem; z-index: 100; } @media (min-width: 750px) { iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { top: 0rem; } iconic-navigation.expand,[riot-tag="iconic-navigation"].expand { box-shadow: none; } iconic-navigation,[riot-tag="iconic-navigation"] { width: 25rem; } iconic-navigation > ul,[riot-tag="iconic-navigation"] > ul { top: 0rem; width: 25rem; } }', '', function(opts) {
+riot.tag2('iconic-navigation', '<iconic-button name="menuButton" size="4.2" color="#bbb" onclick="{expand}" hotkey="="><i class="fa fa-bars"></i></iconic-button> <yield></yield>', 'iconic-navigation,[riot-tag="iconic-navigation"] { display: block; position: relative; margin: 0; padding: 0; height: auto; width: 4.2rem; transition: all 200ms ease-in-out; overflow: hidden; } iconic-navigation.fixed-left,[riot-tag="iconic-navigation"].fixed-left { position: fixed; z-index: 1; bottom: 0rem; left: 0; right: auto; top: 0; } iconic-navigation.fixed-right,[riot-tag="iconic-navigation"].fixed-right { position: fixed; z-index: 1; bottom: 0rem; left: auto; right: 0; top: 0; } iconic-navigation iconic-button[name="menuButton"],[riot-tag="iconic-navigation"] iconic-button[name="menuButton"] { display: none; } iconic-navigation[class^="fixed"] iconic-button[name="menuButton"],[riot-tag="iconic-navigation"][class^="fixed"] iconic-button[name="menuButton"] { display: block; } iconic-navigation > ul,[riot-tag="iconic-navigation"] > ul { position: relative; bottom: 0rem; height: auto; left: 0; list-style: none; margin: 0; padding: 0; right: auto; top: 0rem; width: 4.2rem; overflow: hidden; white-space: nowrap; transition: all 200ms ease-in-out; } iconic-navigation:not([class^="fixed"]),[riot-tag="iconic-navigation"]:not([class^="fixed"]) { width: auto; } iconic-navigation:not([class^="fixed"]) ul,[riot-tag="iconic-navigation"]:not([class^="fixed"]) ul { width: auto; } iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { top: 4.2rem; } iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { position: absolute; } iconic-navigation.expand,[riot-tag="iconic-navigation"].expand { width: 25rem; box-shadow: 10px 0px 15px rgba(0,0,0,0.095); } iconic-navigation > ul li,[riot-tag="iconic-navigation"] > ul li { padding: 0; margin: 0; list-style: none; } iconic-navigation > ul li a,[riot-tag="iconic-navigation"] > ul li a { font-size: 2rem; text-align: left; display: block; padding: 0.5rem; transition: all 80ms ease-in-out; border-top: 1px solid white; text-decoration: none; } iconic-navigation > ul li.separator,[riot-tag="iconic-navigation"] > ul li.separator { height: 0; border-top: 6px solid white; } iconic-navigation > ul li:first-child a,[riot-tag="iconic-navigation"] > ul li:first-child a { border-top: none; } iconic-navigation > ul li ul,[riot-tag="iconic-navigation"] > ul li ul { padding: 0; margin: 0; } iconic-navigation > ul li ul li,[riot-tag="iconic-navigation"] > ul li ul li { padding: 0; margin: 0; list-style: none; } iconic-navigation > ul li ul li a,[riot-tag="iconic-navigation"] > ul li ul li a { font-size: 1rem; display: block; padding: 0.1rem 0.1rem 0.1rem 2rem; -webkit-transition: .5s all ease-out; -moz-transition: .5s all ease-out; transition: .5s all ease-out; border-top: 1px solid white; text-decoration: none; } iconic-navigation.expand > ul,[riot-tag="iconic-navigation"].expand > ul { z-index: 500; width: 25rem; } iconic-navigation.expand > ul,[riot-tag="iconic-navigation"].expand > ul { width: 25rem; z-index: 100; } @media (min-width: 750px) { iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { top: 0rem; } iconic-navigation.expand,[riot-tag="iconic-navigation"].expand { box-shadow: none; } iconic-navigation,[riot-tag="iconic-navigation"] { width: 25rem; } iconic-navigation > ul,[riot-tag="iconic-navigation"] > ul { top: 0rem; width: 25rem; } }', '', function(opts) {
         this.viewing = undefined;
 
         this._mapLinkToAnchor = function(element) {
@@ -276,89 +291,149 @@ riot.tag2('iconic-navigation', '<iconic-button name="menuButton" size="4.2" colo
 }, '{ }');
 
 
-riot.tag2('iconic-tip', '<div name="left" class="arrow-left"></div> <div name="right" class="arrow-right"></div> <div name="up" class="arrow-up"></div> <div name="down" class="arrow-down"></div> <yield></yield>', 'iconic-tip,[riot-tag="iconic-tip"] { position: absolute; display: block; box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8); background: #222; padding: 1rem; font-size: 1.5rem; border-radius: 0.3rem; color: #FFF; opacity: 0; margin: 0 auto; z-index: 500; } iconic-tip.animate,[riot-tag="iconic-tip"].animate { transition: opacity 200ms ease-in-out; } iconic-tip .arrow-up,[riot-tag="iconic-tip"] .arrow-up { position: absolute; width: auto; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid #222; margin: 0 auto; top: -10px; } iconic-tip .arrow-down,[riot-tag="iconic-tip"] .arrow-down { position: absolute; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #222; bottom: -10px; margin: 0 auto; } iconic-tip .arrow-left,[riot-tag="iconic-tip"] .arrow-left { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 10px solid #222; right: -10px; } iconic-tip .arrow-right,[riot-tag="iconic-tip"] .arrow-right { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 10px solid #222; left: -10px; } iconic-tip.show,[riot-tag="iconic-tip"].show { opacity: 0.95; }', '', function(opts) {
+riot.tag2('iconic-tip', '<div name="left" class="arrow-left"></div> <div name="right" class="arrow-right"></div> <div name="up" class="arrow-up"></div> <div name="down" class="arrow-down"></div> <yield></yield>', 'iconic-tip,[riot-tag="iconic-tip"] { position: absolute; display: block; box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8); background: #222; padding: 1rem; font-size: 1.5rem; border-radius: 0.3rem; color: #FFF; opacity: 0; margin: 0 auto; z-index: -1; transition: opacity 200ms ease-in-out; } iconic-tip.fixed,[riot-tag="iconic-tip"].fixed { position: fixed!important; } iconic-tip .arrow-up,[riot-tag="iconic-tip"] .arrow-up { position: absolute; width: auto; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid #222; margin: 0 auto; top: -10px; } iconic-tip .arrow-down,[riot-tag="iconic-tip"] .arrow-down { position: absolute; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #222; bottom: -10px; margin: 0 auto; } iconic-tip .arrow-left,[riot-tag="iconic-tip"] .arrow-left { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 10px solid #222; right: -10px; } iconic-tip .arrow-right,[riot-tag="iconic-tip"] .arrow-right { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 10px solid #222; left: -10px; } iconic-tip.active,[riot-tag="iconic-tip"].active { z-index: 9999; } iconic-tip.show,[riot-tag="iconic-tip"].show { opacity: 0.95; }', '', function(opts) {
+        var TRANSITION_TIMESPAN = 200;
+        this.timed = [];
 
-        this.showTip = function(name) {
+        this.on('mount', function() {
+            this.root.addEventListener('mouseover', this.clearTimed)
+            this.root.addEventListener('mouseout', this.hide)
+            this._initializeElements()
+        })
+
+        this.moveright = function(el) {
+            var offset =  getOffset(el);
+            if (offset[2] === 'fixed') {
+                this.root.classList.add('fixed');
+            }
+            this._showTip('right');
+            this.root.style.left = "" + (offset[0] + el.clientWidth + 10) + "px";
+            this.root.style.top = "" + (offset[1]  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
+        }
+
+        this.moveleft = function(el) {
+            var offset =  getOffset(el);
+            if (offset[2] === 'fixed') {
+                this.root.classList.add('fixed');
+            }
+            this._showTip('left');
+            this.root.style.left = "" + (el.offsetLeft - this.root.clientWidth - 10) + "px";
+            this.root.style.top = "" + (el.offsetTop  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
+        }
+
+        this.movebelow = function(el) {
+            var offset =  getOffset(el);
+            if (offset[2] === 'fixed') {
+                this.root.classList.add('fixed');
+            }
+            this._showTip('up');
+            this.up.style.left = "" + ((this.root.clientWidth / 2) -  5) + "px";
+            this.root.style.left = "" + ((el.offsetLeft + (el.clientWidth / 2)) -  (this.root.clientWidth / 2)) + "px";
+            this.root.style.top = "" + (el.offsetTop + el.clientHeight + 10) + "px";
+        }
+
+        this.moveabove = function(el) {
+            var offset =  getOffset(el);
+            if (offset[2] === 'fixed') {
+                this.root.classList.add('fixed');
+            }
+            this._showTip('down');
+            this.down.style.left = "" + ((this.root.clientWidth / 2) -  5) + "px";
+            this.root.style.left = "" + ((el.offsetLeft + (el.clientWidth / 2)) -  (this.root.clientWidth / 2)) + "px";
+            this.root.style.top = "" + (el.offsetTop  - this.root.clientHeight - 10) + "px";
+        }
+
+        function getOffset(el) {
+            var traverse = function(el, attr, pixels) {
+                if (pixels === undefined) { pixels = 0; }
+                if (el == null) {
+                    return pixels;
+                } else {
+                    pixels = pixels + el[attr];
+                    return traverse(el.offsetParent, attr, pixels);
+                }
+            }
+
+            var getPosition = function(el, position) {
+                if (position === undefined) { position = 'static'; }
+                if (el == null) {
+                    return position;
+                } else {
+                    if (position !== 'fixed') {
+                        position = window.getComputedStyle(el).position
+                    }
+                    return getPosition(el.offsetParent, position);
+                }
+            }
+
+            var p = getPosition(el);
+
+            if (p === 'fixed') {
+                return [traverse(el, 'offsetLeft'), traverse(el, 'offsetTop'), p]
+            } else {
+                return [el.offsetLeft, el.offsetTop, p]
+            }
+        }
+
+        this.clearTimed = function() {
+            this.timed.map(clearTimeout)
+            this.timed = []
+        }.bind(this)
+
+        this.hide = function() {
+            this.clearTimed()
+            this.timed.push(setTimeout(function(){
+                this.root.classList.remove('show')
+                this._sendToBack()
+            }.bind(this), TRANSITION_TIMESPAN))
+        }.bind(this)
+
+        this.show = function(event) {
+            this.clearTimed()
+            this.timed.push(setTimeout(function() {
+                this['move' + (opts.position || 'right')].call(this, this._findTarget(event.target))
+                this.root.classList.add('active')
+                this.root.classList.add('show')
+            }.bind(this), parseInt(opts.delay,10) || 1000))
+        }.bind(this)
+
+        this._sendToBack = function() {
+            this.clearTimed()
+
+            this.timed.push(setTimeout(function() {
+                this.root.classList.remove('active')
+            }.bind(this), TRANSITION_TIMESPAN))
+        }
+
+        this._findTarget = function(target) {
+            do {
+                if (target._tip_target)
+                    return target
+
+                target = target.parentElement
+
+            } while (target !== null)
+
+            return target
+        }
+
+        this._initializeElements = function() {
+            var elements = this.root.parentElement.querySelectorAll('*[data-tip="' + opts.name +'"]')
+
+            for (element in elements) {
+                elements[element]._tip_target = true
+                elements[element].onmouseover = this.show
+                elements[element].onmouseout = this.hide
+            }
+        }
+
+        this._showTip = function(name) {
             this.up.style.display = "none"
             this.left.style.display = "none"
             this.right.style.display = "none"
             this.down.style.display = "none"
             this[name].style.display = "block"
         }
-
-        this.moveright = function(el) {
-            setTimeout(function(){
-                this.showTip('right');
-                this.root.style.left = "" + (el.offsetLeft + el.clientWidth + 10) + "px";
-                this.root.style.top = "" + (el.offsetTop  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
-            }.bind(this), 1);
-        }
-
-        this.moveleft = function(el) {
-            setTimeout(function(){
-                this.showTip('left');
-                this.root.style.left = "" + (el.offsetLeft - this.root.clientWidth - 10) + "px";
-                this.root.style.top = "" + (el.offsetTop  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
-                this.root.classList.add('animate')
-            }.bind(this), 1);
-        }
-
-        this.movebelow = function(el) {
-            setTimeout(function(){
-                this.showTip('up');
-                this.root.style.left = "" + ((el.offsetLeft + (el.clientWidth / 2)) -  (this.root.clientWidth / 2)) + "px";
-                this.up.style.left = "" + ((this.root.clientWidth / 2) -  5) + "px";
-                this.root.style.top = "" + (el.offsetTop + el.clientHeight + 10) + "px";
-                this.root.classList.add('animate')
-            }.bind(this), 1);
-        }
-
-        this.moveabove = function(el) {
-            setTimeout(function(){
-                this.showTip('down');
-                this.root.style.left = "" + ((el.offsetLeft + (el.clientWidth / 2)) -  (this.root.clientWidth / 2)) + "px";
-                this.down.style.left = "" + ((this.root.clientWidth / 2) -  5) + "px";
-                this.root.style.top = "" + (el.offsetTop  - this.root.clientHeight - 10) + "px";
-                this.root.classList.add('animate')
-            }.bind(this), 1);
-        }
-
-        this.on('mount', function() {
-            var tip = this.root,
-                tfo, efo;
-
-            var element = document.querySelector('button[data-tip="' + opts.name +'"]');
-            this['move' + (opts.position || 'left')].call(this, element);
-
-            this.root.onmouseover = function() {
-                clearTimeout(efo);
-                clearTimeout(tfo);
-            }
-
-            this.root.onmouseout = function() {
-                tfo = setTimeout(function(){
-                    this.root.classList.remove('show')
-                    this.update();
-                }.bind(this),300);
-            }.bind(this)
-
-            element.onmouseover = function() {
-                clearTimeout(tfo);
-                clearTimeout(efo);
-                this['move' + (opts.position || 'left')].call(this, element);
-                this.root.classList.add('show')
-                this.update();
-            }.bind(this)
-
-            element.onmouseout = function() {
-                efo = setTimeout(function(){
-                    this.root.classList.remove('show')
-                    this.update();
-                }.bind(this),300);
-            }.bind(this)
-
-            this.root.classList.add('animate')
-        })
 });
 
 
