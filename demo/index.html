@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Anycode Components - Demo</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="starveling.css">
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.0/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css">
     <link rel="stylesheet" href="iconic-theme.css">
@@ -30,6 +32,80 @@
     </div>
     <a id="iconic-announcement"></a>
     <article class="right">
+        <style>
+            .u-well {
+                font-size: 0;
+                min-width: 6rem;
+            }
+
+            .u-well > * {
+                margin: 0.5rem 0.5rem 0.5rem 0;
+            }
+
+            .u-well > *:first-child {
+                margin-left: 0.5rem;
+            }
+
+            .u-well > *.wrapped {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+                display: inline-block;
+            }
+
+            .button-small {
+                height: 4rem;
+                padding: 0 2.1rem;
+                line-height: 1.9rem;
+                letter-spacing: 0rem;
+                font-size: 1.6rem;
+                vertical-align: top;
+                text-align: center;
+            }
+
+            .button-icon {
+                height: 5rem;
+                width: 5rem;
+                padding: 0;
+                line-height: 1.9rem;
+                letter-spacing: 0rem;
+                font-size: 2.6rem;
+                vertical-align: top;
+                text-align: center;
+                min-width: 5rem;
+            }
+
+            .button-small.button-icon {
+                height: 4rem;
+                width: 4rem;
+                padding: 0;
+                line-height: 1.3rem;
+                letter-spacing: 0rem;
+                font-size: 2.1rem;
+                vertical-align: top;
+                text-align: center;
+            }
+
+            .button-primary.button-red {
+                background: #d2666f;
+                border: #d2666f;
+            }
+        </style>
+        <div class="u-well" style="background: #EEE; padding: 1rem; text-align: left; margin-bottom: 4rem;">
+            <button class="button-primary button-icon"><i class="icon-tip"></i></button>
+            <button class="button-primary button-icon"><i class="icon-announcement"></i></button>
+            <button class="button-primary button-icon"><i class="icon-navigation"></i></button>
+            <button class="button-primary button-icon"><i class="icon-button"></i></button>
+            <button class="button-primary button-red">STOP</button>
+            <button class="button-primary">CONTINUE</button>
+        </div>
+
+        <div class="u-well">
+            <button class="button-primary button-small button-icon"><i class="icon-tip"></i></button>
+            <button class="button-primary button-small button-icon"><i class="icon-announcement"></i></button>
+            <button class="button-primary button-small button-icon"><i class="icon-navigation"></i></button>
+            <button class="button-primary button-small button-icon"><i class="icon-button"></i></button>
+            <button class="button-primary button-small">CONTY</button>
+        </div>
         <header>
             <h1><span class="tag-name">&lt;<b><i1-8n>iconic-announcement</i1-8n></b>/&gt;</span></h1>
 
@@ -209,9 +285,10 @@
         </blockquote>
         <section>
             <h3>Demonstration</h3>
-            <div style="padding: 4rem;">
-                <basic-button inset size="4" color="#0C0">LEARN MORE</basic-button>
-            </div>
+
+
+
+
             <div style="padding: 4rem;">
                 <basic-button inset size="4" color="#0C8">LEARN MORE</basic-button>
             </div>
@@ -256,6 +333,76 @@
     });
 
     this.i18n.setLanguage('iconic');
+
+    function cFloat(property) {
+        return parseFloat(property.slice(0,-2),10)
+    }
+
+    var iconic = {
+        wells: {
+            render: function() {
+                var wellList = document.querySelectorAll('.u-well'),
+                    wells = Array.prototype.slice.call(wellList, 0);
+
+                wells.forEach(function(well) {
+                    var wellStyle = window.getComputedStyle(well),
+                        wellPaddingWidth = cFloat(wellStyle.paddingLeft) + cFloat(wellStyle.paddingRight),
+                        wellUsableWidth = well.clientWidth - wellPaddingWidth,
+                        elements = Array.prototype.slice.call(well.children, 0),
+                        offsetTop = elements[0].offsetTop,
+                        offsetLeft = elements[0].offsetLeft
+
+                    elements.forEach(function(element) {
+                        var elementStyle = window.getComputedStyle(element),
+                            elementMarginWidth = cFloat(elementStyle.marginLeft) + cFloat(elementStyle.marginRight)
+
+                        if (element._iconic_original_style === undefined) {
+                            element._iconic_original_width = element.offsetWidth;
+                            element._iconic_original_style = elementStyle;
+                            element._iconic_original_font_size = elementStyle.fontSize;
+                            console.log("X", element._iconic_original_style.fontSize)
+                        }
+
+                        element.style.fontSize = element._iconic_original_font_size;
+
+                        if (element.offsetTop !== offsetTop && element.offsetLeft <= offsetLeft || wellUsableWidth < 200) {
+                            element.classList.add('wrapped');
+                            element.style.fontSize = element._iconic_original_style.fontSize;
+
+                            if (wellUsableWidth - (element._iconic_original_width + elementMarginWidth) < 0 || wellUsableWidth < 200) {
+                                element.style.width = "" + (wellUsableWidth - elementMarginWidth) + "px";
+                                element.style.paddingLeft = "0";
+                                element.style.paddingRight = "0";
+
+
+                                while (element.scrollWidth > element.clientWidth && element.clientWidth > 10) {
+                                    console.log("" + parseFloat(cFloat(elementStyle.fontSize) - 0.5) + "px", element.scrollWidth > element.clientWidth || cFloat(elementStyle.fontSize) < 5)
+                                    element.style.fontSize = "" + parseFloat(cFloat(elementStyle.fontSize) - 0.5) + "px";
+                                }
+
+                            } else {
+                                element.style.width = element._iconic_original_width + "px";
+                                element.style.paddingLeft = element._iconic_original_style.paddingLeft;
+                                element.style.paddingRight = element._iconic_original_style.paddingRight;
+                            }
+                        } else {
+                            element.style.width = element._iconic_original_width;
+                            element.classList.remove('wrapped');
+                        }
+                    })
+                });
+            }
+        },
+        init: function() {
+            window.addEventListener('resize', function() {
+                iconic.wells.render();
+            })
+            this.wells.render();
+        }
+    }
+
+    iconic.init();
+
 </script>
 </body>
 </html>
