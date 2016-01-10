@@ -235,8 +235,7 @@
             this.initializeScrollListener()
             this.tip = "iconic-navigation";
             this.tags['navigation-tip'].content.innerText = this.tip;
-            this.tags['navigation-tip'].update();
-            console.log(this.tags['navigation-tip'])
+            this.tags['navigation-tip'].update()
         })
 
         this.cancelExpander = function() {

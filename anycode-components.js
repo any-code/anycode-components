@@ -282,8 +282,7 @@ riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="nav
             this.initializeScrollListener()
             this.tip = "iconic-navigation";
             this.tags['navigation-tip'].content.innerText = this.tip;
-            this.tags['navigation-tip'].update();
-            console.log(this.tags['navigation-tip'])
+            this.tags['navigation-tip'].update()
         })
 
         this.cancelExpander = function() {
@@ -457,6 +456,163 @@ riot.tag2('iconic-tip', '<div name="left" class="arrow-left"></div> <div name="r
             this.right.style.display = "none"
             this.down.style.display = "none"
             this[name].style.display = "block"
+        }
+});
+
+
+riot.tag2('iconic-well', '<div name="well" class="u-well"> <yield></yield> </div>', 'iconic-well .u-well,[riot-tag="iconic-well"] .u-well { font-size: 0; min-width: 6rem; } iconic-well .u-well > *,[riot-tag="iconic-well"] .u-well > * { margin: 0.5rem 0.5rem 0.5rem 0; } iconic-well .u-well > *:first-child,[riot-tag="iconic-well"] .u-well > *:first-child { margin-left: 0.5rem; } iconic-well .u-well > *.wrapped,[riot-tag="iconic-well"] .u-well > *.wrapped { margin-left: 0.5rem; margin-right: 0.5rem; }', '', function(opts) {
+        var MIN_USABLE_WIDTH = 100;
+
+        function Style(element, original) {
+            this.prop = {}
+            this.element = element;
+            this.isOriginal = original;
+
+            if (original && element.__iconic_original_style === undefined) {
+                this.prop = element.__iconic_original_style = {}
+            } else if (original) {
+                this.prop = element.__iconic_original_style
+            }
+
+            if (this.prop['all'] === undefined) {
+                this._populate(element)
+            }
+        }
+
+        Style.prototype._populate = function(element) {
+            var styles = window.getComputedStyle(element)
+
+            for (style in styles) {
+                if (!parseInt(style, 10) && style != 0) {
+                    this.prop[style] = styles[style]
+                }
+            }
+
+            this.prop.iconicInnerWidth = "" + element.scrollWidth + "px"
+        }
+
+        Style.prototype.update = function() {
+            if (this.isOriginal) {
+                throw Error("Won't update an original");
+            }
+
+            this._populate(this.element);
+        }
+
+        Style.prototype.get = function() {
+            return this.prop;
+        }
+
+        Style.prototype.asInt = function(name) {
+            return parseInt(this.prop[name], 10);
+        }
+
+        Style.prototype.asFloat = function(name) {
+            return parseFloat(this.prop[name]);
+        }
+
+        Style.prototype.asString = function(name) {
+            return this.prop[name];
+        }
+
+        this.on('mount', function() {
+            this.well.setAttribute('style', this.root.getAttribute('style'))
+            this.root.removeAttribute('style')
+            this.update()
+
+            this.trigger('set-props')
+
+            window.addEventListener('resize', function() {
+                this.trigger('render')
+            }.bind(this))
+
+            this.trigger('render')
+        })
+
+        this.on('update', function() {
+            this.trigger('render')
+        })
+
+        this.on('render', function() {
+            var elements = Array.prototype.slice.call(this.well.children, 0)
+            elements.forEach(this._renderElement)
+        });
+
+        this.on('set-props', function() {
+            var style = window.getComputedStyle(this.well),
+                paddingWidth = cFloat(style.paddingLeft) + cFloat(style.paddingRight),
+                elements = Array.prototype.slice.call(this.well.children, 0)
+
+            this.props = {
+                style: style,
+                paddingWidth: paddingWidth,
+                offsetLeft: elements[0].offsetLeft,
+                offsetTop: elements[0].offsetTop
+            }
+        });
+
+        this.getBurstWidth = function() {
+            return this.well.clientWidth - this.props.paddingWidth
+        }
+
+        this.on('update-props', function() {
+            this.props.usableWidth = this.well.clientWidth - this.props.paddingWidth
+        })
+
+        this._reset = function(element) {
+            var originalStyle = new Style(element, true);
+            element.style.fontSize = originalStyle.asString('fontSize')
+            element.style.width = originalStyle.asString('width');
+            element.style.paddingLeft = originalStyle.asString('paddingLeft');
+            element.style.paddingRight = originalStyle.asString('paddingRight');
+        }
+
+        this._shouldWrap = function(element) {
+            return element.offsetTop !== this.props.offsetTop && element.offsetLeft <= this.props.offsetLeft
+        }
+
+        this._renderWrapElement = function(element) {
+            if (this._shouldWrap(element) || this.getBurstWidth() < MIN_USABLE_WIDTH) {
+                element.classList.add('wrapped');
+            } else {
+                element.classList.remove('wrapped');
+            }
+        }
+
+        this._renderElement = function(element) {
+
+            var originalStyle = new Style(element, true),
+                style = new Style(element),
+                usableWidth = this.getBurstWidth(),
+                marginWidth = style.asFloat('marginLeft') + style.asFloat('marginRight'),
+                usedWidth = originalStyle.asFloat('width') + marginWidth
+
+            var willCheckElementSize = this._shouldWrap(element) || usableWidth < MIN_USABLE_WIDTH
+
+            if (willCheckElementSize) {
+                if (usableWidth - usedWidth < 0 || usableWidth < MIN_USABLE_WIDTH) {
+                    element.style.width = "" + (usableWidth - marginWidth) + "px";
+                    element.style.paddingLeft = "0";
+                    element.style.paddingRight = "0";
+
+                    var fontSize = originalStyle.asFloat('fontSize');
+                    while (element.scrollWidth > style.asFloat('width')) {
+                        fontSize = fontSize - 2;
+                        element.style.fontSize = "" + fontSize + "px";
+                        style.update();
+                    }
+                } else {
+                    this._reset(element)
+                }
+            } else {
+                this._reset(element)
+            }
+
+            this._renderWrapElement(element)
+        }.bind(this)
+
+        function cFloat(property) {
+            return parseFloat(property.slice(0,-2),10)
         }
 });
 

@@ -1,0 +1,83 @@
+.button-icon {
+	height: 5rem;
+	width: 5rem;
+	min-width: 5rem;
+	padding: 0;
+	line-height: 1.9rem;
+	letter-spacing: 0rem;
+	font-size: 2.6rem;
+	vertical-align: top;
+	text-align: center;
+
+}
+
+
+.button-small {
+	height: 4rem;
+	padding: 0 2.1rem;
+	line-height: 1.9rem;
+	letter-spacing: 0rem;
+	font-size: 1.6rem;
+	vertical-align: top;
+	text-align: center;
+}
+
+.button-small.button-icon {
+	height: 4rem;
+	width: 4rem;
+	min-width: 4rem;
+	padding: 0;
+	line-height: 1.3rem;
+	letter-spacing: 0rem;
+	font-size: 2.1rem;
+	vertical-align: top;
+	text-align: center;
+}
+
+.button-extra-small {
+	height: 3rem;
+	padding: 0 2.1rem;
+	line-height: 1.9rem;
+	letter-spacing: 0rem;
+	font-size: 1.2rem;
+	vertical-align: top;
+	text-align: center;
+}
+
+.button-extra-small.button-icon {
+	height: 3rem;
+	width: 3rem;
+	min-width: 3rem;
+	padding: 0;
+	line-height: 1rem;
+	letter-spacing: 0rem;
+	font-size: 1.5rem;
+	vertical-align: top;
+	text-align: center;
+}
+
+.button-primary.button-red {
+	background: #d2666f;
+	border: #d2666f;
+}
+
+.u-vertical-separator {
+	display: inline-block;
+	width: 0.5rem;
+	border-radius: 4px;
+	background: rgba(0,0,0,0.1);
+	height: 5rem;
+	font-size: 0;
+	vertical-align: top;
+}
+
+.u-vertical-separator-extra-small {
+	display: inline-block;
+	width: 0.3rem;
+	border-radius: 2px;
+	background: rgba(0,0,0,0.1);
+	height: 3rem;
+	font-size: 0;
+	vertical-align: top;
+}
+
