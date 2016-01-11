@@ -4,15 +4,9 @@ body {
 	padding: 0;
 }
 
-body.inverted {
-	background: #313F4F;
-	margin: 0;
-	padding: 0;
-}
-
-
 article.right {
 	padding: 4rem 6rem 0 6rem;
+	overflow-x: hidden;
 }
 
 @media (min-width: 750px) {
@@ -27,7 +21,7 @@ article.right {
 
 blockquote .icon {
 	font-size: 6rem;
-	color: rgba(200,200,200,0.11);
+	color: rgba(100,100,100,0.5);
 	left: 0rem;
 	top: 3rem;
 	margin-right: 2rem;
@@ -110,24 +104,6 @@ mbs-footer {
 .not-ready {
 	display: none;
 }
-
-.tag-name {
-	text-overflow: ellipsis;
-	font-size: 4rem;
-}
-
-@media (min-width: 750px) {
-	.tag-name {
-		font-size: 10rem;
-		white-space: nowrap;
-		overflow: hidden;
-	}
-}
-
-.button-well {
-
-}
-
 
 .blue {
 	color: blue;

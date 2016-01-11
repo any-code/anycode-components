@@ -17,44 +17,220 @@
     <link rel="stylesheet" href="prism.css">
 </head>
 <body>
-<demo >
+<demo>
     <iconic-navigation data-fixed="left">
         <ul>
             <li class="separator"></li>
             <li data-tip="navigation-tip"><a href="#iconic-announcement" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-announcement"></i></button>&nbsp;<i1-8n>iconic-announcement</i1-8n></a></li>
-            <li data-tip="navigation-tip"><a href="#iconic-button" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-button"></i></button>&nbsp;<i1-8n>iconic-button</i1-8n></a></li>
             <li data-tip="navigation-tip"><a href="#iconic-navigation" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-navigation"></i></button>&nbsp;<i1-8n>iconic-navigation</i1-8n></a></li>
             <li data-tip="navigation-tip"><a href="#iconic-tip" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-tip"></i></button>&nbsp;<i1-8n>iconic-tip</i1-8n></a></li>
             <li class="separator"></li>
+            <li data-tip="navigation-tip"><a href="#iconic-button" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-button"></i></button>&nbsp;<i1-8n>iconic-button</i1-8n></a></li>
             <li data-tip="navigation-tip"><a href="#basic-button" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-button"></i></button>&nbsp;<i1-8n>basic-button</i1-8n></a></li>
             <li class="separator"></li>
         </ul>
     </iconic-navigation>
 
+
+    <iconic-announcement name="warning" class="warning">
+        <em>WARNING</em><br>You are running on reserve inspiration. Be creative immediately!
+    </iconic-announcement>
+
+    <iconic-announcement name="announcement" class="success">
+        <em>Congratulations</em><br>You've successfully clicked the <em>Show Announcement</em> button.
+    </iconic-announcement>
     <a id="iconic-announcement"></a>
     <article class="right">
-        <header>
-            <h1><span class="tag-name">&lt;<b><i1-8n>iconic-announcement</i1-8n></b>/&gt;</span></h1>
-        </header>
-        <blockquote><i class="icon-announcement icon"></i>
-            <b><i1-8n>iconic-announcement</i1-8n></b> is a flash/toaster message suitable for displaying short-lived announcements and notifications. <b><i1-8n>iconic-announcement</i1-8n></b> displays a visual dismissal cue which can be halted by clicking the content of the announcement.
-        </blockquote>
-        <section>
-            <h3>Try It</h3>
-            <button data-me onclick="{ opts.showAnnouncement }">Show Announcement</button>
-            <button data-me onclick="{ opts.showWarning }">Show Warning</button>
-            <iconic-announcement name="warning" class="warning">
-                <em>WARNING</em><br>You are running on reserve inspiration. Be creative immediately!
-            </iconic-announcement>
-            <iconic-announcement name="announcement" class="success">
-                <em>Congratulations</em><br>You've successfully clicked the <em>Show Announcement</em> button.
-            </iconic-announcement>
-        </section>
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+
+                    <h1 class="tag">iconic <em>announcement</em></h1>
+                    <blockquote><i class="icon-announcement icon"></i>
+                        iconic-<em>announcement</em> is a toaster style flash-message with cancellable automatic timeout. It's suitable for displaying short-lived announcements and notifications.
+                    </blockquote>
+                </div>
+            </div>
+            <div class="row">
+                <div class="eight columns">
+                    <h5>Announcement/General Notification</h5>
+                    <p>After clicking the <em>Announcement</em> button, you'll see a generic notification message. The message has been configured to show for <em>2 seconds</em> before automatically dismissing</p>
+                    <p>Try clicking on the announcement to interrupt the automatic dismissal, then click the close button to manually dismiss the announcement.</p>
+                </div>
+                <div class="four columns" style="margin:1rem; text-align: right;">
+                    <button class="button-primary" onclick="{ opts.showAnnouncement }">Announcement</button>
+                </div>
+            </div>
+            <div class="row u-cf">
+                <div class="eight columns">
+                    <h5>Warnings</h5>
+                    <p>After pressing the Warning's <em>Warning</em> button, you'll see a hostile notification, informing the end-user of the imminent danger.</p>
+                    <p>The warning announcement has been configured to display for <em>6 seconds</em> before automatic dismissal. As a developer you can elect any number of milliseconds to display an iconic-<b>announcement</b></p>
+                </div>
+                <div class="four columns" style="margin:1rem;  text-align: right;">
+                    <button class="button-primary" onclick="{ opts.showWarning }">Warning</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <h3>Attributes</h3>
+                    <div class="attributes">
+                        <ul>
+                            <li>
+                                <h5><span>name</span><label>attribute</label></h5>
+                                <ul>
+                                    <li><label>Purpose</label> <p>A unique name by which a containing riot-tag can reference the iconic-announcement<br><code>this.tags.announcement</code></p></li>
+                                    <li><label>Value</label> <p>announcement name</p></li>
+                                    <li><label>Default</label> <p>not named</p></li>
+                                    <li><label>Required</label></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h5><span>class</span><label>attribute</label></h5>
+                                <ul>
+                                    <li><label>Purpose</label> <p>Control the visual style of the announcement</p></li>
+                                    <li><label>Value</label> <p>success | warning</p></li>
+                                    <li><label>Default</label> <p>none</p></li>
+                                    <li><label>Required</label></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <h3>Methods</h3>
+                    <div class="attributes">
+                        <ul>
+                            <li>
+                                <h5><span>show</span><label>(milliseconds)</label></h5>
+                                <ul>
+                                    <li><label>Purpose</label> <p>Display the announcement</p></li>
+                                    <li><label>Arguments</label> <p><em>milliseconds</em> :: How many ms before the announcement is automatically dismissed</p></li>
+                                    <li><label>Default</label> <p>Show's announcement for 10,000ms</p></li>
+                                    <li><label>Example</label> <p><code> tag.show(6000) </code></p></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </article>
+    <hr>
+    <a id="iconic-navigation"></a>
+    <article class="right">
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    <h1 class="tag">iconic <em>navigation</em></h1>
+                    <blockquote><i class="icon-navigation icon"></i>
+                        iconic-<em>navigation</em> is a highly discoverable, responsive left-hand &amp; right-hand navigation bar with automatic link-anchor capturing.
+                    </blockquote>
+                    <p> iconic-<em>navigation</em> is designed to be more discoverable than the usual hamburger menu. iconic-<em>navigation</em> also provides automatic on-page anchor capturing helping make nagivation more intuitive.</p>
+                    <h5>&larr; As seen to the left</h5>
+                    <p>iconic-<em>navigation</em> is present on this page. Try resizing the browser window to see it in action.</p>
+                    <p>The hamburger is disclosed only when the navigation bar has iconized. This enables tap-to-read for mobile browsers and hover tool-tips for desktop browsers</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <h3>Attributes</h3>
+                    <div class="attributes">
+                        <ul>
+                            <li>
+                                <h5><span>data-fixed</span><label>attribute</label></h5>
+                                <ul>
+                                    <li><label>Purpose</label> <p>specify if iconic-navigation should be fixed to the left or right of the viewport</p></li>
+                                    <li><label>Value</label> <p>left | right | none</p></li>
+                                    <li><label>Default</label> <p>none</p></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <hr>
+
+    <a id="iconic-tip"></a>
+
+    <article class="right">
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    <h1 class="tag">iconic <em>tip</em></h1>
+                    <blockquote><i class="icon-tip icon"></i>
+                        iconic-<em>tip</em> is a multi-directional tooltip tied to a specific element, or set of elements.
+                    </blockquote>
+                    <p> iconic-<em>tip</em>'s content can be dynamically set shared amongst a group of elements. each element need's the iconic-<em>tip</em>'s name set in its data-tip property and the magic will happen.</p>
+                    <p>This visible tooltip will remain visible when receiving user-interactions shuch as mouse-hover or click actions enabling iconic-<em>tip</em> to double as a basic flyout control.</p>
+                </div>
+            </div>
+            <div class="row">
+                <h5>Tooltip's are displayed on-hover</h5>
+            </div>
+            <div class="row u-pad-below">
+                <div class="six columns">
+                    <h6>Display above</h6>
+                    <button class="button-small" data-tip="tip-above">Hover over me</button>
+                </div>
+                <div class="six columns">
+                    <h6>Display below</h6>
+                    <button class="button-small" data-tip="tip-below">Hover over me</button>
+                </div>
+            </div>
+            <div class="row u-pad-below">
+                <div class="six columns">
+                    <h6>Display to left</h6>
+                    <button class="button-small" data-tip="tip-left">Hover over me</button>
+                </div>
+                <div class="six columns">
+                    <h6>Display to right</h6>
+                    <button class="button-small" data-tip="tip-right">Hover over me</button>
+                </div>
+            </div>
+            <iconic-tip position="above" name="tip-above">
+                <div style="padding: 1rem; max-width: 40rem;">
+                    <h6><i class="icon-tip" style="color: rgba(0, 215, 180, 0.9); font-size: 5rem;"></i> Displayed above</h6>
+                </div>
+                <div style="margin-bottom: 1rem; height: 3rem; text-align: center;">
+                    <button class="button-primary button-extra-small">LEARN MORE</button>
+                </div>
+            </iconic-tip>
+            <iconic-tip position="left" name="tip-left">I am displayed to the left</iconic-tip>
+            <iconic-tip position="below" name="tip-below">I am displayed below</iconic-tip>
+            <iconic-tip position="right" name="tip-right">I am displayed to the right</iconic-tip>
+            <br>
+            <div class="row">
+                <div class="twelve columns">
+                    <h3>Attributes</h3>
+                    <div class="attributes">
+                        <ul>
+                            <li>
+                                <h5><span>position</span><label>attribute</label></h5>
+                                <ul>
+                                    <li><label>Purpose</label> <p>specify the position to the element at which the iconic-tip should appear</p></li>
+                                    <li><label>Value</label> <p>above | right | below | left</p></li>
+                                    <li><label>Default</label> <p>none</p></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <article class="right">
+
+            </article>
     <a id="iconic-button"></a>
     <article class="right">
         <header>
-            <h1><span class="tag-name">&lt;<b><i1-8n>iconic-button</i1-8n></b>/&gt;</span></h1>
+            <h1>&lt;<b><i1-8n>iconic-button</i1-8n></b>/&gt;</h1>
 
         </header>
         <blockquote><i class="icon-button icon"></i>
@@ -132,80 +308,9 @@
             </div>
         </section>
     </article>
-    <a id="iconic-navigation"></a>
-    <article class="right">
-        <header>
-            <h1><span class="tag-name">&lt;<b><i1-8n>iconic-navigation</i1-8n></b>/&gt;</span></h1>
-
-        </header>
-        <blockquote><i class="icon-navigation icon"></i>
-            <b><i1-8n>iconic-navigation</i1-8n></b> is a vertical navigation list composed of iconic navigation items
-        </blockquote>
-        <section>
-            <h3>Demonstration</h3>
-            <iconic-navigation>
-                <ul>
-                    <li><a href="#iconic-button"><iconic-button float="left" size="3.2" inset color="#0B9">y</iconic-button>&nbsp;Yes</a></li>
-                    <li><a href="#iconic-navigation"><iconic-button float="left" size="3.2" inset color="#0B9">n</iconic-button>&nbsp;No</a></li>
-                </ul>
-            </iconic-navigation>
-        </section>
-        <section>
-            <h3>Content</h3>
-            <p>A standard <code>ul</code> element is provided as content</p>
-        </section>
-        <section><h3>Attributes</h3>
-            <div class="attributes">
-                <ul>
-                    <li>
-                        <h5><span>data-fixed</span><label>attribute</label></h5>
-                        <ul>
-                            <li><label>Purpose</label> <p>specify if iconic-navigation should be fixed to the left or right of the viewport</p></li>
-                            <li><label>Value</label> <p>left | right | none</p></li>
-                            <li><label>Default</label> <p>none</p></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </article>
-    <a id="iconic-tip"></a>
-    <article class="right">
-        <header>
-            <h1><span class="tag-name">&lt;<b><i1-8n>iconic-tip</i1-8n></b>/&gt;</span></h1>
-        </header>
-        <blockquote><i class="icon-tip icon"></i>
-            <b><i1-8n>iconic-tip</i1-8n></b> is a tool tip
-        </blockquote>
-        <section>
-            <h3>Try It</h3>
-            <h6>Above</h6>
-            <button data-tip="tip-above">Hover above me</button>
-            <iconic-tip position="above" name="tip-above">
-                <div style="padding: 1rem; max-width: 40rem;">
-                    <h5>This tooltip is helpful but we have a whole webpage on the topic...</h5>
-                </div>
-
-                <div style="margin-bottom: 1rem; height: 4rem;">
-                    <basic-button float="right" inset size="4" color="#0C8">LEARN MORE</basic-button>
-                </div>
-            </iconic-tip>
-            <h6>Below</h6>
-            <button data-tip="tip-below">Hover below me</button>
-            <iconic-tip position="below" name="tip-below">Help me I'm lost</iconic-tip>
-            <h6>Right</h6>
-            <button data-tip="tip-right">Hover to my right</button>
-            <iconic-tip position="right" name="tip-right">Help me I'm lost</iconic-tip>
-            <h6>Left</h6>
-            <button data-tip="tip-left">Hover to my left</button>
-            <iconic-tip position="left" name="tip-left">Help me I'm lost</iconic-tip>
-        </section>
-    </article>
     <a id="basic-button"></a>
     <article class="right">
-        <header>
-            <h1><span class="tag-name">&lt;<b><i1-8n>basic-button</i1-8n></b>/&gt;</span></h1>
-        </header>
+        <h1 class="tag">&lt;basic-button/&gt;</h1>
         <blockquote><i class="icon-button icon"></i>
             A <b><i1-8n>basic-button</i1-8n></b> is variable width button
         </blockquote>

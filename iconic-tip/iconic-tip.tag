@@ -10,7 +10,7 @@
         :scope {
             position: absolute;
             display: block;
-            box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.6);
             background: #222;
             padding: 1rem;
             font-size: 1.5rem;
@@ -50,6 +50,7 @@
             border-bottom: 10px solid #222;
             margin: 0 auto;
             top: -10px;
+            transition: opacity 200ms ease-in-out;
         }
 
         .arrow-down {
@@ -61,6 +62,7 @@
             border-top: 10px solid #222;
             bottom: -10px;
             margin: 0 auto;
+            transition: opacity 200ms ease-in-out;
         }
 
         .arrow-left {
@@ -71,6 +73,7 @@
             border-bottom: 10px solid transparent;
             border-left: 10px solid #222;
             right: -10px;
+            transition: opacity 200ms ease-in-out;
         }
 
         .arrow-right {
@@ -81,6 +84,7 @@
             border-bottom: 10px solid transparent;
             border-right: 10px solid #222;
             left: -10px;
+            transition: opacity 200ms ease-in-out;
         }
 
         :scope.active {
@@ -107,7 +111,7 @@
                 this.root.classList.add('fixed');
             }
             this._showTip('right');
-            this.root.style.left = "" + (offset[0] + el.clientWidth + 6) + "px";
+            this.root.style.left = "" + (offset[0] + el.clientWidth + 10) + "px";
             this.root.style.top = "" + (offset[1]  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
         }
 

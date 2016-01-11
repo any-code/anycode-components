@@ -8,7 +8,6 @@
 	font-size: 2.6rem;
 	vertical-align: top;
 	text-align: center;
-
 }
 
 
@@ -111,4 +110,19 @@
 .navigation-icon {
 	vertical-align: -0.01rem;
 	margin-right: 0.2rem;
+}
+
+hr {
+	border-top-width: 2.5rem;
+	border-top-color: rgba(0,0,0,0.05);
+}
+
+h1.tag {
+	font-weight: 400;
+	text-overflow: ellipsis;
+}
+
+h1.tag em {
+	font-weight: 600;
+	color: rgba(0,0,0,0.9);
 }
