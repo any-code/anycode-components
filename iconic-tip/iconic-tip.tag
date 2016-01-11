@@ -22,6 +22,15 @@
             transition: opacity 200ms ease-in-out;
         }
 
+        :scope.navigation-tip {
+            padding: 0.2rem 1rem 0.2rem 0.2rem;
+            border-radius: 0.4rem;
+        }
+
+        :scope.navigation-tip .arrow-right {
+            top: 0.78rem;
+        }
+
         :scope.fixed {
             position: fixed!important;
         }
@@ -98,7 +107,7 @@
                 this.root.classList.add('fixed');
             }
             this._showTip('right');
-            this.root.style.left = "" + (offset[0] + el.clientWidth + 10) + "px";
+            this.root.style.left = "" + (offset[0] + el.clientWidth + 6) + "px";
             this.root.style.top = "" + (offset[1]  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
         }
 

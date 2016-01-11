@@ -56,9 +56,26 @@
 	text-align: center;
 }
 
+.icon-extra-small {
+	height: 3rem;
+	width: 3rem;
+	min-width: 3rem;
+	padding: 0;
+	line-height: 1rem;
+	letter-spacing: 0rem;
+	font-size: 1.5rem;
+	vertical-align: top;
+	text-align: center;
+	border-radius: 0.3rem;
+}
+
 .button-primary.button-red {
 	background: #d2666f;
 	border: #d2666f;
+}
+
+.u-nd {
+	text-decoration: none!important;
 }
 
 .u-vertical-separator {
@@ -67,6 +84,16 @@
 	border-radius: 4px;
 	background: rgba(0,0,0,0.1);
 	height: 5rem;
+	font-size: 0;
+	vertical-align: top;
+}
+
+.u-vertical-separator-small {
+	display: inline-block;
+	width: 0.4rem;
+	border-radius: 3px;
+	background: rgba(0,0,0,0.1);
+	height: 4rem;
 	font-size: 0;
 	vertical-align: top;
 }
@@ -81,3 +108,7 @@
 	vertical-align: top;
 }
 
+.navigation-icon {
+	vertical-align: -0.01rem;
+	margin-right: 0.2rem;
+}

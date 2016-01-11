@@ -29,13 +29,11 @@
 
         Style.prototype._populate = function(element) {
             var styles = window.getComputedStyle(element)
-
             for (style in styles) {
                 if (!parseInt(style, 10) && style != 0) {
                     this.prop[style] = styles[style]
                 }
             }
-
             this.prop.iconicInnerWidth = "" + element.scrollWidth + "px"
         }
 
@@ -43,7 +41,6 @@
             if (this.isOriginal) {
                 throw Error("Won't update an original");
             }
-
             this._populate(this.element);
         }
 
@@ -67,14 +64,15 @@
             this.well.setAttribute('style', this.root.getAttribute('style'))
             this.root.removeAttribute('style')
             this.update()
-
             this.trigger('set-props')
 
             window.addEventListener('resize', function() {
                 this.trigger('render')
             }.bind(this))
-
-            this.trigger('render')
+            setTimeout(function() {
+                this.trigger('render')
+                this.update()
+            }.bind(this), 0)
         })
 
         this.on('update', function() {
@@ -88,10 +86,9 @@
         });
 
         this.on('set-props', function() {
-            var style = window.getComputedStyle(this.well),
-                paddingWidth = cFloat(style.paddingLeft) + cFloat(style.paddingRight),
+            var style = new Style(this.well),
+                paddingWidth = style.asFloat('paddingLeft') + style.asFloat('paddingRight'),
                 elements = Array.prototype.slice.call(this.well.children, 0)
-
             this.props = {
                 style: style,
                 paddingWidth: paddingWidth,
@@ -100,13 +97,9 @@
             }
         });
 
-        this.getBurstWidth = function() {
+        this.getUsableWidth = function() {
             return this.well.clientWidth - this.props.paddingWidth
         }
-
-        this.on('update-props', function() {
-            this.props.usableWidth = this.well.clientWidth - this.props.paddingWidth
-        })
 
         this._reset = function(element) {
             var originalStyle = new Style(element, true);
@@ -128,28 +121,29 @@
             }
         }
 
-        this._renderElement = function(element) {
+        this._shrinkToFit = function(element, style, fontSize) {
+            while (element.scrollWidth > style.asFloat('width')) {
+                fontSize = fontSize - 2;
+                element.style.fontSize = "" + fontSize + "px";
+                style.update();
+            }
+            return element;
+        }
 
+        this._renderElement = function(element) {
             var originalStyle = new Style(element, true),
                 style = new Style(element),
-                usableWidth = this.getBurstWidth(),
                 marginWidth = style.asFloat('marginLeft') + style.asFloat('marginRight'),
-                usedWidth = originalStyle.asFloat('width') + marginWidth
-
-            var willCheckElementSize = this._shouldWrap(element) || usableWidth < MIN_USABLE_WIDTH
+                usedWidth = originalStyle.asFloat('width') + marginWidth,
+                usableWidth = this.getUsableWidth(),
+                willCheckElementSize = this._shouldWrap(element) || usableWidth < MIN_USABLE_WIDTH
 
             if (willCheckElementSize) {
                 if (usableWidth - usedWidth < 0 || usableWidth < MIN_USABLE_WIDTH) {
-                    element.style.width = "" + (usableWidth - marginWidth) + "px";
-                    element.style.paddingLeft = "0";
-                    element.style.paddingRight = "0";
-
-                    var fontSize = originalStyle.asFloat('fontSize');
-                    while (element.scrollWidth > style.asFloat('width')) {
-                        fontSize = fontSize - 2;
-                        element.style.fontSize = "" + fontSize + "px";
-                        style.update();
-                    }
+                    element.style.width = "" + (usableWidth - marginWidth) + "px"
+                    element.style.paddingLeft = "0"
+                    element.style.paddingRight = "0"
+                    element = this._shrinkToFit(element, style, originalStyle.asFloat('fontSize'));
                 } else {
                     this._reset(element)
                 }
@@ -159,9 +153,5 @@
 
             this._renderWrapElement(element)
         }.bind(this)
-
-        function cFloat(property) {
-            return parseFloat(property.slice(0,-2),10)
-        }
     </script>
 </iconic-well>

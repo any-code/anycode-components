@@ -1,5 +1,5 @@
 <iconic-navigation>
-    <iconic-tip position="right" delay="1" name="navigation-tip"></iconic-tip>
+    <iconic-tip position="right" delay="1" name="navigation-tip" class="navigation-tip"></iconic-tip>
     <iconic-button name="menuButton" size="4.2" color="#bbb" onclick="{ expand }" hotkey="="><i class="icon-burger"></i></iconic-button>
     <yield/>
     <style scoped>

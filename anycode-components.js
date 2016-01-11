@@ -9,17 +9,13 @@ function Module(exports, riot) {
     //
     //
     //BEGIN RIOT TAGS
-riot.tag2('basic-button', '<div name="container"> <div name="text" riot-style="height: {size}rem; "><yield></yield></div> </div>', 'basic-button,[riot-tag="basic-button"] { display: block; position: relative; cursor: pointer; margin-right: 0.5rem; } basic-button.inset,[riot-tag="basic-button"].inset { border-radius: 0.4rem; } @-webkit-keyframes iconicButtonFlash { from { background: rgba(255,255,255, 0.5); } to { background: rgba(255,255,255, 0.3); } } @keyframes iconicButtonFlash { from { background: rgba(255,255,255, 0.5); } to { background: rgba(255,255,255, 0.3); } } basic-button div[name="container"],[riot-tag="basic-button"] div[name="container"] { background: rgba(255,255,255, 0); transition: all 400ms ease-in-out; transition-delay: 0ms; padding-left: 2rem; padding-right: 2rem; } basic-button.inset div[name="container"],[riot-tag="basic-button"].inset div[name="container"] { border-radius: 0.4rem; } basic-button div[name="container"]:hover,[riot-tag="basic-button"] div[name="container"]:hover { background: rgba(255,255,255, 0.3); } basic-button div[name="container"]:active,[riot-tag="basic-button"] div[name="container"]:active { -webkit-animation: iconicButtonFlash 200ms 1; -o-animation: iconicButtonFlash 200ms 1; animation: iconicButtonFlash 200ms 1; } basic-button div[name="text"],[riot-tag="basic-button"] div[name="text"] { color: rgba(255,255,255,0.7); font-weight: bolder; text-align: center; vertical-align: center; transition: all 600ms ease-in-out; transition-delay: 0ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }', 'class="{inset: inset}" riot-style="background: {color}; float: {float}; height: {size}rem; line-height: {size}rem; font-size: {fontSize}rem;"', function(opts) {
+riot.tag2('basic-button', '<div name="container"> <div name="text"><yield></yield></div> </div>', 'basic-button,[riot-tag="basic-button"] { height: 5rem; line-height:4.8rem; display: inline-block; position: relative; cursor: pointer; border-radius: 0.4rem; font-size: 2rem; vertical-align: top; } @-webkit-keyframes iconicButtonFlash { from { background: rgba(255,255,255, 0.5); } to { background: rgba(255,255,255, 0.3); } } @keyframes iconicButtonFlash { from { background: rgba(255,255,255, 0.5); } to { background: rgba(255,255,255, 0.3); } } basic-button div[name="container"],[riot-tag="basic-button"] div[name="container"] { background: rgba(255,255,255, 0); transition: all 400ms ease-in-out; transition-delay: 0ms; padding: 0 3rem; } basic-button.inset div[name="container"],[riot-tag="basic-button"].inset div[name="container"] { border-radius: 0.4rem; } basic-button div[name="container"]:hover,[riot-tag="basic-button"] div[name="container"]:hover { background: rgba(255,255,255, 0.3); } basic-button div[name="container"]:active,[riot-tag="basic-button"] div[name="container"]:active { -webkit-animation: iconicButtonFlash 200ms 1; -o-animation: iconicButtonFlash 200ms 1; animation: iconicButtonFlash 200ms 1; } basic-button div[name="text"],[riot-tag="basic-button"] div[name="text"] { color: rgba(255,255,255,1); text-align: center; vertical-align: center; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }', 'riot-style="background: {color}"', function(opts) {
         this.size = parseFloat(opts.size)|| 4;
-        this.fontSize = parseFloat(opts.size) * 0.8;
-        this.inset = false;
+        this.fontSize = 2;
 
         this.on('mount update', function() {
-            this.color = opts.color || 'transparent';
-            this.float = opts.float || 'none';
-            this.inset = opts.inset !== undefined
+            this.color = opts.color || 'blue';
             this.size = parseFloat(opts.size)|| 4;
-            this.fontSize = parseFloat(opts.size) * 0.55;
         });
 }, '{ }');
 
@@ -28,6 +24,10 @@ riot.tag2('demo', '<yield></yield>', '', '', function(opts) {
         this.on('mount', function() {
             this.root.className = '';
         })
+});
+
+
+riot.tag2('dooby-button', '', '', '', function(opts) {
 });
 
 
@@ -205,7 +205,7 @@ riot.tag2('iconic-button', '<div name="container" riot-style=" border-radius: {r
 }, '{ }');
 
 
-riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="navigation-tip"></iconic-tip> <iconic-button name="menuButton" size="4.2" color="#bbb" onclick="{expand}" hotkey="="><i class="icon-burger"></i></iconic-button> <yield></yield>', 'iconic-navigation,[riot-tag="iconic-navigation"] { display: block; position: relative; margin: 0; padding: 0; height: auto; width: 4.2rem; transition: all 200ms ease-in-out; overflow: hidden; } iconic-navigation.fixed-left,[riot-tag="iconic-navigation"].fixed-left { position: fixed; z-index: 1; bottom: 0rem; left: 0; right: auto; top: 0; } iconic-navigation.fixed-right,[riot-tag="iconic-navigation"].fixed-right { position: fixed; z-index: 1; bottom: 0rem; left: auto; right: 0; top: 0; } iconic-navigation iconic-button[name="menuButton"],[riot-tag="iconic-navigation"] iconic-button[name="menuButton"] { display: none; } iconic-navigation[class^="fixed"] iconic-button[name="menuButton"],[riot-tag="iconic-navigation"][class^="fixed"] iconic-button[name="menuButton"] { display: block; } iconic-navigation > ul,[riot-tag="iconic-navigation"] > ul { position: relative; bottom: 0rem; height: auto; left: 0; list-style: none; margin: 0; padding: 0; right: auto; top: 0rem; width: 4.2rem; overflow: hidden; white-space: nowrap; transition: all 200ms ease-in-out; } iconic-navigation:not([class^="fixed"]),[riot-tag="iconic-navigation"]:not([class^="fixed"]) { width: auto; } iconic-navigation:not([class^="fixed"]) ul,[riot-tag="iconic-navigation"]:not([class^="fixed"]) ul { width: auto; } iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { top: 4.2rem; } iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { position: absolute; } iconic-navigation.expand,[riot-tag="iconic-navigation"].expand { width: 25rem; box-shadow: 10px 0px 15px rgba(0,0,0,0.095); } iconic-navigation > ul li,[riot-tag="iconic-navigation"] > ul li { padding: 0; margin: 0; list-style: none; } iconic-navigation > ul li a,[riot-tag="iconic-navigation"] > ul li a { font-size: 2rem; text-align: left; display: block; padding: 0.5rem; transition: all 80ms ease-in-out; border-top: 1px solid white; text-decoration: none; } iconic-navigation > ul li.separator,[riot-tag="iconic-navigation"] > ul li.separator { height: 0; border-top: 6px solid white; } iconic-navigation > ul li:first-child a,[riot-tag="iconic-navigation"] > ul li:first-child a { border-top: none; } iconic-navigation > ul li ul,[riot-tag="iconic-navigation"] > ul li ul { padding: 0; margin: 0; } iconic-navigation > ul li ul li,[riot-tag="iconic-navigation"] > ul li ul li { padding: 0; margin: 0; list-style: none; } iconic-navigation > ul li ul li a,[riot-tag="iconic-navigation"] > ul li ul li a { font-size: 1rem; display: block; padding: 0.1rem 0.1rem 0.1rem 2rem; -webkit-transition: .5s all ease-out; -moz-transition: .5s all ease-out; transition: .5s all ease-out; border-top: 1px solid white; text-decoration: none; } iconic-navigation.expand > ul,[riot-tag="iconic-navigation"].expand > ul { z-index: 500; width: 25rem; } iconic-navigation.expand > ul,[riot-tag="iconic-navigation"].expand > ul { width: 25rem; z-index: 100; } @media (min-width: 750px) { iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { top: 0rem; } iconic-navigation.expand,[riot-tag="iconic-navigation"].expand { box-shadow: none; } iconic-navigation,[riot-tag="iconic-navigation"] { width: 25rem; } iconic-navigation > ul,[riot-tag="iconic-navigation"] > ul { top: 0rem; width: 25rem; } }', '', function(opts) {
+riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="navigation-tip" class="navigation-tip"></iconic-tip> <iconic-button name="menuButton" size="4.2" color="#bbb" onclick="{expand}" hotkey="="><i class="icon-burger"></i></iconic-button> <yield></yield>', 'iconic-navigation,[riot-tag="iconic-navigation"] { display: block; position: relative; margin: 0; padding: 0; height: auto; width: 4.2rem; transition: all 200ms ease-in-out; overflow: hidden; } iconic-navigation.fixed-left,[riot-tag="iconic-navigation"].fixed-left { position: fixed; z-index: 1; bottom: 0rem; left: 0; right: auto; top: 0; } iconic-navigation.fixed-right,[riot-tag="iconic-navigation"].fixed-right { position: fixed; z-index: 1; bottom: 0rem; left: auto; right: 0; top: 0; } iconic-navigation iconic-button[name="menuButton"],[riot-tag="iconic-navigation"] iconic-button[name="menuButton"] { display: none; } iconic-navigation[class^="fixed"] iconic-button[name="menuButton"],[riot-tag="iconic-navigation"][class^="fixed"] iconic-button[name="menuButton"] { display: block; } iconic-navigation > ul,[riot-tag="iconic-navigation"] > ul { position: relative; bottom: 0rem; height: auto; left: 0; list-style: none; margin: 0; padding: 0; right: auto; top: 0rem; width: 4.2rem; overflow: hidden; white-space: nowrap; transition: all 200ms ease-in-out; } iconic-navigation:not([class^="fixed"]),[riot-tag="iconic-navigation"]:not([class^="fixed"]) { width: auto; } iconic-navigation:not([class^="fixed"]) ul,[riot-tag="iconic-navigation"]:not([class^="fixed"]) ul { width: auto; } iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { top: 4.2rem; } iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { position: absolute; } iconic-navigation.expand,[riot-tag="iconic-navigation"].expand { width: 25rem; box-shadow: 10px 0px 15px rgba(0,0,0,0.095); } iconic-navigation > ul li,[riot-tag="iconic-navigation"] > ul li { padding: 0; margin: 0; list-style: none; } iconic-navigation > ul li a,[riot-tag="iconic-navigation"] > ul li a { font-size: 2rem; text-align: left; display: block; padding: 0.5rem; transition: all 80ms ease-in-out; border-top: 1px solid white; text-decoration: none; } iconic-navigation > ul li.separator,[riot-tag="iconic-navigation"] > ul li.separator { height: 0; border-top: 6px solid white; } iconic-navigation > ul li:first-child a,[riot-tag="iconic-navigation"] > ul li:first-child a { border-top: none; } iconic-navigation > ul li ul,[riot-tag="iconic-navigation"] > ul li ul { padding: 0; margin: 0; } iconic-navigation > ul li ul li,[riot-tag="iconic-navigation"] > ul li ul li { padding: 0; margin: 0; list-style: none; } iconic-navigation > ul li ul li a,[riot-tag="iconic-navigation"] > ul li ul li a { font-size: 1rem; display: block; padding: 0.1rem 0.1rem 0.1rem 2rem; -webkit-transition: .5s all ease-out; -moz-transition: .5s all ease-out; transition: .5s all ease-out; border-top: 1px solid white; text-decoration: none; } iconic-navigation.expand > ul,[riot-tag="iconic-navigation"].expand > ul { z-index: 500; width: 25rem; } iconic-navigation.expand > ul,[riot-tag="iconic-navigation"].expand > ul { width: 25rem; z-index: 100; } @media (min-width: 750px) { iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { top: 0rem; } iconic-navigation.expand,[riot-tag="iconic-navigation"].expand { box-shadow: none; } iconic-navigation,[riot-tag="iconic-navigation"] { width: 25rem; } iconic-navigation > ul,[riot-tag="iconic-navigation"] > ul { top: 0rem; width: 25rem; } }', '', function(opts) {
         this.viewing = undefined;
 
         this._mapLinkToAnchor = function(element) {
@@ -304,7 +304,11 @@ riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="nav
 }, '{ }');
 
 
-riot.tag2('iconic-tip', '<div name="left" class="arrow-left"></div> <div name="right" class="arrow-right"></div> <div name="up" class="arrow-up"></div> <div name="down" class="arrow-down"></div> <div name="content"> <yield></yield> </div>', 'iconic-tip,[riot-tag="iconic-tip"] { position: absolute; display: block; box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8); background: #222; padding: 1rem; font-size: 1.5rem; border-radius: 0.3rem; color: #FFF; opacity: 0; margin: 0 auto; z-index: -1; transition: opacity 200ms ease-in-out; } iconic-tip.fixed,[riot-tag="iconic-tip"].fixed { position: fixed!important; } iconic-tip .content,[riot-tag="iconic-tip"] .content { padding: 0; margin: 0; } iconic-tip .arrow-up,[riot-tag="iconic-tip"] .arrow-up { position: absolute; width: auto; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid #222; margin: 0 auto; top: -10px; } iconic-tip .arrow-down,[riot-tag="iconic-tip"] .arrow-down { position: absolute; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #222; bottom: -10px; margin: 0 auto; } iconic-tip .arrow-left,[riot-tag="iconic-tip"] .arrow-left { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 10px solid #222; right: -10px; } iconic-tip .arrow-right,[riot-tag="iconic-tip"] .arrow-right { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 10px solid #222; left: -10px; } iconic-tip.active,[riot-tag="iconic-tip"].active { z-index: 9999; } iconic-tip.show,[riot-tag="iconic-tip"].show { opacity: 0.95; }', '', function(opts) {
+riot.tag2('smq', '<div class="smq fixed-left" name="ruut"> <yield></yield> </div>', 'smq,[riot-tag="smq"] {} smq .smq,[riot-tag="smq"] .smq { display: block; position: relative; margin: 0; padding: 0; height: auto; transition: all 200ms ease-in-out; overflow: hidden; width: auto; background: #CCC; } smq .smq > ul,[riot-tag="smq"] .smq > ul { position: relative; bottom: 0rem; height: auto; left: 0; list-style: none; margin: 0; padding: 0; right: auto; overflow: hidden; white-space: nowrap; transition: all 200ms ease-in-out; width: auto; background: #AAA; } smq .smq.fixed-left,[riot-tag="smq"] .smq.fixed-left { position: fixed; z-index: 1; bottom: 0rem; left: 0; right: auto; top: 0; width: 4.2rem; } smq .smq.fixed-left > ul,[riot-tag="smq"] .smq.fixed-left > ul { position: absolute; overflow: hidden; top: 4.2rem; } smq .smq > ul li,[riot-tag="smq"] .smq > ul li { padding: 0; margin: 0; list-style: none; } smq .smq > ul li a,[riot-tag="smq"] .smq > ul li a { font-size: 2rem; text-align: left; display: block; padding: 0.5rem; transition: all 80ms ease-in-out; border-top: 1px solid white; text-decoration: none; } smq .smq > ul li.separator,[riot-tag="smq"] .smq > ul li.separator { height: 0; border-top: 6px solid white; } smq .smq > ul li:first-child a,[riot-tag="smq"] .smq > ul li:first-child a { border-top: none; } smq .smq > ul li ul,[riot-tag="smq"] .smq > ul li ul { padding: 0; margin: 0; } smq .smq > ul li ul li,[riot-tag="smq"] .smq > ul li ul li { padding: 0; margin: 0; list-style: none; } smq .smq > ul li ul li a,[riot-tag="smq"] .smq > ul li ul li a { font-size: 1rem; display: block; padding: 0.1rem 0.1rem 0.1rem 2rem; -webkit-transition: .5s all ease-out; -moz-transition: .5s all ease-out; transition: .5s all ease-out; border-top: 1px solid white; text-decoration: none; } @media (min-width: 750px) { smq .smq.fixed-left,[riot-tag="smq"] .smq.fixed-left { width: 25rem; } smq .smq.fixed-left > ul,[riot-tag="smq"] .smq.fixed-left > ul { top: 0rem; width: 25rem; overflow: visible; } } smq .smq.banana-was-awesome,[riot-tag="smq"] .smq.banana-was-awesome { content: ""; }', '', function(opts) {
+});
+
+
+riot.tag2('iconic-tip', '<div name="left" class="arrow-left"></div> <div name="right" class="arrow-right"></div> <div name="up" class="arrow-up"></div> <div name="down" class="arrow-down"></div> <div name="content"> <yield></yield> </div>', 'iconic-tip,[riot-tag="iconic-tip"] { position: absolute; display: block; box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8); background: #222; padding: 1rem; font-size: 1.5rem; border-radius: 0.3rem; color: #FFF; opacity: 0; margin: 0 auto; z-index: -1; transition: opacity 200ms ease-in-out; } iconic-tip.navigation-tip,[riot-tag="iconic-tip"].navigation-tip { padding: 0.2rem 1rem 0.2rem 0.2rem; border-radius: 0.4rem; } iconic-tip.navigation-tip .arrow-right,[riot-tag="iconic-tip"].navigation-tip .arrow-right { top: 0.78rem; } iconic-tip.fixed,[riot-tag="iconic-tip"].fixed { position: fixed!important; } iconic-tip .content,[riot-tag="iconic-tip"] .content { padding: 0; margin: 0; } iconic-tip .arrow-up,[riot-tag="iconic-tip"] .arrow-up { position: absolute; width: auto; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid #222; margin: 0 auto; top: -10px; } iconic-tip .arrow-down,[riot-tag="iconic-tip"] .arrow-down { position: absolute; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #222; bottom: -10px; margin: 0 auto; } iconic-tip .arrow-left,[riot-tag="iconic-tip"] .arrow-left { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 10px solid #222; right: -10px; } iconic-tip .arrow-right,[riot-tag="iconic-tip"] .arrow-right { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 10px solid #222; left: -10px; } iconic-tip.active,[riot-tag="iconic-tip"].active { z-index: 9999; } iconic-tip.show,[riot-tag="iconic-tip"].show { opacity: 0.95; }', '', function(opts) {
         var TRANSITION_TIMESPAN = 200;
         this.timed = [];
 
@@ -320,7 +324,7 @@ riot.tag2('iconic-tip', '<div name="left" class="arrow-left"></div> <div name="r
                 this.root.classList.add('fixed');
             }
             this._showTip('right');
-            this.root.style.left = "" + (offset[0] + el.clientWidth + 10) + "px";
+            this.root.style.left = "" + (offset[0] + el.clientWidth + 6) + "px";
             this.root.style.top = "" + (offset[1]  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
         }
 
@@ -481,13 +485,11 @@ riot.tag2('iconic-well', '<div name="well" class="u-well"> <yield></yield> </div
 
         Style.prototype._populate = function(element) {
             var styles = window.getComputedStyle(element)
-
             for (style in styles) {
                 if (!parseInt(style, 10) && style != 0) {
                     this.prop[style] = styles[style]
                 }
             }
-
             this.prop.iconicInnerWidth = "" + element.scrollWidth + "px"
         }
 
@@ -495,7 +497,6 @@ riot.tag2('iconic-well', '<div name="well" class="u-well"> <yield></yield> </div
             if (this.isOriginal) {
                 throw Error("Won't update an original");
             }
-
             this._populate(this.element);
         }
 
@@ -519,14 +520,15 @@ riot.tag2('iconic-well', '<div name="well" class="u-well"> <yield></yield> </div
             this.well.setAttribute('style', this.root.getAttribute('style'))
             this.root.removeAttribute('style')
             this.update()
-
             this.trigger('set-props')
 
             window.addEventListener('resize', function() {
                 this.trigger('render')
             }.bind(this))
-
-            this.trigger('render')
+            setTimeout(function() {
+                this.trigger('render')
+                this.update()
+            }.bind(this), 0)
         })
 
         this.on('update', function() {
@@ -539,10 +541,9 @@ riot.tag2('iconic-well', '<div name="well" class="u-well"> <yield></yield> </div
         });
 
         this.on('set-props', function() {
-            var style = window.getComputedStyle(this.well),
-                paddingWidth = cFloat(style.paddingLeft) + cFloat(style.paddingRight),
+            var style = new Style(this.well),
+                paddingWidth = style.asFloat('paddingLeft') + style.asFloat('paddingRight'),
                 elements = Array.prototype.slice.call(this.well.children, 0)
-
             this.props = {
                 style: style,
                 paddingWidth: paddingWidth,
@@ -551,13 +552,9 @@ riot.tag2('iconic-well', '<div name="well" class="u-well"> <yield></yield> </div
             }
         });
 
-        this.getBurstWidth = function() {
+        this.getUsableWidth = function() {
             return this.well.clientWidth - this.props.paddingWidth
         }
-
-        this.on('update-props', function() {
-            this.props.usableWidth = this.well.clientWidth - this.props.paddingWidth
-        })
 
         this._reset = function(element) {
             var originalStyle = new Style(element, true);
@@ -579,28 +576,29 @@ riot.tag2('iconic-well', '<div name="well" class="u-well"> <yield></yield> </div
             }
         }
 
-        this._renderElement = function(element) {
+        this._shrinkToFit = function(element, style, fontSize) {
+            while (element.scrollWidth > style.asFloat('width')) {
+                fontSize = fontSize - 2;
+                element.style.fontSize = "" + fontSize + "px";
+                style.update();
+            }
+            return element;
+        }
 
+        this._renderElement = function(element) {
             var originalStyle = new Style(element, true),
                 style = new Style(element),
-                usableWidth = this.getBurstWidth(),
                 marginWidth = style.asFloat('marginLeft') + style.asFloat('marginRight'),
-                usedWidth = originalStyle.asFloat('width') + marginWidth
-
-            var willCheckElementSize = this._shouldWrap(element) || usableWidth < MIN_USABLE_WIDTH
+                usedWidth = originalStyle.asFloat('width') + marginWidth,
+                usableWidth = this.getUsableWidth(),
+                willCheckElementSize = this._shouldWrap(element) || usableWidth < MIN_USABLE_WIDTH
 
             if (willCheckElementSize) {
                 if (usableWidth - usedWidth < 0 || usableWidth < MIN_USABLE_WIDTH) {
-                    element.style.width = "" + (usableWidth - marginWidth) + "px";
-                    element.style.paddingLeft = "0";
-                    element.style.paddingRight = "0";
-
-                    var fontSize = originalStyle.asFloat('fontSize');
-                    while (element.scrollWidth > style.asFloat('width')) {
-                        fontSize = fontSize - 2;
-                        element.style.fontSize = "" + fontSize + "px";
-                        style.update();
-                    }
+                    element.style.width = "" + (usableWidth - marginWidth) + "px"
+                    element.style.paddingLeft = "0"
+                    element.style.paddingRight = "0"
+                    element = this._shrinkToFit(element, style, originalStyle.asFloat('fontSize'));
                 } else {
                     this._reset(element)
                 }
@@ -610,10 +608,6 @@ riot.tag2('iconic-well', '<div name="well" class="u-well"> <yield></yield> </div
 
             this._renderWrapElement(element)
         }.bind(this)
-
-        function cFloat(property) {
-            return parseFloat(property.slice(0,-2),10)
-        }
 });
 
 

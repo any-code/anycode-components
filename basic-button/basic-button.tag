@@ -1,30 +1,26 @@
-<basic-button class="{ inset: inset }" style="background: { color }; float: { float }; height: { size }rem; line-height: { size }rem; font-size: { fontSize }rem;" >
+<basic-button style="background: { color }" >
     <div name="container">
-        <div name="text" style="height: { size }rem; "><yield/></div>
+        <div name="text"><yield/></div>
     </div>
     <script>
         this.size = parseFloat(opts.size)|| 4;
-        this.fontSize = parseFloat(opts.size) * 0.8;
-        this.inset = false;
+        this.fontSize = 2;
 
         this.on('mount update', function() {
-            this.color = opts.color || 'transparent';
-            this.float = opts.float || 'none';
-            this.inset = opts.inset !== undefined
+            this.color = opts.color || 'blue';
             this.size = parseFloat(opts.size)|| 4;
-            this.fontSize = parseFloat(opts.size) * 0.55;
         });
     </script>
     <style scoped>
         :scope {
-            display: block;
+            height: 5rem;
+            line-height:4.8rem;
+            display: inline-block;
             position: relative;
             cursor: pointer;
-            margin-right: 0.5rem;
-        }
-
-        :scope.inset {
             border-radius: 0.4rem;
+            font-size: 2rem;
+            vertical-align: top;
         }
 
         @-webkit-keyframes iconicButtonFlash {
@@ -51,8 +47,7 @@
             background: rgba(255,255,255, 0);
             transition: all 400ms ease-in-out;
             transition-delay: 0ms;
-            padding-left: 2rem;
-            padding-right: 2rem;
+            padding: 0 3rem;
         }
 
         :scope.inset div[name="container"] {
@@ -70,12 +65,9 @@
         }
 
         div[name="text"] {
-            color: rgba(255,255,255,0.7);
-            font-weight: bolder;
+            color: rgba(255,255,255,1);
             text-align: center;
             vertical-align: center;
-            transition: all 600ms ease-in-out;
-            transition-delay: 0ms;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;

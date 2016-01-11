@@ -4,17 +4,15 @@ body {
 	padding: 0;
 }
 
-
-
-
-article {
-	display: block;
-	padding: 4rem 6rem 0 6rem;
-	position: relative;
+body.inverted {
+	background: #313F4F;
+	margin: 0;
+	padding: 0;
 }
 
-article demo {
-	margin-bottom: 3rem;
+
+article.right {
+	padding: 4rem 6rem 0 6rem;
 }
 
 @media (min-width: 750px) {
@@ -25,23 +23,6 @@ article demo {
 	article.left {
 		padding: 4rem 32rem 0 6rem;
 	}
-}
-
-blockquote {
-	color: #AAA;
-	font-size: 2.5rem;
-	margin-left: 0;
-	padding-left: 0;
-}
-
-header:first-child {
-	padding-top: 0;
-	border-top: none;
-}
-
-header {
-	border-top: 1px solid #DDD;
-	padding-top: 6rem;
 }
 
 blockquote .icon {
@@ -59,13 +40,6 @@ blockquote .icon {
 mbs-footer {
 	margin-top: 4rem;
 	z-index: 2;
-}
-
-section {
-	clear: both;
-	display: block;
-	padding-top: 4rem;
-	position: relative;
 }
 
 .attributes ul {
@@ -144,7 +118,7 @@ section {
 
 @media (min-width: 750px) {
 	.tag-name {
-		font-size: 5.5rem;
+		font-size: 10rem;
 		white-space: nowrap;
 		overflow: hidden;
 	}
@@ -155,3 +129,6 @@ section {
 }
 
 
+.blue {
+	color: blue;
+}

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
     <meta charset="UTF-8">
     <title>Anycode Components - Demo</title>
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
@@ -16,73 +17,24 @@
     <link rel="stylesheet" href="prism.css">
 </head>
 <body>
-<demo>
-
-    <div>
+<demo >
     <iconic-navigation data-fixed="left">
         <ul>
             <li class="separator"></li>
-            <li data-tip="navigation-tip"><a href="#iconic-announcement" ><iconic-button float="left" size="3.2" inset color="#777" hotkey="a"><i class="icon-announcement"></i></iconic-button>&nbsp;<i1-8n>iconic-announcement</i1-8n></a></li>
-            <li data-tip="navigation-tip"><a href="#iconic-button" ><iconic-button float="left" size="3.2" inset color="#777" hotkey="b"><i class="icon-button"></i></iconic-button>&nbsp;<i1-8n>iconic-button</i1-8n></a></li>
-            <li data-tip="navigation-tip"><a href="#iconic-navigation" ><iconic-button float="left" size="3.2" inset color="#777" hotkey="n"><i class="icon-navigation"></i></iconic-button>&nbsp;<i1-8n>iconic-navigation</i1-8n></a></li>
-            <li data-tip="navigation-tip"><a href="#iconic-tip" ><iconic-button float="left" size="3.2" inset color="#777" hotkey="t"><i class="icon-tip"></i></iconic-button>&nbsp;<i1-8n>iconic-tip</i1-8n></a></li>
+            <li data-tip="navigation-tip"><a href="#iconic-announcement" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-announcement"></i></button>&nbsp;<i1-8n>iconic-announcement</i1-8n></a></li>
+            <li data-tip="navigation-tip"><a href="#iconic-button" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-button"></i></button>&nbsp;<i1-8n>iconic-button</i1-8n></a></li>
+            <li data-tip="navigation-tip"><a href="#iconic-navigation" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-navigation"></i></button>&nbsp;<i1-8n>iconic-navigation</i1-8n></a></li>
+            <li data-tip="navigation-tip"><a href="#iconic-tip" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-tip"></i></button>&nbsp;<i1-8n>iconic-tip</i1-8n></a></li>
             <li class="separator"></li>
-            <li data-tip="navigation-tip"><a href="#basic-button" ><iconic-button float="left" size="3.2" inset color="#777" hotkey="u"><i class="icon-button"></i></iconic-button>&nbsp;<i1-8n>basic-button</i1-8n></a></li>
+            <li data-tip="navigation-tip"><a href="#basic-button" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-button"></i></button>&nbsp;<i1-8n>basic-button</i1-8n></a></li>
             <li class="separator"></li>
         </ul>
     </iconic-navigation>
-    </div>
+
     <a id="iconic-announcement"></a>
     <article class="right">
-        <iconic-well style="background: #EEE; padding: 1rem; text-align: right; margin-bottom: 4rem;">
-            <button class="button-primary button-icon"><i class="icon-tip"></i></button>
-            <button class="button-primary button-icon"><i class="icon-announcement"></i></button>
-            <button class="button-primary button-icon"><i class="icon-navigation"></i></button>
-            <button class="button-primary button-icon"><i class="icon-button"></i></button>
-            <div class="u-vertical-separator"></div>
-            <button class="button-primary button-red">STOP</button>
-            <button class="button-primary">CONTINUE</button>
-        </iconic-well>
-
-        <iconic-well style="background: #EEE; padding: 1rem; text-align: left; margin-bottom: 4rem;">
-            <button class="button-primary button-icon"><i class="icon-tip"></i></button>
-            <button class="button-primary button-icon"><i class="icon-announcement"></i></button>
-            <button class="button-primary button-icon"><i class="icon-navigation"></i></button>
-            <button class="button-primary button-icon"><i class="icon-button"></i></button>
-            <div class="u-vertical-separator"></div>
-            <button class="button-primary button-red">STOP</button>
-            <button class="button-primary">CONTINUE</button>
-        </iconic-well>
-
-        <iconic-well style="background: #EEE; padding: 1rem; text-align: center; margin-bottom: 4rem;">
-            <button class="button-primary button-extra-small button-icon"><i class="icon-tip"></i></button>
-            <button class="button-primary button-extra-small button-icon"><i class="icon-announcement"></i></button>
-            <button class="button-primary button-extra-small button-icon"><i class="icon-navigation"></i></button>
-            <button class="button-primary button-extra-small button-icon"><i class="icon-button"></i></button>
-            <div class="u-vertical-separator-extra-small"></div>
-            <button class="button-primary button-extra-small button-red">STOP</button>
-            <button class="button-primary button-extra-small">CONTINUE</button>
-        </iconic-well>
-
-        <!--<iconic-well>-->
-            <!--<button class="button-primary button-small button-icon"><i class="icon-tip"></i></button>-->
-            <!--<button class="button-primary button-small button-icon"><i class="icon-announcement"></i></button>-->
-            <!--<button class="button-primary button-small button-icon"><i class="icon-navigation"></i></button>-->
-            <!--<button class="button-primary button-small button-icon"><i class="icon-button"></i></button>-->
-            <!--<button class="button-primary button-small">CONTY</button>-->
-        <!--</iconic-well>-->
-
-        <!--<iconic-well>-->
-            <!--<button class="button-primary button-extra-small button-icon"><i class="icon-tip"></i></button>-->
-            <!--<button class="button-primary button-extra-small button-icon"><i class="icon-announcement"></i></button>-->
-            <!--<button class="button-primary button-extra-small button-icon"><i class="icon-navigation"></i></button>-->
-            <!--<button class="button-primary button-extra-small button-icon"><i class="icon-button"></i></button>-->
-            <!--<button class="button-primary button-extra-small">CONTY</button>-->
-        <!--</iconic-well>-->
-
         <header>
             <h1><span class="tag-name">&lt;<b><i1-8n>iconic-announcement</i1-8n></b>/&gt;</span></h1>
-
         </header>
         <blockquote><i class="icon-announcement icon"></i>
             <b><i1-8n>iconic-announcement</i1-8n></b> is a flash/toaster message suitable for displaying short-lived announcements and notifications. <b><i1-8n>iconic-announcement</i1-8n></b> displays a visual dismissal cue which can be halted by clicking the content of the announcement.
@@ -260,20 +212,37 @@
         <section>
             <h3>Demonstration</h3>
 
+            <iconic-well style="padding: 1rem; text-align: right; margin-bottom: 4rem; border-radius: 0.5rem;">
+                <button class="button-primary button-icon"><i class="icon-tip"></i></button>
+                <button class="button-primary button-icon"><i class="icon-announcement"></i></button>
+                <button class="button-primary button-icon"><i class="icon-navigation"></i></button>
+                <button class="button-primary button-icon"><i class="icon-button"></i></button>
+                <div class="u-vertical-separator"></div>
+                <button class="button-primary button-red">STOP</button>
+                <button class="button-primary">CONTINUE</button>
 
+            </iconic-well>
+            <basic-button class="blue" size="5">HEY</basic-button><button>HEY</button>
+            <iconic-well>
+                <button class="button-primary button-small button-icon"><i class="icon-tip"></i></button>
+                <button class="button-primary button-small button-icon"><i class="icon-announcement"></i></button>
+                <button class="button-primary button-small button-icon"><i class="icon-navigation"></i></button>
+                <button class="button-primary button-small button-icon"><i class="icon-button"></i></button>
+                <div class="u-vertical-separator-small"></div>
+                <button class="button-primary button-small button-red">STOP</button>
+                <button class="button-primary button-small">CONTINUE</button>
+            </iconic-well>
 
+            <iconic-well>
+                <button class="button-primary button-extra-small button-icon"><i class="icon-tip"></i></button>
+                <button class="button-primary button-extra-small button-icon"><i class="icon-announcement"></i></button>
+                <button class="button-primary button-extra-small button-icon"><i class="icon-navigation"></i></button>
+                <button class="button-primary button-extra-small button-icon"><i class="icon-button"></i></button>
+                <div class="u-vertical-separator-extra-small"></div>
+                <button class="button-primary button-extra-small button-red">STOP</button>
+                <button class="button-primary button-extra-small">CONTINUE</button>
+            </iconic-well>
 
-            <div style="padding: 4rem;">
-                <basic-button inset size="4" color="#0C8">LEARN MORE</basic-button>
-            </div>
-
-            <div style="padding: 4rem;">
-                <iconic-button float="right" inset size="4" color="#C00" >&times;</iconic-button>
-                <basic-button float="right" inset size="3.6" color="#33F">LEARN MORE</basic-button>
-                <iconic-button float="left" inset size="4" color="#33F" >+</iconic-button>
-                <basic-button float="left" inset size="3.6" color="#C00">LEARN LESS</basic-button>
-
-            </div>
         </section>
     </article>
     <mbs-footer product-name="anycode-components" browser-stack privacy-links></mbs-footer>
@@ -293,6 +262,59 @@
             "iconic-button": "awesome-button"
         }
     })
+
+    function Style(element, original) {
+        this.prop = {}
+        this.element = element;
+        this.isOriginal = original;
+
+        if (original && element.__iconic_original_style === undefined) {
+            this.prop = element.__iconic_original_style = {}
+        } else if (original) {
+            this.prop = element.__iconic_original_style
+        }
+
+        if (this.prop['all'] === undefined) {
+            this._populate(element)
+        }
+    }
+
+    Style.prototype._populate = function(element) {
+        var styles = window.getComputedStyle(element)
+        for (style in styles) {
+            if (!parseInt(style, 10) && style != 0) {
+                this.prop[style] = styles[style]
+            }
+        }
+        this.prop.iconicInnerWidth = "" + element.scrollWidth + "px"
+    }
+
+    Style.prototype.update = function() {
+        if (this.isOriginal) {
+            throw Error("Won't update an original");
+        }
+        this._populate(this.element);
+    }
+
+    Style.prototype.get = function() {
+        return this.prop;
+    }
+
+    Style.prototype.asInt = function(name) {
+        return parseInt(this.prop[name], 10);
+    }
+
+    Style.prototype.asFloat = function(name) {
+        return parseFloat(this.prop[name]);
+    }
+
+    Style.prototype.asString = function(name) {
+        return this.prop[name];
+    }
+
+    riot.mixin('computedStyleHelper', {
+        Style: Style
+    });
 
     riot.mount('demo', {
         showWarning: function() {
