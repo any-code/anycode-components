@@ -86,7 +86,7 @@
             position: absolute;
             display: block;
             opacity: 0;
-            background: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.9);
             border: 1px solid rgba(0,0,0,0.2);
             line-height: 2.6rem;
             position: absolute;
@@ -96,7 +96,7 @@
             right: 0;
             bottom: 0;
             color: rgba(0,0,0,0.4);
-            font-weight: bolder;
+            font-weight: 600;
             text-align: center;
             vertical-align: center;
             transition: all 200ms ease-in-out;

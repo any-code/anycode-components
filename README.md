@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/any-code/anycode-components.svg?branch=master)](https://travis-ci.org/any-code/anycode-components)
 
-> (RiotJS Tag Library) - A set of common RiotJS tags used by Anycode
+> Iconic theme and components for RiotJS - The iconic theme is built atop [Starveling](http://starve.me/ "Starveling Responsive CSS boilerplate") building out a minimal set of additional classes to support iconic's button styles and the document's visual elements. 
 
 ## Getting Started
 
@@ -20,15 +20,20 @@ npm install anycode-components
    
 ```
 
-### Inclusions
+### Iconic Inclusions
 
+- Iconic Theme
+
+- iconic-announcement
 - iconic-button
 - iconic-navigation
+- iconic-tip
+- iconic-well
 
 ### Demonstration
 
 a demonstration is available at -
-[demo/index.html](demo/index.html "demo/index.html")
+[iconic/index.html](iconic/index.html "iconic/index.html")
 
 ## Copyright and license
 Copyright (c) 2016, [Anycode](https://anycode.io/ "Anycode") <lee@anycode.io>
