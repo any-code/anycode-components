@@ -1,6 +1,20 @@
-function Module(exports, riot) {
-    var _reference = [];
+// Defines a module "anycodeComponents" that depends on another module called
+// "riot" and another module called "classlist-polyfill".
 
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['exports', 'riot', 'classlist-polyfill'], function (exports, riot) {
+            factory((root.anycodeComponents = exports), riot);
+        });
+    } else if (typeof exports === 'object') {
+        // CommonJS
+        factory(exports, require('riot'), require('classlist-polyfill'));
+    } else {
+        // Browser globals
+        factory((root.anycodeComponents = {}), root.riot);
+    }
+}(this, function (exports, riot) {
     //
     //
     // Am i a mixin?
@@ -13,16 +27,4 @@ function Module(exports, riot) {
     // END RIOT TAGS
     //
     //
-}
-
-Module.prototype.dependencies = ['riot', 'riot-i18n', 'classlist-polyfill']
-Module.prototype.global = "anycode-components";
-
-// Module UMD Loader
-(function (g, f) {
-    var d=Module.prototype.dependencies,gn=Module.prototype.global
-    if (typeof define==='function'&&define.amd){define(['exports'].concat(d||[]),f)}else if(typeof exports==='object'&&
-        typeof exports.nodeName!=='string'){f.apply(this,[exports].concat(d?d.map(require):[]))}else{if(typeof gn==='string'
-    )gn=[gn];g[gn[0]]={};gn.splice(1).map(function(d){g[d]=g[gn[0]]});f.apply(this, [g[gn[0]]].concat(d?d.map(function(d
-    ){return g[d]}):[]))}
-}(this, Module));
+}));

@@ -1,6 +1,20 @@
-function Module(exports, riot) {
-    var _reference = [];
+// Defines a module "anycodeComponents" that depends on another module called
+// "riot" and another module called "classlist-polyfill".
 
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['exports', 'riot', 'classlist-polyfill'], function (exports, riot) {
+            factory((root.anycodeComponents = exports), riot);
+        });
+    } else if (typeof exports === 'object') {
+        // CommonJS
+        factory(exports, require('riot'), require('classlist-polyfill'));
+    } else {
+        // Browser globals
+        factory((root.anycodeComponents = {}), root.riot);
+    }
+}(this, function (exports, riot) {
     //
     //
     // Am i a mixin?
@@ -183,7 +197,7 @@ riot.tag2('iconic-button-bak', '<div name="container" riot-style=" border-radius
 }, '{ }');
 
 
-riot.tag2('iconic-button', '<div name="container" class="inner"> <yield></yield> <div name="hotkey">{keyHelp[0]}</div> </div>', 'iconic-button,[riot-tag="iconic-button"] { display: inline-block; position: relative; cursor: pointer; } iconic-button .inner,[riot-tag="iconic-button"] .inner { line-height: 2.6rem; } iconic-button .inner i,[riot-tag="iconic-button"] .inner i { vertical-align: middle; } iconic-button div[name="hotkey"],[riot-tag="iconic-button"] div[name="hotkey"] { position: absolute; display: block; opacity: 0; background: rgba(255,255,255,0.9); border: 1px solid rgba(0,0,0,0.2); line-height: 2.6rem; position: absolute; z-index: 5; top: 0; left: 0; right: 0; bottom: 0; color: rgba(0,0,0,0.4); font-weight: 600; text-align: center; vertical-align: center; transition: all 200ms ease-in-out; transition-delay: 0ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; margin-top: 0%; font-size: 100%; } iconic-button div[name="hotkey"].help,[riot-tag="iconic-button"] div[name="hotkey"].help { opacity: 1; }', '', function(opts) {
+riot.tag2('iconic-button', '<div name="container" class="inner"> <div name="text"><yield></yield></div> <div name="hotkey">{keyHelp[0]}</div> </div>', 'iconic-button,[riot-tag="iconic-button"] { display: inline-block; position: relative; cursor: pointer; } iconic-button .inner,[riot-tag="iconic-button"] .inner { line-height: 2.6rem; } iconic-button .inner i,[riot-tag="iconic-button"] .inner i { vertical-align: middle; } iconic-button div[name="hotkey"],[riot-tag="iconic-button"] div[name="hotkey"] { position: absolute; display: block; opacity: 0; background: rgba(255,255,255,1); border: 1px solid rgba(0,0,0,0.2); line-height: 2.6rem; position: absolute; z-index: 5; top: 0; left: 0; right: 0; bottom: 0; color: rgba(0,0,0,0.8); font-weight: 600; text-align: center; vertical-align: center; transition: all 200ms ease-in-out; transition-delay: 0ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; margin-top: 0%; font-size: 100%; } iconic-button div[name="hotkey"].help,[riot-tag="iconic-button"] div[name="hotkey"].help { opacity: 1; }', '', function(opts) {
         var addEvent = window.document.addEventListener
 
         this.on('mount', function() {
@@ -661,16 +675,4 @@ riot.tag2('app', '<yield></yield>', '', '', function(opts) {
         //END RIOT TAGS
     //
     //
-}
-
-Module.prototype.dependencies = ['riot', 'riot-i18n', 'classlist-polyfill']
-Module.prototype.global = "anycode-components";
-
-// Module UMD Loader
-(function (g, f) {
-    var d=Module.prototype.dependencies,gn=Module.prototype.global
-    if (typeof define==='function'&&define.amd){define(['exports'].concat(d||[]),f)}else if(typeof exports==='object'&&
-        typeof exports.nodeName!=='string'){f.apply(this,[exports].concat(d?d.map(require):[]))}else{if(typeof gn==='string'
-    )gn=[gn];g[gn[0]]={};gn.splice(1).map(function(d){g[d]=g[gn[0]]});f.apply(this, [g[gn[0]]].concat(d?d.map(function(d
-    ){return g[d]}):[]))}
-}(this, Module));
+}));
