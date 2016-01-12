@@ -1,8 +1,8 @@
-<demo>
+<app>
     <yield/>
     <script>
         this.on('mount', function() {
-            this.root.className = '';
+            this.root.classList.remove('not-ready')
         })
     </script>
-</demo>
+</app>

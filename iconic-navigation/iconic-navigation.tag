@@ -1,6 +1,6 @@
 <iconic-navigation>
     <iconic-tip position="right" delay="1" name="navigation-tip" class="navigation-tip"></iconic-tip>
-    <iconic-button name="menuButton" size="4.2" color="#bbb" onclick="{ expand }" hotkey="="><i class="icon-burger"></i></iconic-button>
+    <iconic-button class="icon-extra-small burger" name="menuButton" onclick="{ expand }" hotkey="~`"><i class="icon-burger"></i></iconic-button>
     <yield/>
     <style scoped>
         :scope {
@@ -12,6 +12,7 @@
             width: 4.2rem;
             transition: all 200ms ease-in-out;
             overflow: hidden;
+            border-right: 0.1rem solid #EEE;
         }
 
         :scope.fixed-left {
@@ -32,15 +33,22 @@
             top: 0;
         }
 
+        button-primary.burger {
+            display: none;
+            margin: 0.6rem;
+            background: #FFF;
+        }
+
         iconic-button[name="menuButton"] {
             display: none;
+            margin: 0.6rem;
+            border: none!important;
+            background: #CCC!important;
         }
 
         :scope[class^="fixed"] iconic-button[name="menuButton"] {
             display: block;
         }
-
-
 
         :scope > ul {
             position: relative;
@@ -139,19 +147,20 @@
         }
 
         @media (min-width: 750px) {
-            :scope[class^="fixed"] > ul {
+            :scope[class^="fixed"].auto > ul {
                 top: 0rem;
             }
 
-            :scope.expand {
+            :scope.auto.expand {
                 box-shadow: none;
             }
 
-            :scope {
-                width: 25rem;
+            :scope.auto {
+                width: 25.5rem;
+                background-color: #fff;
             }
 
-            :scope > ul {
+            :scope.auto > ul {
                 top: 0rem;
                 width: 25rem;
             }

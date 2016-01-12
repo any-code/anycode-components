@@ -3,22 +3,19 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=9">
     <meta charset="UTF-8">
-    <title>Anycode Components - Demo</title>
+    <title>Anycode Components - Iconic Demo</title>
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.0/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css">
-
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="starveling.css">
     <link rel="stylesheet" href="iconic.css">
-    <link rel="stylesheet" href="iconic-theme.css">
     <link rel="stylesheet" href="iconic-font.css">
-    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="iconic-theme.css">
     <link rel="stylesheet" href="prism.css">
 </head>
 <body>
-<demo>
-    <iconic-navigation data-fixed="left">
+<app class="not-ready">
+
+    <iconic-navigation name="nav" data-fixed="left">
         <ul>
             <li class="separator"></li>
             <li data-tip="navigation-tip"><a href="#iconic-announcement" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-announcement"></i></button>&nbsp;<i1-8n>iconic-announcement</i1-8n></a></li>
@@ -26,10 +23,27 @@
             <li data-tip="navigation-tip"><a href="#iconic-tip" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-tip"></i></button>&nbsp;<i1-8n>iconic-tip</i1-8n></a></li>
             <li class="separator"></li>
             <li data-tip="navigation-tip"><a href="#iconic-button" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-button"></i></button>&nbsp;<i1-8n>iconic-button</i1-8n></a></li>
-            <li data-tip="navigation-tip"><a href="#basic-button" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-button"></i></button>&nbsp;<i1-8n>basic-button</i1-8n></a></li>
+            <li data-tip="navigation-tip"><a href="#iconic-well" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-well"></i></button>&nbsp;<i1-8n>iconic-well</i1-8n></a></li>
             <li class="separator"></li>
         </ul>
     </iconic-navigation>
+
+    <div class="mega u-cf">
+        <article class="right">
+            <div class="container">
+                <div class="row">
+                    <div class="twelve columns">
+                        <div class="u-well u-center-text">
+                            <i class="icon-iconic"></i>
+                        </div>
+                        <h1>iconic <i class="icon-iconic" style="vertical-align: 3rem; color: rgba(0, 215, 180, 0.5); font-size: 5rem; line-height: 10rem;"></i></h1>
+                        <blockquote>Iconic theme and components for RiotJS</blockquote>
+                        <p>The <em>iconic</em> theme is built atop <a href="http://starve.me" title="Starveling - Responsive CSS boilerplate">Starveling</a> building out a minimal set of additional classes to support <em>iconic</em>'s button styles and the document's visual elements.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
 
 
     <iconic-announcement name="warning" class="warning">
@@ -129,9 +143,13 @@
                         iconic-<em>navigation</em> is a highly discoverable, responsive left-hand &amp; right-hand navigation bar with automatic link-anchor capturing.
                     </blockquote>
                     <p> iconic-<em>navigation</em> is designed to be more discoverable than the usual hamburger menu. iconic-<em>navigation</em> also provides automatic on-page anchor capturing helping make nagivation more intuitive.</p>
+                    <h5>Automatic disclosure @media width</h5>
+                    <p>By default iconic-<em>navigation</em> is closed. This behaviour can be configured so that the navigation is openend when the viewport width reaches an appropriate size. </p>
+                    <div class="u-well u-pad-below"><button class="button-small" onclick="{ opts.navigationManual }">Manual Behaviour</button><button class="button-small" onclick="{ opts.navigationAutomatic }">Automatic Behaviour</button></div>
                     <h5>&larr; As seen to the left</h5>
                     <p>iconic-<em>navigation</em> is present on this page. Try resizing the browser window to see it in action.</p>
-                    <p>The hamburger is disclosed only when the navigation bar has iconized. This enables tap-to-read for mobile browsers and hover tool-tips for desktop browsers</p>
+                    <p>The hamburger is disclosed only when the navigation bar is iconized. This enables tap-to-read for mobile browsers and hover tool-tips for desktop browsers</p>
+
                 </div>
             </div>
             <div class="row">
@@ -224,150 +242,162 @@
         </div>
     </article>
     <hr>
-    <article class="right">
 
-            </article>
+
     <a id="iconic-button"></a>
+
     <article class="right">
-        <header>
-            <h1>&lt;<b><i1-8n>iconic-button</i1-8n></b>/&gt;</h1>
-
-        </header>
-        <blockquote><i class="icon-button icon"></i>
-            <b><i1-8n>iconic-button</i1-8n></b> is a keyboard aware visual button. It contains a single icon, sized in root ems. <b><i1-8n>iconic-button</i1-8n></b> can be
-            used with an icon font symbol or just plain text providing a consistent look and feel to icon and button UI elements
-        </blockquote>
-        <section>
-            <h3>Demonstration</h3>
-            <div class="button-sample">
-                <h6>Text</h6>
-                <iconic-button size="10" inset float="left" color="#069" onclick="{ opts.alert }" hotkey="0)">+</iconic-button>
-                <iconic-button size="9" inset float="left" color="#079" onclick="{ opts.alert }" hotkey="9(">-</iconic-button>
-                <iconic-button size="8" inset float="left" color="#089" onclick="{ opts.alert }" hotkey="8*">&times;</iconic-button>
-                <iconic-button size="7" inset float="left" color="#099" onclick="{ opts.alert }" hotkey="7&">&divide;</iconic-button>
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    <h1 class="tag">iconic <em>button</em></h1>
+                    <blockquote><i class="icon-button icon"></i>
+                        iconic-<em>button</em> is a standard button but it also responds to hotkey-focused keyboard user interaction.
+                    </blockquote>
+                    <p> By pressing <code>shift</code> outside of a form element, all iconic-<em>button</em>'s will disclose their associated hotkey making it easy for users to learn new ways to interact with your application.</p>
+                </div>
             </div>
-            <div class="button-sample">
-                <h6>Icon Font</h6>
-                <iconic-button inset float="left" size="7" color="#07F" onclick="{ opts.alert }" hotkey="cC"><i class="fa fa-birthday-cake"></i></iconic-button>
-                <iconic-button inset float="left" size="8" color="#17E" onclick="{ opts.alert }" hotkey="mM"><i class="fa fa-camera"></i></iconic-button>
-                <iconic-button inset float="left" size="9" color="#27D" onclick="{ opts.alert }" hotkey="oO"><i class="fa fa-building-o"></i></iconic-button>
-                <iconic-button inset float="left" size="10" color="#37C" onclick="{ opts.alert }" hotkey="uU"><i class="fa fa-bug"></i></iconic-button>
+            <div class="row">
+                <h5>Hotkey disclosure</h5>
+                <p>Try holding down <code>shift</code> to display the hotkey overlay on the <em>add</em> button <iconic-button class="button-primary" hotkey="Nn">+</iconic-button></p>
             </div>
-        </section>
-        <section>
-            <h3>Code Sample</h3>
-            <pre class="language-markup"><code class="language-markup">
-&lt;!-- With Icon Font -->
-&lt;iconic-button name="birthdayButton" float="left" size="7" color="#07F" hotkey="c" onclick="">
-    &lt;i class="fa fa-birthday-cake">&lt;/i>
-&lt;/iconic-button>
-
-&lt;!-- With Text -->
-&lt;iconic-button name="addButton" float="left" size="7" color="#07F" hotkey="c" onclick="">+&lt;/iconic-button>
-            </code></pre>
-        </section>
-        <section><h3>Attributes</h3>
-            <div class="attributes">
-                <ul>
-                    <li>
-                        <h5><span>name</span><label>attribute</label></h5>
-                        <ul>
-                            <li><label>Purpose</label> <p>A unique name by which a containing riot-tag can reference the iconic-button<br><code>this.tags.buttonName</code></p></li>
-                            <li><label>Value</label> <p>buttonName</p></li>
-                            <li><label>Default</label> <p>not named</p></li>
-                            <li><label>Required</label></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <h5><span>float</span><label>attribute</label></h5>
-                        <ul>
-                            <li><label>Purpose</label> <p>Control the layout for different containers by assigning a float instruction</p></li>
-                            <li><label>Value</label> <p>buttonName</p></li>
-                            <li><label>Default</label> <p>left | right | none</p></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <h5><span>size</span><label>attribute</label></h5>
-                        <ul>
-                            <li><label>Purpose</label> <p>Control the size of the iconic-button</p></li>
-                            <li><label>Value</label> <p>any numeric value in rems</p></li>
-                            <li><label>Default</label> <p>none</p></li>
-                            <li><label>Required</label></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <h5><span>hotkey</span><label>attribute</label></h5>
-                        <ul>
-                            <li><label>Purpose</label> <p>A keyboard character that can be used to trigger the buttons onclick event</p></li>
-                            <li><label>Value</label> <p>a..z, 0..9</p></li>
-                            <li><label>Default</label> <p>none</p></li>
-                            <li><label>More Info</label> <p>By holding the <code>shift</code> key all <b><i1-8n>iconic-button</i1-8n></b>'s with assigned hotkey's will transform to show their hotkey</p></li>
-                        </ul>
-                    </li>
-                </ul>
+            <div class="row u-pad-below">
+                <div class="six columns">
+                    <h6>Plain text buttons</h6>
+                    <iconic-button onclick="{ opts.alert }" hotkey="aA">+</iconic-button>
+                    <iconic-button onclick="{ opts.alert }" hotkey="sS">-</iconic-button>
+                    <iconic-button onclick="{ opts.alert }" hotkey="tT">&times;</iconic-button>
+                </div>
+                <div class="six columns">
+                    <h6>Icon font buttons</h6>
+                    <iconic-button onclick="{ opts.alert }" hotkey="bB"><i class="icon-browser"></i></iconic-button>
+                    <iconic-button onclick="{ opts.alert }" hotkey="hH"><i class="icon-home"></i></iconic-button>
+                    <iconic-button onclick="{ opts.alert }" hotkey="lL"><i class="icon-list"></i></iconic-button>
+                </div>
             </div>
-        </section>
+            <div class="row">
+                <div class="twelve columns">
+                    <h3>Attributes</h3>
+                    <div class="attributes">
+                        <ul>
+                            <li>
+                                <h5><span>name</span><label>attribute</label></h5>
+                                <ul>
+                                    <li><label>Purpose</label> <p>A unique name by which a containing riot-tag can reference the iconic-button<br><code>this.tags.buttonName</code></p></li>
+                                    <li><label>Value</label> <p>buttonName</p></li>
+                                    <li><label>Default</label> <p>not named</p></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h5><span>class</span><label>attribute</label></h5>
+                                <ul>
+                                    <li><label>Purpose</label> <p>Control the visual style of the button</p></li>
+                                    <li><label>Value</label> <p>button-primary | button-inverted | none</p></li>
+                                    <li><label>Default</label> <p>none</p></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h5><span>hotkey</span><label>attribute</label></h5>
+                                <ul>
+                                    <li><label>Purpose</label> <p>A keyboard character that can be used to trigger the buttons onclick event</p></li>
+                                    <li><label>Value</label> <p>a..z, 0..9</p></li>
+                                    <li><label>Default</label> <p>none</p></li>
+                                    <li><label>More Info</label> <p>By holding the <code>shift</code> key all <b><i1-8n>iconic-button</i1-8n></b>'s with assigned hotkey's will transform to show their hotkey</p></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </article>
-    <a id="basic-button"></a>
+    <hr>
+    <a id="iconic-well"></a>
+
     <article class="right">
-        <h1 class="tag">&lt;basic-button/&gt;</h1>
-        <blockquote><i class="icon-button icon"></i>
-            A <b><i1-8n>basic-button</i1-8n></b> is variable width button
-        </blockquote>
-        <section>
-            <h3>Demonstration</h3>
-
-            <iconic-well style="padding: 1rem; text-align: right; margin-bottom: 4rem; border-radius: 0.5rem;">
-                <button class="button-primary button-icon"><i class="icon-tip"></i></button>
-                <button class="button-primary button-icon"><i class="icon-announcement"></i></button>
-                <button class="button-primary button-icon"><i class="icon-navigation"></i></button>
-                <button class="button-primary button-icon"><i class="icon-button"></i></button>
-                <div class="u-vertical-separator"></div>
-                <button class="button-primary button-red">STOP</button>
-                <button class="button-primary">CONTINUE</button>
-
-            </iconic-well>
-            <basic-button class="blue" size="5">HEY</basic-button><button>HEY</button>
-            <iconic-well>
-                <button class="button-primary button-small button-icon"><i class="icon-tip"></i></button>
-                <button class="button-primary button-small button-icon"><i class="icon-announcement"></i></button>
-                <button class="button-primary button-small button-icon"><i class="icon-navigation"></i></button>
-                <button class="button-primary button-small button-icon"><i class="icon-button"></i></button>
-                <div class="u-vertical-separator-small"></div>
-                <button class="button-primary button-small button-red">STOP</button>
-                <button class="button-primary button-small">CONTINUE</button>
-            </iconic-well>
-
-            <iconic-well>
-                <button class="button-primary button-extra-small button-icon"><i class="icon-tip"></i></button>
-                <button class="button-primary button-extra-small button-icon"><i class="icon-announcement"></i></button>
-                <button class="button-primary button-extra-small button-icon"><i class="icon-navigation"></i></button>
-                <button class="button-primary button-extra-small button-icon"><i class="icon-button"></i></button>
-                <div class="u-vertical-separator-extra-small"></div>
-                <button class="button-primary button-extra-small button-red">STOP</button>
-                <button class="button-primary button-extra-small">CONTINUE</button>
-            </iconic-well>
-
-        </section>
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    <h1 class="tag">iconic <em>well</em></h1>
+                    <blockquote><i class="icon-well icon"></i>
+                        iconic-<em>well</em> provides a toolbar-style placeholder for a group of buttons. Buttons inside the well maintain consistent margins even after wrapping.
+                    </blockquote>
+                </div>
+            </div>
+            <div class="row u-pad-below">
+                <div class="twelve columns">
+                    <h6>Default button well</h6>
+                    <iconic-well>
+                        <button class="button-primary button-icon"><i class="icon-tip"></i></button>
+                        <button class="button-primary button-icon"><i class="icon-announcement"></i></button>
+                        <button class="button-primary button-icon"><i class="icon-navigation"></i></button>
+                        <button class="button-primary button-icon"><i class="icon-button"></i></button>
+                        <button class="button-primary button-red">STOP</button>
+                        <button class="button-primary">CONTINUE</button>
+                    </iconic-well>
+                </div>
+            </div>
+            <div class="row u-pad-below">
+                <div class="twelve columns">
+                    <h6>Small button well</h6>
+                    <iconic-well>
+                        <button class="button-primary button-small button-icon"><i class="icon-tip"></i></button>
+                        <button class="button-primary button-small button-icon"><i class="icon-announcement"></i></button>
+                        <button class="button-primary button-small button-icon"><i class="icon-navigation"></i></button>
+                        <button class="button-primary button-small button-icon"><i class="icon-button"></i></button>
+                        <button class="button-primary button-small button-red">STOP</button>
+                        <button class="button-primary button-small">CONTINUE</button>
+                    </iconic-well>
+                </div>
+             </div>
+            <div class="row u-pad-below">
+                <div class="six columns">
+                    <h6>Extra small button well</h6>
+                    <iconic-well>
+                        <button class="button-primary button-extra-small button-icon"><i class="icon-tip"></i></button>
+                        <button class="button-primary button-extra-small button-icon"><i class="icon-announcement"></i></button>
+                        <button class="button-primary button-extra-small button-icon"><i class="icon-navigation"></i></button>
+                        <button class="button-primary button-extra-small button-icon"><i class="icon-button"></i></button>
+                        <button class="button-primary button-extra-small button-red">STOP</button>
+                        <button class="button-primary button-extra-small">CONTINUE</button>
+                    </iconic-well>
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <h3>Attributes</h3>
+                    <div class="attributes">
+                        <ul>
+                            <li>
+                                <h5><span>name</span><label>attribute</label></h5>
+                                <ul>
+                                    <li><label>Purpose</label> <p>A unique name by which a containing riot-tag can reference the iconic-button<br><code>this.tags.buttonName</code></p></li>
+                                    <li><label>Value</label> <p>buttonName</p></li>
+                                    <li><label>Default</label> <p>not named</p></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h5><span>class</span><label>attribute</label></h5>
+                                <ul>
+                                    <li><label>Purpose</label> <p>Control the visual style of the well</p></li>
+                                    <li><label>Value</label> <p>a class name</p></li>
+                                    <li><label>Default</label> <p>none</p></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </article>
     <mbs-footer product-name="anycode-components" browser-stack privacy-links></mbs-footer>
-</demo>
+</app>
 <script src="prism.js"></script>
 <script src="//cdn.jsdelivr.net/riot/2.3/riot+compiler.js"></script>
 <script src="../node_modules/anycode-mbs-footer/mbs-footer.min.js"></script>
 <script src="../node_modules/classlist-polyfill/src/index.js"></script>
-<script src="../node_modules/riot-i18n/riot-i18n.min.js"></script>
 <script src="../anycode-components.js"></script>
 <script>
-    i18n.dictionary({
-        "anycode": {
-            "iconic-button": "anycode-button"
-        },
-        "awesome": {
-            "iconic-button": "awesome-button"
-        }
-    })
-
     function Style(element, original) {
         this.prop = {}
         this.element = element;
@@ -421,7 +451,14 @@
         Style: Style
     });
 
-    riot.mount('demo', {
+    riot.mount('app', {
+        navigationAutomatic: function() {
+            this.nav.classList.add("auto")
+            this.nav.classList.add("fixed-left")
+        },
+        navigationManual: function() {
+            this.nav.classList.remove("auto")
+        },
         showWarning: function() {
             this.tags.warning.show(6000)
         },
@@ -431,9 +468,7 @@
         alert: function(e) {
             console.log("YOU CLICKED", e.target.innerText);
         }
-    });
-
-    this.i18n.setLanguage('iconic');
+    })
 
 
 

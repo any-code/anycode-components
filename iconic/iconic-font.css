@@ -62,3 +62,9 @@
 .icon-list:before {
 	content: "\6c";
 }
+.icon-well:before {
+	content: "\65";
+}
+.icon-iconic:before {
+	content: "\69";
+}
