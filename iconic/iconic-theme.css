@@ -37,7 +37,7 @@ iconic-announcement {
 }
 
 iconic-announcement .badge {
-	background: rgba(100,100,100,0.3);
+	background: #ff6e66;
 	border-right: 1px solid rgba(255,255,255,0.1);
 	color: rgba(255,255,255,0.3);
 }
@@ -48,18 +48,18 @@ iconic-announcement em {
 }
 
 iconic-announcement.warning {
-	background: rgba(200,100,100,0.9);
+	background:  #ff2d4d;
 	color: rgba(255,255,255,0.8);
 }
 
 iconic-announcement.warning .badge {
-	background: rgba(255,0,0,0.4);
+	background: #ff2d4d;
 	border-right: 1px solid rgba(255,255,255,0.1);
 	color: rgba(255,255,255,0.3);
 }
 
 iconic-announcement.warning .content {
-	background: rgba(255,0,0,0.3);
+	background:  #ff2d4d;
 }
 
 iconic-announcement.warning em {

@@ -27,6 +27,11 @@
             border-radius: 0.4rem;
         }
 
+        :scope.navigation-tip iconic-button {
+            vertical-align: middle;
+            margin: 0;
+        }
+
         :scope.navigation-tip .arrow-right {
             top: 0.78rem;
         }

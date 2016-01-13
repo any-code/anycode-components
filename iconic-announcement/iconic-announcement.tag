@@ -4,7 +4,7 @@
             <path name="loader" transform="translate(250, 250) scale(4.2)"/>
         </svg>
     </div>
-    <iconic-button float="right" size="8" color="rgba(255,0,0,0.6)" onclick="{ hide }">&times;</iconic-button>
+    <iconic-button class="close" onclick="{ hide }">&times;</iconic-button>
     <div class="badge">
         <i class="icon-announcement"></i>
     </div>
@@ -124,6 +124,24 @@
 
         :scope.show {
             top: 0rem;
+        }
+
+        .close {
+            color: rgba(255,255,255,0.6);
+            float: right;
+            width: 8rem;
+            height: 8rem;
+            border: none;
+        }
+
+        .close:hover {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .close div[name="text"] {
+            font-weight: 600;
+            font-size: 10rem;
+            line-height: 5.5rem;
         }
 
         .badge {
