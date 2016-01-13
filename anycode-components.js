@@ -23,7 +23,7 @@
     //
     //
     //BEGIN RIOT TAGS
-riot.tag2('iconic-announcement', '<div class="loader"> <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="7rem" height="7rem" viewbox="0 0 500 500"> <path name="loader" transform="translate(250, 250) scale(4.2)"></path> </svg> </div> <iconic-button class="close" onclick="{hide}">&times;</iconic-button> <div class="badge"> <i class="icon-announcement"></i> </div> <div class="content" onclick="{wait}"> <yield></yield> </div>', 'iconic-announcement,[riot-tag="iconic-announcement"] { display: block; position: fixed; top: -16rem; left: 0; right: 0; height: 8rem; transition: all 300ms ease-in-out; overflow: hidden; z-index: 200; } iconic-announcement.show,[riot-tag="iconic-announcement"].show { top: 0rem; } iconic-announcement .close,[riot-tag="iconic-announcement"] .close { color: rgba(255,255,255,0.6); float: right; width: 8rem; height: 8rem; border: none; } iconic-announcement .close:hover,[riot-tag="iconic-announcement"] .close:hover { color: rgba(255,255,255,0.6); } iconic-announcement .close div[name="text"],[riot-tag="iconic-announcement"] .close div[name="text"] { font-weight: 600; font-size: 10rem; line-height: 5.5rem; } iconic-announcement .badge,[riot-tag="iconic-announcement"] .badge { padding: 1rem; position: relative; height: 6rem; width: 6rem; font-size: 6rem; line-height: 5rem; } iconic-announcement .content,[riot-tag="iconic-announcement"] .content { position: absolute; height: 6rem; top: 0rem; left: 8rem; width: auto; right: 8rem; font-size: 1.8rem; font-weight: bolder; padding:1rem; display: table-cell; vertical-align: middle; } iconic-announcement .loader,[riot-tag="iconic-announcement"] .loader { padding: 0.5rem; position: absolute; top: 0; right: 0; height: 7rem; width: 7rem; } iconic-announcement path[name="loader"],[riot-tag="iconic-announcement"] path[name="loader"] { fill: rgba(0, 0, 0, 0.5); }', '', function(opts) {
+riot.tag2('iconic-announcement', '<div class="loader"> <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="7rem" height="7rem" viewbox="0 0 500 500"> <path name="loader" transform="translate(250, 250) scale(4.2)"></path> </svg> </div> <iconic-button class="close" onclick="{hide}">&times;</iconic-button> <div class="badge"> <i class="{icon}"></i> </div> <div class="content" onclick="{wait}"> <yield></yield> </div>', 'iconic-announcement,[riot-tag="iconic-announcement"] { display: block; position: fixed; top: -16rem; left: 0; right: 0; height: 8rem; transition: all 300ms ease-in-out; overflow: hidden; z-index: 200; } iconic-announcement.show,[riot-tag="iconic-announcement"].show { top: 0rem; } iconic-announcement .close,[riot-tag="iconic-announcement"] .close { color: rgba(255,255,255,0.6); float: right; width: 8rem; height: 8rem; border: none; } iconic-announcement .close:hover,[riot-tag="iconic-announcement"] .close:hover { color: rgba(255,255,255,0.6); } iconic-announcement .close div[name="text"],[riot-tag="iconic-announcement"] .close div[name="text"] { font-weight: 600; font-size: 10rem; line-height: 5.5rem; } iconic-announcement .badge,[riot-tag="iconic-announcement"] .badge { padding: 1rem; position: relative; height: 6rem; width: 6rem; font-size: 6rem; line-height: 5rem; } iconic-announcement .content,[riot-tag="iconic-announcement"] .content { position: absolute; height: 6rem; top: 0rem; left: 8rem; width: auto; right: 8rem; font-size: 1.8rem; font-weight: bolder; padding:1rem; display: table-cell; vertical-align: middle; } iconic-announcement .loader,[riot-tag="iconic-announcement"] .loader { padding: 0.5rem; position: absolute; top: 0; right: 0; height: 7rem; width: 7rem; } iconic-announcement path[name="loader"],[riot-tag="iconic-announcement"] path[name="loader"] { fill: rgba(0, 0, 0, 0.5); }', '', function(opts) {
         var DEFAULT_TIMEOUT = 10000,
             showing,
             drawing,
@@ -86,6 +86,8 @@ riot.tag2('iconic-announcement', '<div class="loader"> <svg xmlns="http://www.w3
             }
         }
 
+        this.icon = "icon-announcement"
+
         this.wait = function() {
             reset()
             clearTimeout(drawing)
@@ -93,6 +95,7 @@ riot.tag2('iconic-announcement', '<div class="loader"> <svg xmlns="http://www.w3
         }
 
         this.on('mount', function() {
+            this.icon = opts.icon || "icon-announcement"
             loader = this.loader;
             border = this.border;
         });
