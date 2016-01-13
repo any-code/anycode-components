@@ -50,9 +50,15 @@
         <em>WARNING</em><br>You are running on reserve inspiration. Be creative immediately!
     </iconic-announcement>
 
+    <iconic-announcement name="manual" class="warning">
+        <em>MANUALLY CLOSED</em><br>This announcement won't go away until the user dismisses it.
+    </iconic-announcement>
+
     <iconic-announcement name="announcement" class="success">
         <em>Congratulations</em><br>You've successfully clicked the <em>Show Announcement</em> button.
     </iconic-announcement>
+
+
     <a id="iconic-announcement"></a>
     <article class="right">
         <div class="container">
@@ -83,6 +89,16 @@
                 </div>
                 <div class="four columns" style="margin:1rem;  text-align: right;">
                     <button class="button-primary" onclick="{ opts.showWarning }">Warning</button>
+                </div>
+            </div>
+            <div class="row u-cf">
+                <div class="eight columns">
+                    <h5>Manual Dismissal</h5>
+                    <p>After pressing the <em>Manual</em> button, you'll see a hostile notification, informing the end-user of the imminent danger.</p>
+                    <p>The warning announcement has been configured to display <em>forever</em> so there is no automatic dismissal.</p>
+                </div>
+                <div class="four columns" style="margin:1rem;  text-align: right;">
+                    <button class="button-primary" onclick="{ opts.showManual }">Manual</button>
                 </div>
             </div>
             <div class="row">
@@ -461,6 +477,9 @@
         },
         showWarning: function() {
             this.tags.warning.show(6000)
+        },
+        showManual: function() {
+            this.tags.manual.show()
         },
         showAnnouncement: function() {
             this.tags.announcement.show(2000)

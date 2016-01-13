@@ -101,13 +101,18 @@ riot.tag2('iconic-announcement', '<div class="loader"> <svg xmlns="http://www.w3
             this.hide();
             interval = Math.floor((parseInt(timeout - 250, 10) || DEFAULT_TIMEOUT - 250) / 360);
             this.root.classList.add('show')
-            reset()
-            clearTimeout(drawing)
-            clearTimeout(showing)
-            drawProgress();
-            showing = setTimeout(function() {
-                this.hide();
-            }.bind(this), timeout || DEFAULT_TIMEOUT);
+            if (timeout) {
+                this.loader.style.display = 'block';
+                reset()
+                clearTimeout(drawing)
+                clearTimeout(showing)
+                drawProgress();
+                showing = setTimeout(function() {
+                    this.hide();
+                }.bind(this), timeout || DEFAULT_TIMEOUT);
+            } else {
+                this.loader.style.display = 'none';
+            }
         }.bind(this)
 
         this.hide = function() {
