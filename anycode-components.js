@@ -128,83 +128,6 @@ riot.tag2('iconic-announcement', '<div class="loader"> <svg xmlns="http://www.w3
 }, '{ }');
 
 
-riot.tag2('iconic-button-bak', '<div name="container" riot-style=" border-radius: {radius}rem; "> <div name="text" riot-style="height: {size}rem;"><yield></yield></div> <div name="hotkey" riot-style="height: {size}rem; width: {size}rem; border-radius: {radius}rem; ">{keyHelp[0]}</div> </div>', 'iconic-button-bak,[riot-tag="iconic-button-bak"] { display: block; position: relative; cursor: pointer; } iconic-button-bak.inset,[riot-tag="iconic-button-bak"].inset { border-radius: 0.4rem; } iconic-button-bak.size-10,[riot-tag="iconic-button-bak"].size-10 { height: 10rem; width: 10rem; font-size: 8rem; line-height: 8rem; border-radius: 1rem; } @-webkit-keyframes iconicButtonFlash { from { background: rgba(255,255,255, 0.5); } to { background: rgba(255,255,255, 0.3); } } @keyframes iconicButtonFlash { from { background: rgba(255,255,255, 0.5); } to { background: rgba(255,255,255, 0.3); } } iconic-button-bak div[name="container"],[riot-tag="iconic-button-bak"] div[name="container"] { background: rgba(255,255,255, 0); transition: all 400ms ease-in-out; transition-delay: 0ms; } iconic-button-bak.inset div[name="container"],[riot-tag="iconic-button-bak"].inset div[name="container"] { border-radius: 0.4rem; } iconic-button-bak div[name="container"]:hover,[riot-tag="iconic-button-bak"] div[name="container"]:hover { background: rgba(255,255,255, 0.3); } iconic-button-bak div[name="container"]:active,[riot-tag="iconic-button-bak"] div[name="container"]:active { -webkit-animation: iconicButtonFlash 200ms 1; -o-animation: iconicButtonFlash 200ms 1; animation: iconicButtonFlash 200ms 1; } iconic-button-bak div[name="container"].activated,[riot-tag="iconic-button-bak"] div[name="container"].activated { -webkit-animation: iconicButtonFlash 200ms 1; -o-animation: iconicButtonFlash 200ms 1; animation: iconicButtonFlash 200ms 1; } iconic-button-bak div[name="text"],[riot-tag="iconic-button-bak"] div[name="text"] { color: rgba(255,255,255,0.7); font-weight: bolder; text-align: center; vertical-align: center; transition: all 600ms ease-in-out; transition-delay: 0ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; margin-top: 0%; font-size: 100%; } iconic-button-bak div[name="hotkey"],[riot-tag="iconic-button-bak"] div[name="hotkey"] { display: table-cell; opacity: 0; background: rgba(255,255,255,0.8); position: absolute; z-index: 5; top: 0; left: 0; color: rgba(0,0,0,0.4); font-weight: bolder; text-align: center; vertical-align: center; transition: all 200ms ease-in-out; transition-delay: 0ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; margin-top: 0%; font-size: 100%; } iconic-button-bak div[name="hotkey"].help,[riot-tag="iconic-button-bak"] div[name="hotkey"].help { opacity: 1; } iconic-button-bak div[name="text"] i,[riot-tag="iconic-button-bak"] div[name="text"] i { margin-top: 22%; font-size: 75%; } iconic-button-bak.inset div[name="text"] i,[riot-tag="iconic-button-bak"].inset div[name="text"] i { margin-top: 20%; font-size: 69%; }', 'class="{inset: inset}" riot-style="background: {color}; float: {float}; height: {size}rem; width: {size}rem; line-height: {fontSize}rem; font-size: {fontSize}rem; border-radius: {radius}rem; margin: {margin}rem;"', function(opts) {
-        var addEvent = window.document.addEventListener
-
-        this.on('mount', function() {
-            addEvent('keypress', function(event) {
-                event = event || window.event;
-                var key = event.which, name = event.target.nodeName.toUpperCase();
-                if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
-                    name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
-                if (this.keyHelp && this.keyHelp.indexOf(String.fromCharCode(key)) > -1) {
-                    this.activated = key;
-                    return false;
-                }
-            }.bind(this))
-
-            addEvent('keyup', function(event) {
-                event = event || window.event;
-                var key = event.which, name = event.target.nodeName.toUpperCase();
-                if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
-                    name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
-
-                var visualClick = function() {
-                    if (this.activated) {
-                        this.activated = false;
-                        this.container.classList.add('activated');
-                        this.root.click();
-                        setTimeout(function () {
-                            this.container.classList.remove('activated');
-                        }.bind(this), 600)
-                    }
-                }.bind(this)
-
-                if (this.hotkey.classList.contains('help')) {
-                    visualClick();
-                    setTimeout(function() {
-                        this.hotkey.classList.remove('help')
-
-                    }.bind(this), 200);
-                } else {
-                    visualClick();
-                }
-            }.bind(this))
-
-            addEvent('keydown', function(event) {
-                event = event || window.event;
-                var key = event.which, name = event.target.nodeName.toUpperCase();
-                if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
-                    name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
-                if (event.shiftKey && this.keyHelp) {
-                    this.hotkey.classList.add('help')
-                } else {
-                    this.hotkey.classList.remove('help')
-                }
-                return true;
-            }.bind(this));
-        })
-
-        this.on('mount update', function() {
-            this.keyHelp = opts.hotkey || undefined;
-            this.color = opts.color || 'transparent';
-            this.float = opts.float || 'none';
-            this.buttonSize = parseFloat(opts.size)|| 4;
-            this.size = this.buttonSize;
-            this.radius = 0;
-            this.margin = 0;
-            this.fontSize = parseFloat(this.buttonSize) * 0.8;
-            this.inset = opts.inset !== undefined
-            if (this.inset) {
-                this.radius = '' + parseFloat(this.buttonSize) * 0.1;
-                this.margin = '' + parseFloat(this.buttonSize) * 0.05;
-                this.size = this.buttonSize * 0.9;
-                this.fontSize = parseFloat(opts.size) * 0.74;
-            }
-        });
-}, '{ }');
-
-
 riot.tag2('iconic-button', '<div name="container" class="inner"> <div name="text"><yield></yield></div> <div name="hotkey">{keyHelp[0]}</div> </div>', 'iconic-button,[riot-tag="iconic-button"] { display: inline-block; position: relative; cursor: pointer; } iconic-button .inner,[riot-tag="iconic-button"] .inner { line-height: 2.6rem; } iconic-button .inner i,[riot-tag="iconic-button"] .inner i { vertical-align: middle; } iconic-button div[name="hotkey"],[riot-tag="iconic-button"] div[name="hotkey"] { position: absolute; display: block; opacity: 0; background: rgba(255,255,255,1); border: 1px solid rgba(0,0,0,0.2); line-height: 2.6rem; position: absolute; z-index: 5; top: 0; left: 0; right: 0; bottom: 0; color: rgba(0,0,0,0.8); font-weight: 600; text-align: center; vertical-align: center; transition: all 200ms ease-in-out; transition-delay: 0ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; margin-top: 0%; font-size: 100%; } iconic-button div[name="hotkey"].help,[riot-tag="iconic-button"] div[name="hotkey"].help { opacity: 1; }', '', function(opts) {
         var addEvent = window.document.addEventListener
 
@@ -215,8 +138,9 @@ riot.tag2('iconic-button', '<div name="container" class="inner"> <div name="text
             addEvent('keypress', function(event) {
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
+
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
-                    name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
+                    name === "INPUT") { return true; }
                 if (this.keyHelp && this.keyHelp.indexOf(String.fromCharCode(key)) > -1) {
                     this.activated = key;
                     return false;
@@ -227,7 +151,7 @@ riot.tag2('iconic-button', '<div name="container" class="inner"> <div name="text
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
-                    name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
+                    name === "INPUT") { return true; }
 
                 var visualClick = function() {
                     if (this.activated) {
@@ -255,7 +179,7 @@ riot.tag2('iconic-button', '<div name="container" class="inner"> <div name="text
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
-                    name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
+                    name === "INPUT") { return true; }
                 if (event.shiftKey && this.keyHelp) {
                     this.hotkey.classList.add('help')
                 } else {

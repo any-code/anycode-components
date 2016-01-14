@@ -13,8 +13,9 @@
             addEvent('keypress', function(event) {
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
+
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
-                    name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
+                    name === "INPUT") { return true; }
                 if (this.keyHelp && this.keyHelp.indexOf(String.fromCharCode(key)) > -1) {
                     this.activated = key;
                     return false;
@@ -25,7 +26,7 @@
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
-                    name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
+                    name === "INPUT") { return true; }
 
                 var visualClick = function() {
                     if (this.activated) {
@@ -53,7 +54,7 @@
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
-                    name === "INPUT" && event.target.type.toUpperCase() === "TEXT") { return true; }
+                    name === "INPUT") { return true; }
                 if (event.shiftKey && this.keyHelp) {
                     this.hotkey.classList.add('help')
                 } else {
