@@ -60,16 +60,22 @@
             return this.prop[name];
         }
 
+        this.props = {
+            paddingWidth: 10,
+            offsetLeft: 0,
+            offsetTop: 0
+        }
+
         this.on('mount', function() {
             this.well.setAttribute('style', this.root.getAttribute('style'))
             this.root.removeAttribute('style')
             this.update()
             this.trigger('set-props')
 
-            window.addEventListener('resize', function() {
-                this.trigger('render')
-            }.bind(this))
             setTimeout(function() {
+                window.addEventListener('resize', function() {
+                    this.trigger('render')
+                }.bind(this))
                 this.trigger('render')
                 this.update()
             }.bind(this), 0)
@@ -114,7 +120,7 @@
         }
 
         this._renderWrapElement = function(element) {
-            if (this._shouldWrap(element) || this.getBurstWidth() < MIN_USABLE_WIDTH) {
+            if (this._shouldWrap(element) || this.getUsableWidth() < MIN_USABLE_WIDTH) {
                 element.classList.add('wrapped');
             } else {
                 element.classList.remove('wrapped');
