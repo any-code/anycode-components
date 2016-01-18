@@ -43,7 +43,6 @@
             angle++
             angle %= end;
 
-            console.log(angle, end);
             var r = ( angle * Math.PI / 180 ),
                 x = Math.sin( r ) * 250,
                 y = Math.cos( r ) * - 250,

@@ -54,7 +54,6 @@ riot.tag2('iconic-announcement', '<div class="loader"> <svg xmlns="http://www.w3
             angle++
             angle %= end;
 
-            console.log(angle, end);
             var r = ( angle * Math.PI / 180 ),
                 x = Math.sin( r ) * 250,
                 y = Math.cos( r ) * - 250,
@@ -224,6 +223,7 @@ riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="nav
             this.links.forEach(function(element) {
                 element.classList.remove('active');
                 if (this.viewing && this.viewing.id === this._hashFromHref(element.href)) {
+                    history.pushState(null, null, '#' + this.viewing.id);
                     element.classList.add('active');
                 }
             }.bind(this))
@@ -241,7 +241,9 @@ riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="nav
             if (this.navigation !== undefined) {
                 this.links = Array.prototype.slice.call(this.navigation.getElementsByTagName('A'), 0);
                 if (this.links.length > 0) {
-                    this.links[0].classList.add('active');
+                    if (!this.getFromHash()) {
+                        this.links[0].classList.add('active');
+                    }
                     this.anchors = this.links.map(this._mapLinkToAnchor);
                 }
             }
@@ -250,7 +252,6 @@ riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="nav
         this.initializeScrollListener = function() {
             if (this.anchors.length > 0) {
                 window.addEventListener('scroll', this._scroll);
-                this._scroll()
             }
         }
 
@@ -273,7 +274,23 @@ riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="nav
             this.tip = "iconic-navigation";
             this.tags['navigation-tip'].content.innerText = this.tip;
             this.tags['navigation-tip'].update()
+
+            setTimeout(function() {
+                window.addEventListener('hashchange', this.getFromHash )
+            }.bind(this), 0)
         })
+
+        this.getFromHash = function() {
+            var has = false;
+            this.links.forEach(function(element) {
+                element.classList.remove('active');
+                if (this._hashFromHref(element.href) === window.location.hash.slice(1)) {
+                    element.classList.add('active');
+                    has = true;
+                }
+            }.bind(this))
+            return has;
+        }.bind(this)
 
         this.cancelExpander = function() {
             this.root.classList.remove('expand');
