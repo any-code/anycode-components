@@ -23,7 +23,7 @@
     //
     //
     //BEGIN RIOT TAGS
-riot.tag2('iconic-announcement', '<div class="loader"> <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="7rem" height="7rem" viewbox="0 0 500 500"> <path name="loader" transform="translate(250, 250) scale(4.2)"></path> </svg> </div> <iconic-button class="close" onclick="{hide}">&times;</iconic-button> <div class="badge"> <i class="{icon}"></i> </div> <div class="content" onclick="{wait}"> <yield></yield> </div>', 'iconic-announcement,[riot-tag="iconic-announcement"] { display: block; position: fixed; top: -16rem; left: 0; right: 0; height: 8rem; transition: all 300ms ease-in-out; overflow: hidden; z-index: 200; } iconic-announcement.show,[riot-tag="iconic-announcement"].show { top: 0rem; } iconic-announcement .close,[riot-tag="iconic-announcement"] .close { color: rgba(255,255,255,0.6); float: right; width: 8rem; height: 8rem; border: none; } iconic-announcement .close:hover,[riot-tag="iconic-announcement"] .close:hover { color: rgba(255,255,255,0.6); } iconic-announcement .close div[name="text"],[riot-tag="iconic-announcement"] .close div[name="text"] { font-weight: 600; font-size: 10rem; line-height: 5.5rem; } iconic-announcement .badge,[riot-tag="iconic-announcement"] .badge { padding: 1rem; position: relative; height: 6rem; width: 6rem; font-size: 6rem; line-height: 5rem; } iconic-announcement .content,[riot-tag="iconic-announcement"] .content { position: absolute; height: 6rem; top: 0rem; left: 8rem; width: auto; right: 8rem; font-size: 1.8rem; font-weight: bolder; padding:1rem; display: table-cell; vertical-align: middle; } iconic-announcement .loader,[riot-tag="iconic-announcement"] .loader { padding: 0.5rem; position: absolute; top: 0; right: 0; height: 7rem; width: 7rem; } iconic-announcement path[name="loader"],[riot-tag="iconic-announcement"] path[name="loader"] { fill: rgba(0, 0, 0, 0.5); }', '', function(opts) {
+riot.tag2('iconic-announcement', '<div class="loader"> <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="70px" height="70px" viewbox="0 0 500 500"> <path name="loader" transform="translate(250, 250) scale(4.2)"></path> </svg> </div> <iconic-button class="close" onclick="{hide}">&times;</iconic-button> <div class="badge"> <i class="{icon}"></i> </div> <div class="content" onclick="{wait}"> <yield></yield> </div>', 'iconic-announcement,[riot-tag="iconic-announcement"] { display: block; position: fixed; top: -16rem; left: 0; right: 0; height: 8rem; transition: all 300ms ease-in-out; overflow: hidden; z-index: 200; } iconic-announcement.show,[riot-tag="iconic-announcement"].show { top: 0rem; } iconic-announcement .close,[riot-tag="iconic-announcement"] .close { color: rgba(255,255,255,0.6); float: right; width: 8rem; height: 8rem; border: none; } iconic-announcement .close:hover,[riot-tag="iconic-announcement"] .close:hover { color: rgba(255,255,255,0.6); } iconic-announcement .close div[name="text"],[riot-tag="iconic-announcement"] .close div[name="text"] { font-weight: 600; font-size: 10rem; line-height: 5.5rem; } iconic-announcement .badge,[riot-tag="iconic-announcement"] .badge { padding: 1rem; position: relative; height: 6rem; width: 6rem; font-size: 6rem; line-height: 5rem; } iconic-announcement .content,[riot-tag="iconic-announcement"] .content { position: absolute; height: 6rem; top: 0rem; left: 8rem; width: auto; right: 8rem; font-size: 1.8rem; font-weight: bolder; padding:1rem; display: table-cell; vertical-align: middle; } iconic-announcement .loader,[riot-tag="iconic-announcement"] .loader { padding: 0.5rem; position: absolute; top: 0; right: 0; height: 7rem; width: 7rem; } iconic-announcement path[name="loader"],[riot-tag="iconic-announcement"] path[name="loader"] { fill: rgba(0, 0, 0, 0.5); }', '', function(opts) {
         var DEFAULT_TIMEOUT = 10000,
             showing,
             drawing,
@@ -128,13 +128,11 @@ riot.tag2('iconic-announcement', '<div class="loader"> <svg xmlns="http://www.w3
 
 
 riot.tag2('iconic-button', '<div name="container" class="inner"> <div name="text"><yield></yield></div> <div name="hotkey">{keyHelp[0]}</div> </div>', 'iconic-button,[riot-tag="iconic-button"] { display: inline-block; position: relative; cursor: pointer; } iconic-button .inner,[riot-tag="iconic-button"] .inner { line-height: 2.6rem; } iconic-button .inner i,[riot-tag="iconic-button"] .inner i { vertical-align: middle; } iconic-button div[name="hotkey"],[riot-tag="iconic-button"] div[name="hotkey"] { position: absolute; display: block; opacity: 0; background: rgba(255,255,255,1); border: 1px solid rgba(0,0,0,0.2); line-height: 2.6rem; position: absolute; z-index: 5; top: 0; left: 0; right: 0; bottom: 0; color: rgba(0,0,0,0.8); font-weight: 600; text-align: center; vertical-align: center; transition: all 200ms ease-in-out; transition-delay: 0ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; margin-top: 0%; font-size: 100%; } iconic-button div[name="hotkey"].help,[riot-tag="iconic-button"] div[name="hotkey"].help { opacity: 1; }', '', function(opts) {
-        var addEvent = window.document.addEventListener
-
         this.on('mount', function() {
             this.root.classList.add('button');
             this.root.classList.add('icon-extra-small');
 
-            addEvent('keypress', function(event) {
+            document.body.addEventListener('keypress', function(event) {
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
 
@@ -146,7 +144,7 @@ riot.tag2('iconic-button', '<div name="container" class="inner"> <div name="text
                 }
             }.bind(this))
 
-            addEvent('keyup', function(event) {
+            document.body.addEventListener('keyup', function(event) {
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
@@ -174,7 +172,7 @@ riot.tag2('iconic-button', '<div name="container" class="inner"> <div name="text
                 }
             }.bind(this))
 
-            addEvent('keydown', function(event) {
+            document.body.addEventListener('keydown', function(event) {
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||

@@ -1,6 +1,6 @@
 <iconic-announcement>
     <div class="loader">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="7rem" height="7rem" viewbox="0 0 500 500">
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="70px" height="70px" viewbox="0 0 500 500">
             <path name="loader" transform="translate(250, 250) scale(4.2)"/>
         </svg>
     </div>

@@ -4,13 +4,11 @@
         <div name="hotkey">{ keyHelp[0] }</div>
     </div>
     <script>
-        var addEvent = window.document.addEventListener
-
         this.on('mount', function() {
             this.root.classList.add('button');
             this.root.classList.add('icon-extra-small');
 
-            addEvent('keypress', function(event) {
+            document.body.addEventListener('keypress', function(event) {
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
 
@@ -22,7 +20,7 @@
                 }
             }.bind(this))
 
-            addEvent('keyup', function(event) {
+            document.body.addEventListener('keyup', function(event) {
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
@@ -50,7 +48,7 @@
                 }
             }.bind(this))
 
-            addEvent('keydown', function(event) {
+            document.body.addEventListener('keydown', function(event) {
                 event = event || window.event;
                 var key = event.which, name = event.target.nodeName.toUpperCase();
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
