@@ -259,7 +259,7 @@
             var has = false;
             this.links.forEach(function(element) {
                 element.classList.remove('active');
-                if (this._hashFromHref(element.href) === window.location.hash.slice(1)) {
+                if (window.location.hash.slice(1).match(new RegExp('^' + this._hashFromHref(element.href)))) {
                     element.classList.add('active');
                     has = true;
                 }
