@@ -236,8 +236,10 @@
             }
 
             this.tags['navigation-tip'].beforeShow = function() {
-                var el = this.navigation.querySelector('li:hover')
-                if (this.navigation.clientWidth !== 42 || el === null || el.innerText.trim().length === 0) {
+                var el = this.navigation.querySelector('li:hover'),
+                    prop = el.textContent ? 'textContent' : 'innerText';
+
+                if (this.navigation.clientWidth !== 42 || el === null || el[prop].trim().length === 0) {
                     return false;
                 }
                 this.tags['navigation-tip'].content.innerHTML = this.navigation.querySelector('li:hover').innerHTML
@@ -247,7 +249,8 @@
             this.initializeReferences()
             this.initializeScrollListener()
             this.tip = "iconic-navigation";
-            this.tags['navigation-tip'].content.innerText = this.tip;
+            var prop = this.tags['navigation-tip'].content.textContent ? 'textContent' : 'innerText';
+            this.tags['navigation-tip'].content[prop] = this.tip;
             this.tags['navigation-tip'].update()
 
             setTimeout(function() {
@@ -273,7 +276,7 @@
         }.bind(this)
 
         this.expand = function() {
-            document.removeEventListener('click');
+            document.removeEventListener('click', this.cancelExpander);
             if (this.root.classList.contains('expand')) {
                 this.root.classList.remove('expand');
             } else {
