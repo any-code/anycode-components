@@ -312,7 +312,7 @@ riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="nav
 }, '{ }');
 
 
-riot.tag2('iconic-tip', '<div name="left" class="arrow-left"></div> <div name="right" class="arrow-right"></div> <div name="up" class="arrow-up"></div> <div name="down" class="arrow-down"></div> <div name="content"> <yield></yield> </div>', 'iconic-tip,[riot-tag="iconic-tip"] { position: absolute; display: block; box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.6); background: #222; padding: 1rem; font-size: 1.5rem; border-radius: 0.3rem; color: #FFF; opacity: 0; margin: 0 auto; z-index: -1; transition: opacity 200ms ease-in-out; } iconic-tip.navigation-tip,[riot-tag="iconic-tip"].navigation-tip { padding: 0.2rem 1rem 0.2rem 0.2rem; border-radius: 0.4rem; } iconic-tip.navigation-tip iconic-button,[riot-tag="iconic-tip"].navigation-tip iconic-button { vertical-align: middle; margin: 0; } iconic-tip.navigation-tip .arrow-right,[riot-tag="iconic-tip"].navigation-tip .arrow-right { top: 0.78rem; } iconic-tip.fixed,[riot-tag="iconic-tip"].fixed { position: fixed!important; } iconic-tip .content,[riot-tag="iconic-tip"] .content { padding: 0; margin: 0; } iconic-tip .arrow-up,[riot-tag="iconic-tip"] .arrow-up { position: absolute; width: auto; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid #222; margin: 0 auto; top: -10px; transition: opacity 200ms ease-in-out; } iconic-tip .arrow-down,[riot-tag="iconic-tip"] .arrow-down { position: absolute; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #222; bottom: -10px; margin: 0 auto; transition: opacity 200ms ease-in-out; } iconic-tip .arrow-left,[riot-tag="iconic-tip"] .arrow-left { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 10px solid #222; right: -10px; transition: opacity 200ms ease-in-out; } iconic-tip .arrow-right,[riot-tag="iconic-tip"] .arrow-right { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 10px solid #222; left: -10px; transition: opacity 200ms ease-in-out; } iconic-tip.active,[riot-tag="iconic-tip"].active { z-index: 9999; } iconic-tip.show,[riot-tag="iconic-tip"].show { opacity: 0.95; }', '', function(opts) {
+riot.tag2('iconic-tip', '<div name="left" class="arrow-left"></div> <div name="right" class="arrow-right"></div> <div name="up" class="arrow-up"></div> <div name="down" class="arrow-down"></div> <div name="content"> <yield></yield> </div>', 'iconic-tip,[riot-tag="iconic-tip"] { position: absolute; display: block; box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.6); background: #222; padding: 1rem; font-size: 1.5rem; border-radius: 0.3rem; color: #FFF; opacity: 0; margin: 0 auto; z-index: -1; transition: opacity 200ms ease-in-out; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; pointer-events: none; } iconic-tip.navigation-tip,[riot-tag="iconic-tip"].navigation-tip { padding: 0.2rem 1rem 0.2rem 0.2rem; border-radius: 0.4rem; } iconic-tip.navigation-tip iconic-button,[riot-tag="iconic-tip"].navigation-tip iconic-button { vertical-align: middle; margin: 0; } iconic-tip.navigation-tip .arrow-right,[riot-tag="iconic-tip"].navigation-tip .arrow-right { top: 0.78rem; } iconic-tip.fixed,[riot-tag="iconic-tip"].fixed { position: fixed!important; } iconic-tip.active,[riot-tag="iconic-tip"].active { pointer-events: auto; } iconic-tip .content,[riot-tag="iconic-tip"] .content { padding: 0; margin: 0; } iconic-tip .arrow-up,[riot-tag="iconic-tip"] .arrow-up { position: absolute; width: auto; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid #222; margin: 0 auto; top: -10px; transition: opacity 200ms ease-in-out; } iconic-tip .arrow-down,[riot-tag="iconic-tip"] .arrow-down { position: absolute; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #222; bottom: -10px; margin: 0 auto; transition: opacity 200ms ease-in-out; } iconic-tip .arrow-left,[riot-tag="iconic-tip"] .arrow-left { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 10px solid #222; right: -10px; transition: opacity 200ms ease-in-out; } iconic-tip .arrow-right,[riot-tag="iconic-tip"] .arrow-right { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 10px solid #222; left: -10px; transition: opacity 200ms ease-in-out; } iconic-tip.active,[riot-tag="iconic-tip"].active { z-index: 9999; } iconic-tip.show,[riot-tag="iconic-tip"].show { opacity: 0.95; }', '', function(opts) {
         var TRANSITION_TIMESPAN = 200;
         this.timed = [];
 
@@ -323,76 +323,40 @@ riot.tag2('iconic-tip', '<div name="left" class="arrow-left"></div> <div name="r
         })
 
         this.moveright = function(el) {
-            var offset =  getOffset(el);
-            if (offset[2] === 'fixed') {
-                this.root.classList.add('fixed');
-            }
             this._showTip('right');
-            this.root.style.left = "" + (offset[0] + el.clientWidth + 10) + "px";
-            this.root.style.top = "" + (offset[1]  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
+            this.left.style.top = "" + ((this.root.cleintHeight / 2) -  10) + "px";
+            this.root.style.left = "" + (measure(el, 'Left') + el.clientWidth + 10) + "px";
+            this.root.style.top = "" + (measure(el, 'Top')  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
         }
 
         this.moveleft = function(el) {
-            var offset =  getOffset(el);
-            if (offset[2] === 'fixed') {
-                this.root.classList.add('fixed');
-            }
             this._showTip('left');
-            this.root.style.left = "" + (el.offsetLeft - this.root.clientWidth - 10) + "px";
-            this.root.style.top = "" + (el.offsetTop  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
+            this.right.style.top = "" + ((this.root.clientHeight / 2) -  10) + "px";
+            this.root.style.left = "" + (measure(el, 'Left') - this.root.clientWidth - 10) + "px";
+            this.root.style.top = "" + (measure(el, 'Top')  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
         }
 
         this.movebelow = function(el) {
-            var offset =  getOffset(el);
-            if (offset[2] === 'fixed') {
-                this.root.classList.add('fixed');
-            }
             this._showTip('up');
-            this.up.style.left = "" + ((this.root.clientWidth / 2) -  5) + "px";
-            this.root.style.left = "" + ((el.offsetLeft + (el.clientWidth / 2)) -  (this.root.clientWidth / 2)) + "px";
-            this.root.style.top = "" + (el.offsetTop + el.clientHeight + 10) + "px";
+            this.up.style.left = "" + ((this.root.clientWidth / 2) -  10) + "px";
+            this.root.style.left = "" + ((measure(el, 'Left')  + (el.clientWidth / 2)) -  (this.root.clientWidth / 2)) + "px";
+            this.root.style.top = "" + (measure(el, 'Top') + el.clientHeight + 10) + "px";
         }
 
         this.moveabove = function(el) {
-            var offset =  getOffset(el);
-            if (offset[2] === 'fixed') {
-                this.root.classList.add('fixed');
-            }
             this._showTip('down');
-            this.down.style.left = "" + ((this.root.clientWidth / 2) -  5) + "px";
-            this.root.style.left = "" + ((el.offsetLeft + (el.clientWidth / 2)) -  (this.root.clientWidth / 2)) + "px";
-            this.root.style.top = "" + (el.offsetTop  - this.root.clientHeight - 10) + "px";
+            this.down.style.left = "" + ((this.root.clientWidth / 2) - 10) + "px";
+            this.root.style.left = "" + ((measure(el, 'Left')  + (el.clientWidth / 2)) -  (this.root.clientWidth / 2)) + "px";
+            this.root.style.top = "" + (measure(el, 'Top')  - this.root.clientHeight - 10) + "px";
         }
 
-        function getOffset(el) {
-            var traverse = function(el, attr, pixels) {
-                if (pixels === undefined) { pixels = 0; }
-                if (el == null) {
-                    return pixels;
-                } else {
-                    pixels = pixels + el[attr];
-                    return traverse(el.offsetParent, attr, pixels);
-                }
-            }
-
-            var getPosition = function(el, position) {
-                if (position === undefined) { position = 'static'; }
-                if (el == null) {
-                    return position;
-                } else {
-                    if (position !== 'fixed') {
-                        position = window.getComputedStyle(el).position
-                    }
-                    return getPosition(el.offsetParent, position);
-                }
-            }
-
-            var p = getPosition(el);
-
-            if (p === 'fixed') {
-                return [traverse(el, 'offsetLeft'), traverse(el, 'offsetTop'), p]
+        var measure = function(el, attr, pixels) {
+            if (pixels === undefined) { pixels = 0; }
+            if (el == null) {
+                return pixels;
             } else {
-                return [el.offsetLeft, el.offsetTop, p]
+                pixels = pixels + (el['offset' + attr] - el['scroll' + attr]);
+                return measure(el.offsetParent, attr, pixels);
             }
         }
 
@@ -421,6 +385,7 @@ riot.tag2('iconic-tip', '<div name="left" class="arrow-left"></div> <div name="r
             if (proceed) {
                 this.clearTimed()
                 this.timed.push(setTimeout(function() {
+                    this.root.classList.add('fixed')
                     this['move' + (opts.position || 'right')].call(this, this._findTarget(event.target))
                     this.root.classList.add('active')
                     this.root.classList.add('show')

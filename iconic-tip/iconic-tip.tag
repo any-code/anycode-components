@@ -20,6 +20,11 @@
             margin: 0 auto;
             z-index: -1;
             transition: opacity 200ms ease-in-out;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            pointer-events: none;
         }
 
         :scope.navigation-tip {
@@ -38,6 +43,10 @@
 
         :scope.fixed {
             position: fixed!important;
+        }
+
+        :scope.active {
+            pointer-events: auto;
         }
 
         .content {
@@ -111,77 +120,40 @@
         })
 
         this.moveright = function(el) {
-            var offset =  getOffset(el);
-            if (offset[2] === 'fixed') {
-                this.root.classList.add('fixed');
-            }
             this._showTip('right');
-            this.root.style.left = "" + (offset[0] + el.clientWidth + 10) + "px";
-            this.root.style.top = "" + (offset[1]  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
+            this.left.style.top = "" + ((this.root.cleintHeight / 2) -  10) + "px";
+            this.root.style.left = "" + (measure(el, 'Left') + el.clientWidth + 10) + "px";
+            this.root.style.top = "" + (measure(el, 'Top')  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
         }
 
         this.moveleft = function(el) {
-            var offset =  getOffset(el);
-            if (offset[2] === 'fixed') {
-                this.root.classList.add('fixed');
-            }
             this._showTip('left');
-            this.root.style.left = "" + (el.offsetLeft - this.root.clientWidth - 10) + "px";
-            this.root.style.top = "" + (el.offsetTop  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
+            this.right.style.top = "" + ((this.root.clientHeight / 2) -  10) + "px";
+            this.root.style.left = "" + (measure(el, 'Left') - this.root.clientWidth - 10) + "px";
+            this.root.style.top = "" + (measure(el, 'Top')  - ((this.root.clientHeight / 2) - (el.clientHeight / 2))) + "px";
         }
 
         this.movebelow = function(el) {
-            var offset =  getOffset(el);
-            if (offset[2] === 'fixed') {
-                this.root.classList.add('fixed');
-            }
             this._showTip('up');
-            this.up.style.left = "" + ((this.root.clientWidth / 2) -  5) + "px";
-            this.root.style.left = "" + ((el.offsetLeft + (el.clientWidth / 2)) -  (this.root.clientWidth / 2)) + "px";
-            this.root.style.top = "" + (el.offsetTop + el.clientHeight + 10) + "px";
+            this.up.style.left = "" + ((this.root.clientWidth / 2) -  10) + "px";
+            this.root.style.left = "" + ((measure(el, 'Left')  + (el.clientWidth / 2)) -  (this.root.clientWidth / 2)) + "px";
+            this.root.style.top = "" + (measure(el, 'Top') + el.clientHeight + 10) + "px";
         }
 
         this.moveabove = function(el) {
-            var offset =  getOffset(el);
-            if (offset[2] === 'fixed') {
-                this.root.classList.add('fixed');
-            }
             this._showTip('down');
-            this.down.style.left = "" + ((this.root.clientWidth / 2) -  5) + "px";
-            this.root.style.left = "" + ((el.offsetLeft + (el.clientWidth / 2)) -  (this.root.clientWidth / 2)) + "px";
-            this.root.style.top = "" + (el.offsetTop  - this.root.clientHeight - 10) + "px";
+            this.down.style.left = "" + ((this.root.clientWidth / 2) - 10) + "px";
+            this.root.style.left = "" + ((measure(el, 'Left')  + (el.clientWidth / 2)) -  (this.root.clientWidth / 2)) + "px";
+            this.root.style.top = "" + (measure(el, 'Top')  - this.root.clientHeight - 10) + "px";
         }
 
-        function getOffset(el) {
-            var traverse = function(el, attr, pixels) {
-                if (pixels === undefined) { pixels = 0; }
-                if (el == null) {
-                    return pixels;
-                } else {
-                    pixels = pixels + el[attr];
-                    return traverse(el.offsetParent, attr, pixels);
-                }
-            }
-
-
-            var getPosition = function(el, position) {
-                if (position === undefined) { position = 'static'; }
-                if (el == null) {
-                    return position;
-                } else {
-                    if (position !== 'fixed') {
-                        position = window.getComputedStyle(el).position
-                    }
-                    return getPosition(el.offsetParent, position);
-                }
-            }
-
-            var p = getPosition(el);
-
-            if (p === 'fixed') {
-                return [traverse(el, 'offsetLeft'), traverse(el, 'offsetTop'), p]
+        var measure = function(el, attr, pixels) {
+            if (pixels === undefined) { pixels = 0; }
+            if (el == null) {
+                return pixels;
             } else {
-                return [el.offsetLeft, el.offsetTop, p]
+                pixels = pixels + (el['offset' + attr] - el['scroll' + attr]);
+                return measure(el.offsetParent, attr, pixels);
             }
         }
 
@@ -210,6 +182,7 @@
             if (proceed) {
                 this.clearTimed()
                 this.timed.push(setTimeout(function() {
+                    this.root.classList.add('fixed')
                     this['move' + (opts.position || 'right')].call(this, this._findTarget(event.target))
                     this.root.classList.add('active')
                     this.root.classList.add('show')

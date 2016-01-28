@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+find iconic-* | entr sh -c 'npm run pub-pack'

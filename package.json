@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "karma start",
+    "watch": "./watch",
     "pub-pack": "node scripts/pack.js index.js **/*.tag anycode-components.js",
     "pub-minify": "uglifyjs anycode-components.js --compress --screw-ie8 --mangle > anycode-components.min.js",
     "pub-build": "npm run pub-pack && npm run pub-minify && npm run test",

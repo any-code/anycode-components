@@ -46,7 +46,6 @@
         </article>
     </div>
 
-
     <iconic-announcement name="warning" class="warning">
         <em>WARNING</em><br>You are running on reserve inspiration. Be creative immediately!
     </iconic-announcement>
@@ -65,7 +64,6 @@
         <div class="container">
             <div class="row">
                 <div class="twelve columns">
-
                     <h1 class="tag">iconic <em>announcement</em></h1>
                     <blockquote><i class="icon-announcement icon"></i>
                         iconic-<em>announcement</em> is a toaster style flash-message with cancellable automatic timeout. It's suitable for displaying short-lived announcements and notifications.
@@ -227,7 +225,16 @@
                     <button class="button-small" data-tip="tip-right">Hover over me</button>
                 </div>
             </div>
-            <iconic-tip position="above" name="tip-above">
+            <div class="row u-pad-below" style="height: 15rem;">
+                <h6>Absolute Positioning</h6>
+                <div style="border: 1px dashed #222; position: absolute; left: 0; width: auto; height: 10rem; bottom: auto; right: 0;">
+
+                    <div  style="position: absolute; display: block; right: 5.5rem; top: 3.5rem;">
+                      <iconic-button class="button-small" data-tip="tip-above"><i class="icon-browser"></i></iconic-button>
+                    </div>
+                </div>
+            </div>
+            <iconic-tip position="above" name="tip-above" delay="100">
                 <div style="padding: 1rem; max-width: 40rem;">
                     <h6><i class="icon-tip" style="color: rgba(0, 215, 180, 0.9); font-size: 5rem;"></i> Displayed above</h6>
                 </div>
@@ -235,9 +242,9 @@
                     <button class="button-primary button-extra-small">LEARN MORE</button>
                 </div>
             </iconic-tip>
-            <iconic-tip position="left" name="tip-left">I am displayed to the left</iconic-tip>
-            <iconic-tip position="below" name="tip-below">I am displayed below</iconic-tip>
-            <iconic-tip position="right" name="tip-right">I am displayed to the right</iconic-tip>
+            <iconic-tip position="left" name="tip-left" delay="100">I am displayed to the left</iconic-tip>
+            <iconic-tip position="below" name="tip-below"  delay="100">I am displayed below</iconic-tip>
+            <iconic-tip position="right" name="tip-right"  delay="100">I am displayed to the right</iconic-tip>
             <br>
             <div class="row">
                 <div class="twelve columns">
