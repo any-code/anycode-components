@@ -414,13 +414,14 @@ riot.tag2('iconic-tip', '<div name="left" class="arrow-left"></div> <div name="r
         }
 
         this._initializeElements = function() {
-            var elements = this.root.parentElement.querySelectorAll('*[data-tip="' + opts.name +'"]')
+            var elements = this.root.parentElement.querySelectorAll('*[data-tip="' + opts.name +'"]'),
+                element;
 
-            for (element in elements) {
+            for(element = 0; element < elements.length; element++) {
                 elements[element]._tip_target = true
-                elements[element].onmouseover = this.show
-                elements[element].onmouseout = this.hide
-            }
+                elements[element].addEventListener('mouseover', this.show)
+                elements[element].addEventListener('mouseout', this.hide)
+             }
         }
 
         this._showTip = function(name) {
