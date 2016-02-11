@@ -205,13 +205,21 @@ riot.tag2('iconic-menu', '<div name="left" class="arrow-left"></div> <div name="
         this.moveright = function(el) {
             this._showTip('right', el);
             this.root.style.left = "" + (measure(el, 'Left') + el.clientWidth + 10) + "px";
-            this.root.style.top = "" + measure(el, 'Top')  + "px";
+            if (el.clientHeight > 20) {
+                this.root.style.top = "" + measure(el, 'Top') + "px";
+            } else {
+                this.root.style.top = "" + (measure(el, 'Top') - ((20 - el.clientHeight) / 2)) + "px";
+            }
         }.bind(this)
 
         this.moveleft = function(el) {
             this._showTip('left', el);
             this.root.style.left = "" + (measure(el, 'Left') - this.root.clientWidth - 10) + "px";
-            this.root.style.top = "" + measure(el, 'Top')  + "px";
+            if (el.clientHeight > 20) {
+                this.root.style.top = "" + measure(el, 'Top') + "px";
+            } else {
+                this.root.style.top = "" + (measure(el, 'Top') - 10) + "px";
+            }
         }.bind(this)
 
         var measure = function(el, attr, pixels) {
@@ -291,8 +299,13 @@ riot.tag2('iconic-menu', '<div name="left" class="arrow-left"></div> <div name="
         this._showTip = function(name, el) {
             this.left.style.display = "none"
             this.right.style.display = "none"
-            this.left.style.top = "" + ((el.clientHeight / 2) - 8) + "px";
-            this.right.style.top = "" + ((el.clientHeight / 2) - 8) + "px";
+            if (el.clientHeight > 20) {
+                this.left.style.top = "" + ((el.clientHeight / 2) - 8) + "px";
+                this.right.style.top = "" + ((el.clientHeight / 2) - 8) + "px";
+            } else {
+                this.left.style.top = "" + (((20 - el.clientHeight) / 2) + 10) + "px";
+                this.right.style.top = "" + (((20 - el.clientHeight) / 2) + 10) + "px";
+            }
             this[name].style.display = "block"
         }
 });
