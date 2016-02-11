@@ -83,21 +83,21 @@
         }
 
 
-        ul {
+        :scope ul {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
 
-        ul li {
+        :scope ul li {
             padding: 0;
             margin: 0;
             display: block;
             position: relative;
         }
 
-        a {
+        :scope a {
             padding: 0;
             margin: 0;
             color: #FFF;
