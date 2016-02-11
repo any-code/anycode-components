@@ -284,11 +284,15 @@
                 <h5>Menu displays on-hover</h5>
             </div>
             <div class="row u-pad-below">
-                <div class="six columns">
+                <div class="five columns">
                     <h6>Display to right</h6>
                     <button class="button-small" data-menu="menu-right">Hover over me</button>
                 </div>
-                <div class="six columns">
+                <div class="five columns">
+                    <h6>Display to right</h6>
+                    <button class="button-small" data-menu="menu-left">Hover over me</button>
+                </div>
+                <div class="two columns">
                     <h6>Display to left</h6>
                     <button class="button-small" data-menu="menu-left">Hover over me</button>
                 </div>
@@ -302,34 +306,16 @@
                     </div>
                 </div>
             </div>
-            <iconic-menu position="left" name="menu-left" delay="100"><ul>
+            <iconic-menu name="menu-left" delay="100"><ul>
                     <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-browser"></i></iconic-button>&nbsp;First Menu Item</a></li>
                     <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-home"></i></iconic-button>&nbsp;Second Menu Item</a></li>
                     <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-burger"></i></iconic-button>&nbsp; Third Menu Item</a></li>
                 </ul></iconic-menu>
-            <iconic-menu position="right" name="menu-right"  delay="100"><ul>
+            <iconic-menu name="menu-right"  delay="100"><ul>
                 <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-browser"></i></iconic-button>&nbsp;First Menu Item</a></li>
                 <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-home"></i></iconic-button>&nbsp;Second Menu Item</a></li>
                 <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-burger"></i></iconic-button>&nbsp; Third Menu Item</a></li>
-                </ul></iconic-menu>
-            <br>
-            <div class="row">
-                <div class="twelve columns">
-                    <h3>Attributes</h3>
-                    <div class="attributes">
-                        <ul>
-                            <li>
-                                <h5><span>position</span><label>attribute</label></h5>
-                                <ul>
-                                    <li><label>Purpose</label> <p>specify the position to the element at which the iconic-tip should appear</p></li>
-                                    <li><label>Value</label> <p>above | right | below | left</p></li>
-                                    <li><label>Default</label> <p>none</p></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            </ul></iconic-menu>
         </div>
     </article>
     <hr>

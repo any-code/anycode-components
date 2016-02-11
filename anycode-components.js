@@ -258,7 +258,14 @@ riot.tag2('iconic-menu', '<div name="left" class="arrow-left"></div> <div name="
                 this.clearTimed()
                 this.timed.push(setTimeout(function() {
                     this.root.classList.add('fixed')
-                    this['move' + (opts.position || 'right')].call(this, this._findTarget(event.target))
+                    var target = this._findTarget(event.target),
+                        left = measure(target, 'Left'),
+                        position = 'right';
+
+                    if (left > window.innerWidth * 0.75 && window.innerWidth > this.root.clientWidth) {
+                        position ='left';
+                    }
+                    this['move' + position].call(this, target)
                     this.root.classList.add('active')
                     this.root.classList.add('show')
                 }.bind(this), parseInt(opts.delay,10) || 1000))
