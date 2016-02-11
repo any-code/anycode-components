@@ -192,6 +192,112 @@ riot.tag2('iconic-button', '<div name="container" class="inner"> <div name="text
 }, '{ }');
 
 
+riot.tag2('iconic-menu', '<div name="left" class="arrow-left"></div> <div name="right" class="arrow-right"></div> <div name="content"> <yield></yield> </div>', 'iconic-menu,[riot-tag="iconic-menu"] { position: absolute; display: block; box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.6); background: #222; padding: 0.3rem 0.2rem 0.2rem 0.3rem; font-size: 1.5rem; border-radius: 0.3rem; color: #FFF; opacity: 0; margin: 0 auto; z-index: -1; transition: opacity 200ms ease-in-out; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; pointer-events: none; } iconic-menu.navigation-tip,[riot-tag="iconic-menu"].navigation-tip { padding: 0.2rem 1rem 0.2rem 0.2rem; border-radius: 0.4rem; } iconic-menu.navigation-tip iconic-button,[riot-tag="iconic-menu"].navigation-tip iconic-button { vertical-align: middle; margin: 0; } iconic-menu.navigation-tip .arrow-right,[riot-tag="iconic-menu"].navigation-tip .arrow-right { top: 0.78rem; } iconic-menu.fixed,[riot-tag="iconic-menu"].fixed { position: fixed!important; } iconic-menu.active,[riot-tag="iconic-menu"].active { pointer-events: auto; } iconic-menu .content,[riot-tag="iconic-menu"] .content { padding: 0; margin: 0; } iconic-menu .arrow-left,[riot-tag="iconic-menu"] .arrow-left { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 10px solid #222; right: -10px; transition: opacity 200ms ease-in-out; } iconic-menu .arrow-right,[riot-tag="iconic-menu"] .arrow-right { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 10px solid #222; left: -10px; transition: opacity 200ms ease-in-out; } iconic-menu.active,[riot-tag="iconic-menu"].active { z-index: 9999; } iconic-menu.show,[riot-tag="iconic-menu"].show { opacity: 0.95; } iconic-menu ul,[riot-tag="iconic-menu"] ul { list-style: none; padding: 0; margin: 0; } iconic-menu ul li,[riot-tag="iconic-menu"] ul li { padding: 0; margin: 0; display: block; position: relative; } iconic-menu a,[riot-tag="iconic-menu"] a { padding: 0; margin: 0; color: #FFF; cursor: pointer; display: block; position: relative; padding-top: 0rem; padding:bottom: 0rem; padding-right: 2rem; height: 3rem; margin: 0.2rem 0.2rem 0.3rem 0.1rem; border: 0.1rem solid rgba(0,0,0,0); }', '', function(opts) {
+        var TRANSITION_TIMESPAN = 200;
+        this.timed = [];
+
+        this.on('mount', function() {
+            this.root.addEventListener('mouseover', this.clearTimed)
+            this.root.addEventListener('mouseout', this.hide)
+            this._initializeElements()
+        })
+
+        this.moveright = function(el) {
+            this._showTip('right', el);
+            this.root.style.left = "" + (measure(el, 'Left') + el.clientWidth + 10) + "px";
+            this.root.style.top = "" + measure(el, 'Top')  + "px";
+        }.bind(this)
+
+        this.moveleft = function(el) {
+            this._showTip('left', el);
+            this.root.style.left = "" + (measure(el, 'Left') - this.root.clientWidth - 10) + "px";
+            this.root.style.top = "" + measure(el, 'Top')  + "px";
+        }.bind(this)
+
+        var measure = function(el, attr, pixels) {
+            if (pixels === undefined) { pixels = 0; }
+            if (el == null) {
+                return pixels;
+            } else {
+                pixels = pixels + (el['offset' + attr] - el['scroll' + attr]);
+                return measure(el.offsetParent, attr, pixels);
+            }
+        }
+
+        this.clearTimed = function() {
+            this.timed.map(clearTimeout)
+            this.timed = []
+        }.bind(this)
+
+        this.hide = function() {
+            this.clearTimed()
+            this.timed.push(setTimeout(function(){
+                this.root.classList.remove('show')
+                this._sendToBack()
+            }.bind(this), TRANSITION_TIMESPAN))
+        }.bind(this)
+
+        this.on('show', function() {
+
+        })
+
+        this.show = function(event) {
+            var proceed = true;
+            if (this.beforeShow !== undefined) {
+                proceed = this.beforeShow();
+            }
+            if (proceed) {
+                this.clearTimed()
+                this.timed.push(setTimeout(function() {
+                    this.root.classList.add('fixed')
+                    this['move' + (opts.position || 'right')].call(this, this._findTarget(event.target))
+                    this.root.classList.add('active')
+                    this.root.classList.add('show')
+                }.bind(this), parseInt(opts.delay,10) || 1000))
+            }
+        }.bind(this)
+
+        this._sendToBack = function() {
+            this.clearTimed()
+
+            this.timed.push(setTimeout(function() {
+                this.root.classList.remove('active')
+            }.bind(this), TRANSITION_TIMESPAN))
+        }
+
+        this._findTarget = function(target) {
+            do {
+                if (target._tip_target)
+                    return target
+
+                target = target.parentElement
+
+            } while (target !== null)
+
+            return target
+        }
+
+        this._initializeElements = function() {
+            var elements = this.root.parentElement.querySelectorAll('*[data-menu="' + opts.name +'"]'),
+                element;
+
+            for(element = 0; element < elements.length; element++) {
+                elements[element]._tip_target = true
+                elements[element].addEventListener('mouseover', this.show)
+                elements[element].addEventListener('mouseout', this.hide)
+             }
+        }
+
+        this._showTip = function(name, el) {
+            this.left.style.display = "none"
+            this.right.style.display = "none"
+            this.left.style.top = "" + ((el.clientHeight / 2) - 8) + "px";
+            this.right.style.top = "" + ((el.clientHeight / 2) - 8) + "px";
+            this[name].style.display = "block"
+        }
+});
+
+
 riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="navigation-tip" class="navigation-tip"></iconic-tip> <iconic-button class="icon-extra-small burger" name="menuButton" onclick="{expand}" hotkey="~`"><i class="icon-burger"></i></iconic-button> <yield></yield>', 'iconic-navigation,[riot-tag="iconic-navigation"] { display: block; position: relative; margin: 0; padding: 0; height: auto; width: 4.2rem; transition: all 200ms ease-in-out; overflow: hidden; border-right: 0.1rem solid #EEE; } iconic-navigation.fixed-left,[riot-tag="iconic-navigation"].fixed-left { position: fixed; z-index: 1; bottom: 0rem; left: 0; right: auto; top: 0; } iconic-navigation.fixed-right,[riot-tag="iconic-navigation"].fixed-right { position: fixed; z-index: 1; bottom: 0rem; left: auto; right: 0; top: 0; } iconic-navigation button-primary.burger,[riot-tag="iconic-navigation"] button-primary.burger { display: none; margin: 0.6rem; background: #FFF; } iconic-navigation iconic-button[name="menuButton"],[riot-tag="iconic-navigation"] iconic-button[name="menuButton"] { display: none; margin: 0.6rem; border: none!important; background: #CCC!important; } iconic-navigation[class^="fixed"] iconic-button[name="menuButton"],[riot-tag="iconic-navigation"][class^="fixed"] iconic-button[name="menuButton"] { display: block; } iconic-navigation > ul,[riot-tag="iconic-navigation"] > ul { position: relative; bottom: 0rem; height: auto; left: 0; list-style: none; margin: 0; padding: 0; right: auto; top: 0rem; width: 4.2rem; overflow: hidden; white-space: nowrap; transition: all 200ms ease-in-out; } iconic-navigation:not([class^="fixed"]),[riot-tag="iconic-navigation"]:not([class^="fixed"]) { width: auto; } iconic-navigation:not([class^="fixed"]) ul,[riot-tag="iconic-navigation"]:not([class^="fixed"]) ul { width: auto; } iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { top: 4.2rem; } iconic-navigation[class^="fixed"] > ul,[riot-tag="iconic-navigation"][class^="fixed"] > ul { position: absolute; } iconic-navigation.expand,[riot-tag="iconic-navigation"].expand { width: 25rem; box-shadow: 10px 0px 15px rgba(0,0,0,0.095); } iconic-navigation > ul li,[riot-tag="iconic-navigation"] > ul li { padding: 0; margin: 0; list-style: none; } iconic-navigation > ul li a,[riot-tag="iconic-navigation"] > ul li a { font-size: 2rem; text-align: left; display: block; padding: 0.5rem; transition: all 80ms ease-in-out; border-top: 1px solid white; text-decoration: none; } iconic-navigation > ul li.separator,[riot-tag="iconic-navigation"] > ul li.separator { height: 0; border-top: 6px solid white; } iconic-navigation > ul li:first-child a,[riot-tag="iconic-navigation"] > ul li:first-child a { border-top: none; } iconic-navigation > ul li ul,[riot-tag="iconic-navigation"] > ul li ul { padding: 0; margin: 0; } iconic-navigation > ul li ul li,[riot-tag="iconic-navigation"] > ul li ul li { padding: 0; margin: 0; list-style: none; } iconic-navigation > ul li ul li a,[riot-tag="iconic-navigation"] > ul li ul li a { font-size: 1rem; display: block; padding: 0.1rem 0.1rem 0.1rem 2rem; -webkit-transition: .5s all ease-out; -moz-transition: .5s all ease-out; transition: .5s all ease-out; border-top: 1px solid white; text-decoration: none; } iconic-navigation.expand > ul,[riot-tag="iconic-navigation"].expand > ul { z-index: 500; width: 25rem; } iconic-navigation.expand > ul,[riot-tag="iconic-navigation"].expand > ul { width: 25rem; z-index: 100; } @media (min-width: 750px) { iconic-navigation[class^="fixed"].auto > ul,[riot-tag="iconic-navigation"][class^="fixed"].auto > ul { top: 0rem; } iconic-navigation.auto.expand,[riot-tag="iconic-navigation"].auto.expand { box-shadow: none; } iconic-navigation.auto,[riot-tag="iconic-navigation"].auto { width: 25.5rem; background-color: #fff; } iconic-navigation.auto > ul,[riot-tag="iconic-navigation"].auto > ul { top: 0rem; width: 25rem; } }', '', function(opts) {
         this.viewing = undefined;
 

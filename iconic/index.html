@@ -21,6 +21,7 @@
             <li data-tip="navigation-tip"><a href="#iconic-announcement" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon" hotkey="aA  "><i class="icon-announcement"></i></iconic-button>&nbsp;iconic-announcement</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-navigation" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-navigation"></i></button>&nbsp;iconic-navigation</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-tip" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-tip"></i></button>&nbsp;iconic-tip</a></li>
+            <li data-tip="navigation-tip"><a href="#iconic-menu" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-tip"></i></button>&nbsp;iconic-menu</a></li>
             <li class="separator"></li>
             <li data-tip="navigation-tip"><a href="#iconic-button" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-button"></i></button>&nbsp;iconic-button</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-well" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-well"></i></button>&nbsp;iconic-well</a></li>
@@ -203,7 +204,7 @@
                 </div>
             </div>
             <div class="row">
-                <h5>Tooltip's are displayed on-hover</h5>
+                <h5>Tooltip displays on-hover</h5>
             </div>
             <div class="row u-pad-below">
                 <div class="six columns">
@@ -245,6 +246,63 @@
             <iconic-tip position="left" name="tip-left" delay="100">I am displayed to the left</iconic-tip>
             <iconic-tip position="below" name="tip-below"  delay="100">I am displayed below</iconic-tip>
             <iconic-tip position="right" name="tip-right"  delay="100">I am displayed to the right</iconic-tip>
+            <br>
+            <div class="row">
+                <div class="twelve columns">
+                    <h3>Attributes</h3>
+                    <div class="attributes">
+                        <ul>
+                            <li>
+                                <h5><span>position</span><label>attribute</label></h5>
+                                <ul>
+                                    <li><label>Purpose</label> <p>specify the position to the element at which the iconic-tip should appear</p></li>
+                                    <li><label>Value</label> <p>above | right | below | left</p></li>
+                                    <li><label>Default</label> <p>none</p></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <hr>
+
+    <a id="iconic-menu"></a>
+
+    <article class="right">
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    <h1 class="tag">iconic <em>menu</em></h1>
+                    <blockquote><i class="icon-tip icon"></i>
+                        iconic-<em>menu</em> is a left-right hover menu styled consistently with iconic-tip.
+                    </blockquote>
+                </div>
+            </div>
+            <div class="row">
+                <h5>Menu displays on-hover</h5>
+            </div>
+            <div class="row u-pad-below">
+                <div class="six columns">
+                    <h6>Display to right</h6>
+                    <button class="button-small" data-menu="menu-right">Hover over me</button>
+                </div>
+                <div class="six columns">
+                    <h6>Display to left</h6>
+                    <button class="button-small" data-menu="menu-left">Hover over me</button>
+                </div>
+            </div>
+            <iconic-menu position="left" name="menu-left" delay="100"><ul>
+                    <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-browser"></i></iconic-button>&nbsp;First Menu Item</a></li>
+                    <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-home"></i></iconic-button>&nbsp;Second Menu Item</a></li>
+                    <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-burger"></i></iconic-button>&nbsp; Third Menu Item</a></li>
+                </ul></iconic-menu>
+            <iconic-menu position="right" name="menu-right"  delay="100"><ul>
+                <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-browser"></i></iconic-button>&nbsp;First Menu Item</a></li>
+                <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-home"></i></iconic-button>&nbsp;Second Menu Item</a></li>
+                <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-burger"></i></iconic-button>&nbsp; Third Menu Item</a></li>
+                </ul></iconic-menu>
             <br>
             <div class="row">
                 <div class="twelve columns">
@@ -417,7 +475,7 @@
     <mbs-footer product-name="anycode-components" browser-stack privacy-links></mbs-footer>
 </app>
 <script src="prism.js"></script>
-<script src="//cdn.jsdelivr.net/riot/2.3/riot+compiler.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.3.15/riot+compiler.min.js"></script>
 <script src="../node_modules/anycode-mbs-footer/mbs-footer.min.js"></script>
 <script src="../node_modules/classlist-polyfill/src/index.js"></script>
 <script src="../anycode-components.js"></script>
