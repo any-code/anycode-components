@@ -131,6 +131,7 @@ riot.tag2('iconic-button', '<div name="container" class="inner"> <div name="text
         this.on('mount', function() {
             this.root.classList.add('button');
             this.root.classList.add('icon-extra-small');
+            this.keyHelp = [];
 
             document.body.addEventListener('keypress', function(event) {
                 event = event || window.event;
