@@ -6,7 +6,7 @@
     </div>
     <iconic-button class="close" onclick="{ hide }">&times;</iconic-button>
     <div class="badge">
-        <i class="{ icon }"></i>
+        <i class="{ opts.icon }"></i>
     </div>
     <div class="content" onclick="{ wait }">
         <yield/>
@@ -74,8 +74,6 @@
             }
         }
 
-        this.icon = "icon-announcement"
-
         this.wait = function() {
             reset()
             clearTimeout(drawing)
@@ -83,7 +81,6 @@
         }
 
         this.on('mount', function() {
-            this.icon = opts.icon || "icon-announcement"
             loader = this.loader;
             border = this.border;
         });

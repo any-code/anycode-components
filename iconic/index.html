@@ -47,7 +47,7 @@
         </article>
     </div>
 
-    <iconic-announcement name="warning" class="warning">
+    <iconic-announcement name="warning" class="warning" icon="icon-announcement">
         <em>WARNING</em><br>You are running on reserve inspiration. Be creative immediately!
     </iconic-announcement>
 
@@ -55,7 +55,7 @@
         <em>MANUALLY CLOSED</em><br>This announcement won't go away until the user dismisses it.
     </iconic-announcement>
 
-    <iconic-announcement name="announcement" class="success">
+    <iconic-announcement name="announcement" class="success" icon="{ opts.burgerIcon }">
         <em>Congratulations</em><br>You've successfully clicked the <em>Show Announcement</em> button.
     </iconic-announcement>
 
@@ -529,6 +529,7 @@
     });
 
     riot.mount('app', {
+        burgerIcon: "icon-burger",
         navigationAutomatic: function() {
             this.nav.classList.add("auto")
             this.nav.classList.add("fixed-left")
