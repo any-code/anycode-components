@@ -322,10 +322,11 @@ riot.tag2('iconic-menu', '<div name="left" class="arrow-left"></div> <div name="
                 element;
 
             for(element = 0; element < elements.length; element++) {
-                var on = elements[element].getAttribute('data-menu-trigger') ? elements[element].getAttribute('data-menu-trigger') : 'mouseover';
+                var on = elements[element].getAttribute('data-menu-show') ? elements[element].getAttribute('data-menu-show') : 'mouseover',
+                    off = elements[element].getAttribute('data-menu-hide') ? elements[element].getAttribute('data-menu-hide') : 'mouseout';
                 elements[element]._tip_target = true
                 elements[element].addEventListener(on, this.show)
-                elements[element].addEventListener('mouseout', this.hide)
+                elements[element].addEventListener(off, this.hide)
              }
         }
 
