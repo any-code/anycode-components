@@ -302,6 +302,7 @@ riot.tag2('iconic-menu', '<div name="left" class="arrow-left"></div> <div name="
 
             this.timed.push(setTimeout(function() {
                 this.root.classList.remove('active')
+                this.root.style.top = "-1000px";
             }.bind(this), TRANSITION_TIMESPAN))
         }
 
