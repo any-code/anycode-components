@@ -118,8 +118,6 @@
         this.timed = [];
 
         this.on('mount', function() {
-            this.root.addEventListener('mouseover', this.clearTimed)
-            this.root.addEventListener('mouseout', this.hide)
             this._initializeElements()
         })
 
@@ -185,12 +183,22 @@
             this.timed = []
         }.bind(this)
 
-        this.hide = function() {
+        this._hideMenu = function(documentClick) {
             this.clearTimed()
             this.timed.push(setTimeout(function(){
                 this.root.classList.remove('show')
                 this._sendToBack()
-            }.bind(this), TRANSITION_TIMESPAN))
+                if (documentClick)
+                    document.removeEventListener('click', this.clickHide)
+            }.bind(this), documentClick ? 0 : TRANSITION_TIMESPAN))
+        }
+
+        this.hide = function() {
+            this._hideMenu(false)
+        }.bind(this)
+
+        this.clickHide = function() {
+            this._hideMenu(true)
         }.bind(this)
 
         this.on('show', function() {
@@ -208,16 +216,44 @@
                     this.root.classList.add('fixed')
                     var target = this._findTarget(event.target),
                         left = measure(target, 'Left'),
-                        position = 'right';
+                        position = 'right',
+                        hideAction = target.getAttribute('data-menu-hide') || 'mouseout',
+                        showAction = target.getAttribute('data-menu-show') || 'mouseover';
+
+                    this.root.removeEventListener('mouseout', this.hide)
+                    this.root.removeEventListener('click', this.refocus.bind(target))
+                    document.removeEventListener('click', this.clickHide)
 
                     if (left > window.innerWidth * 0.75 && window.innerWidth > this.root.clientWidth) {
                         position ='left';
                     }
+
                     this['move' + position].call(this, target)
                     this.root.classList.add('active')
                     this.root.classList.add('show')
+
+                    if (hideAction == 'mouseout' )
+                        this.root.addEventListener('mouseout', this.hide)
+
+                    if (hideAction != 'blur' && showAction != 'mouseover')
+                        document.addEventListener('click', this.clickHide)
+
+                    if (showAction == 'mouseover')
+                        this.root.addEventListener('click', this.clickHide)
+
+                    if (showAction == 'focus' )
+                        this.root.addEventListener('click', this.refocus.bind(target))
+
                 }.bind(this), parseInt(opts.delay,10) || 1000))
             }
+        }.bind(this)
+
+        this.refocus = function(event) {
+            this.focus();
+        }
+
+        this.mouseover = function(event) {
+            this.clearTimed()
         }.bind(this)
 
         this._sendToBack = function() {
@@ -225,7 +261,7 @@
 
             this.timed.push(setTimeout(function() {
                 this.root.classList.remove('active')
-                this.root.style.top = "-1000px";
+                this.root.style.top = "-10000px";
             }.bind(this), TRANSITION_TIMESPAN))
         }
 
@@ -249,9 +285,17 @@
                 var on = elements[element].getAttribute('data-menu-show') ? elements[element].getAttribute('data-menu-show') : 'mouseover',
                     off = elements[element].getAttribute('data-menu-hide') ? elements[element].getAttribute('data-menu-hide') : 'mouseout';
                 elements[element]._tip_target = true
+                if (on != 'mouseover') {
+                    elements[element].addEventListener('mouseover', this.mouseover)
+                }
                 elements[element].addEventListener(on, this.show)
-                elements[element].addEventListener(off, this.hide)
+
+                if (off != 'click') {
+                    elements[element].addEventListener(off, this.hide)
+                }
              }
+
+             this.root.addEventListener('mouseover', this.clearTimed)
         }
 
 
