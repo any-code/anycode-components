@@ -1,6 +1,6 @@
 <iconic-navigation>
     <iconic-tip position="right" delay="1" name="navigation-tip" class="navigation-tip"></iconic-tip>
-    <iconic-button class="icon-extra-small burger" name="menuButton" onclick="{ expand }" hotkey="~`"><i class="icon-burger"></i></iconic-button>
+    <iconic-button class="icon-extra-small burger" name="menuButton" onclick="{ expand }" hotkey="~`" data-menu="{ opts.dataOverflow }"><i class="icon-burger"></i></iconic-button>
     <yield/>
     <style scoped>
         :scope {
@@ -13,11 +13,12 @@
             transition: all 200ms ease-in-out;
             overflow: hidden;
             border-right: 0.1rem solid #EEE;
+            z-index: 2;
         }
 
         :scope.fixed-left {
             position: fixed;
-            z-index: 1;
+            z-index: 3;
             bottom: 0rem;
             left: 0;
             right: auto;
@@ -26,7 +27,7 @@
 
         :scope.fixed-right {
             position: fixed;
-            z-index: 1;
+            z-index: 3;
             bottom: 0rem;
             left: auto;
             right: 0;

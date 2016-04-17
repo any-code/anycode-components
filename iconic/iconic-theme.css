@@ -16,6 +16,16 @@ input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focu
 input[type="tel"]:focus, input[type="url"]:focus, input[type="password"]:focus, textarea:focus, select:focus {
 	border-color: rgba(33, 199, 178, 0.7); }
 
+.button.button-primary.button-red {
+    background: #d2666f;
+    border: #d2666f;
+}
+
+.button.button-primary.button-red:hover, .button.button-primary.button-red:active, .button.button-primary.button-red:focus {
+    background: #BB4C55;
+    border: #BB4C55;
+}
+
 .icon-inverted {
 	color: rgba(255,255,255,1);
 	background-color: rgba(100,100,100,0.5 );
@@ -100,12 +110,12 @@ iconic-navigation {
 }
 
 iconic-navigation > ul {
-	background: #d6fff7;
+	background: #FFFFFF;
 }
 
 iconic-navigation > ul a {
 	color: #999;
-	background: #d6fff7;
+	background: #FFFFFF;
 }
 
 iconic-navigation > ul a:hover {
@@ -153,7 +163,10 @@ iconic-menu a:hover .icon-extra-small {
 	border-bottom-right-radius: 0;
 }
 
+iconic-menu {
+	bakcgorund: #FFF;
+}
 
-.best-orange {
-	background: #ff886c;
+iconic-footer {
+    background: rgba(0,0,0,0.05);
 }

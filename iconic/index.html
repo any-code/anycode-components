@@ -14,14 +14,12 @@
 </head>
 <body>
 <app class="not-ready">
-
-    <iconic-navigation name="nav" data-fixed="left">
+    <iconic-navigation name="nav" data-fixed="left" data-overflow="menu-links-overflow">
         <ul>
-            <li class="separator"></li>
             <li data-tip="navigation-tip"><a href="#iconic-announcement" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon" hotkey="aA  "><i class="icon-announcement"></i></iconic-button>&nbsp;iconic-announcement</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-navigation" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-navigation"></i></button>&nbsp;iconic-navigation</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-tip" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-tip"></i></button>&nbsp;iconic-tip</a></li>
-            <li data-tip="navigation-tip"><a href="#iconic-menu" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-tip"></i></button>&nbsp;iconic-menu</a></li>
+            <li data-tip="navigation-tip"><a href="#iconic-menu" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-menu"></i></button>&nbsp;iconic-menu</a></li>
             <li class="separator"></li>
             <li data-tip="navigation-tip"><a href="#iconic-button" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-button"></i></button>&nbsp;iconic-button</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-well" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-well"></i></button>&nbsp;iconic-well</a></li>
@@ -29,9 +27,8 @@
             <li data-tip="navigation-tip"><a href="#not-even-on-the-page" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-browser"></i></button>&nbsp;no-content</a></li>
         </ul>
     </iconic-navigation>
-
     <div class="mega u-cf">
-        <article class="right">
+        <article class="u-pt u-pn">
             <div class="container">
                 <div class="row">
                     <div class="twelve columns">
@@ -46,7 +43,16 @@
             </div>
         </article>
     </div>
-
+    <iconic-links>
+        <ul style="text-align: right;">
+            <li><a href="#iconic-announcement" class="u-nd">iconic-announcement</a></li>
+            <li><a href="#iconic-tip" class="u-nd">iconic-tip</a></li>
+            <li><a href="#iconic-button" class="u-nd">iconic-button</a></li>
+            <li class="separator"></li>
+            <li><a href="#" data-menu="menu-links" class="u-nd button button-extra-small button-primary">Action</a></li>
+            <li><a href="#" class="u-nd button button-extra-small">Another Action</a></li>
+        </ul>
+    </iconic-links>
     <iconic-announcement name="warning" class="warning" icon="icon-announcement">
         <em>WARNING</em><br>You are running on reserve inspiration. Be creative immediately!
     </iconic-announcement>
@@ -61,7 +67,7 @@
 
 
     <a id="iconic-announcement"></a>
-    <article class="right">
+    <article class="u-pt u-pn">
         <div class="container">
             <div class="row">
                 <div class="twelve columns">
@@ -150,7 +156,7 @@
     </article>
     <hr>
     <a id="iconic-navigation"></a>
-    <article class="right">
+    <article class="u-pt u-pn">
         <div class="container">
             <div class="row">
                 <div class="twelve columns">
@@ -191,7 +197,7 @@
 
     <a id="iconic-tip"></a>
 
-    <article class="right">
+    <article class="u-pt u-pn">
         <div class="container">
             <div class="row">
                 <div class="twelve columns">
@@ -270,7 +276,7 @@
 
     <a id="iconic-menu"></a>
 
-    <article class="right">
+    <article class="u-pt u-pn">
         <div class="container">
             <div class="row">
                 <div class="twelve columns">
@@ -297,11 +303,10 @@
                     <button class="button-small" data-menu="menu-left">Hover over me</button>
                 </div>
             </div>
-            <div class="row u-pad-below" style="height: 15rem;">
+            <div class="row u-pad-below">
                 <h6>Tiny Trigger Positioning</h6>
-                <div style="border: 1px dashed #222; position: absolute; left: 0; width: auto; height: 10rem; bottom: auto; right: 0;">
-
-                    <div  style="position: absolute; display: block; right: 5.5rem; top: 3.5rem;">
+                <div class="u-cf" style="display: block; position: relative; border: 1px dashed #222; height: 10rem;">
+                    <div class="u-cf" style="position: absolute; display: block; right: 5.5rem; top: 3.5rem;">
                       <i class="icon-browser" data-menu="menu-left" style="display: block; position: relative; height: 16px;"></i>
                     </div>
                 </div>
@@ -324,7 +329,7 @@
 
     <a id="iconic-button"></a>
 
-    <article class="right">
+    <article class="u-pt u-pn">
         <div class="container">
             <div class="row">
                 <div class="twelve columns">
@@ -392,7 +397,7 @@
     <hr>
     <a id="iconic-well"></a>
 
-    <article class="right">
+    <article class="u-pt u-pn">
         <div class="container">
             <div class="row">
                 <div class="twelve columns">
@@ -468,7 +473,20 @@
             </div>
         </div>
     </article>
-    <mbs-footer product-name="anycode-components" browser-stack privacy-links></mbs-footer>
+    <iconic-footer>
+        <yield to="badge">
+            <i class="icon-anycode-badge"></i>
+        </yield>
+        <yield to="links">
+            <ul>
+                <li><a href="#iconic-announcement" class="u-nd">Privacy Policy</a></li>
+                <li><a href="#iconic-tip" class="u-nd">Terms of Use</a></li>
+            </ul>
+        </yield>
+        <yield to="social">
+            <p></p>
+        </yield>
+    </iconic-footer>
 </app>
 <script src="prism.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.3.15/riot+compiler.min.js"></script>

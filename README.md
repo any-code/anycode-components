@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/any-code/anycode-components.svg?branch=master)](https://travis-ci.org/any-code/anycode-components)
 
-> Iconic theme and components for RiotJS - The iconic theme is built atop [Starveling](http://starve.me/ "Starveling Responsive CSS boilerplate") building out a minimal set of additional classes to support iconic's button styles and the document's visual elements. 
+> Iconic theme and components for RiotJS - The iconic theme is built atop [Starveling](http://starve.me/ "Starveling Responsive CSS boilerplate") building out a minimal set of additional classes to support iconic's button styles and the document's visual elements.
 
 ## Getting Started
 
@@ -15,17 +15,20 @@ npm install anycode-components
 ### 2. Examples
 
 ``` javascript
-   
+
    require('anycode-components')
-   
+
 ```
 
 ### Iconic Inclusions
 
 - Iconic Theme
 
+COMPONENTS (WIP)
 - iconic-announcement
 - iconic-button
+- iconic-links
+- iconic-menu
 - iconic-navigation
 - iconic-tip
 - iconic-well
@@ -36,7 +39,7 @@ a demonstration is available at -
 [iconic/index.html](iconic/index.html "iconic/index.html")
 
 ## Copyright and license
-Copyright (c) 2016, [Anycode](https://anycode.io/ "Anycode") <lee@anycode.io>
+Copyright (c) 2015-2016, [Anycode](https://anycode.io/ "Anycode") <lee@anycode.io>
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above

@@ -19,6 +19,16 @@ body {
 	vertical-align: middle;
 }
 
+.mega .links {
+	position: absolute;
+	top: 0;
+	width: auto;
+	left: 0;
+	right: 0;
+	box-sizing: border-box;
+	padding: 0 2rem;
+}
+
 .mega h1 {
 	font-size: 10rem;
 }
@@ -111,7 +121,7 @@ body {
 .button-extra-small {
 	height: 3rem;
 	padding: 0 2.1rem;
-	line-height: 1.9rem;
+	line-height: 2.9rem;
 	letter-spacing: 0rem;
 	font-size: 1.2rem;
 	vertical-align: top;
@@ -207,11 +217,19 @@ h1.tag em {
 	color: rgba(0,0,0,0.9);
 }
 
+article.u-pt {
+	padding-top: 4rem;
+}
 
+article.u-pn {
+	padding-left: 6rem;
+	padding-right: 2rem;
+}
 
 article.right {
-	padding: 4rem 6rem 0 6rem;
-	overflow-x: hidden;
+	padding-top: 4rem;
+	padding-left: 6rem;
+	padding-right: 2rem;
 }
 
 @media (min-width: 750px) {

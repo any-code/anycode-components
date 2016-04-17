@@ -17,7 +17,7 @@
             opacity: 0;
             margin: 0 auto;
             z-index: -1;
-            transition: opacity 200ms ease-in-out;
+            transition: z-index 1ms step-end -1ms, opacity 200ms ease-in-out 1ms;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -40,6 +40,8 @@
         }
 
         :scope.fixed {
+            z-index: 9999;
+            opacity: 1;
             position: fixed!important;
         }
 
@@ -74,12 +76,9 @@
             transition: opacity 200ms ease-in-out;
         }
 
-        :scope.active {
-            z-index: 9999;
-        }
-
         :scope.show {
             opacity: 0.95;
+            z-index: 9999;
         }
 
 
@@ -124,6 +123,7 @@
         this._showTip = function(name, el) {
             var top = measure(el, 'Top'),
                 pushUp = this.root.clientHeight + top > window.innerHeight;
+            this.root.style.zIndex = 9999;
             this.left.style.display = "none"
             this.right.style.display = "none"
             if (el.clientHeight > 20) {
@@ -229,6 +229,7 @@
                     }
 
                     this['move' + position].call(this, target)
+                    this.root.style.zIndex = 9999;
                     this.root.classList.add('active')
                     this.root.classList.add('show')
 
@@ -260,6 +261,7 @@
             this.clearTimed()
 
             this.timed.push(setTimeout(function() {
+                this.root.style.zIndex = -1;
                 this.root.classList.remove('active')
                 this.root.style.top = "-10000px";
             }.bind(this), TRANSITION_TIMESPAN))
