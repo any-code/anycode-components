@@ -16,7 +16,7 @@
 <app class="not-ready">
     <iconic-navigation name="nav" data-fixed="left" data-overflow="menu-links-overflow">
         <ul>
-            <li data-tip="navigation-tip"><a href="#iconic-announcement" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon" hotkey="aA  "><i class="icon-announcement"></i></iconic-button>&nbsp;iconic-announcement</a></li>
+            <li data-tip="navigation-tip"><a href="#home/iconic-announcement" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon" hotkey="aA  "><i class="icon-announcement"></i></iconic-button>&nbsp;iconic-announcement</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-navigation" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-navigation"></i></button>&nbsp;iconic-navigation</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-tip" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-tip"></i></button>&nbsp;iconic-tip</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-menu" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-menu"></i></button>&nbsp;iconic-menu</a></li>
@@ -45,7 +45,7 @@
     </div>
     <iconic-links>
         <ul style="text-align: right;">
-            <li><a href="#iconic-announcement" class="u-nd">iconic-announcement</a></li>
+            <li><a href="#home/iconic-announcement" class="u-nd">iconic-announcement</a></li>
             <li><a href="#iconic-tip" class="u-nd">iconic-tip</a></li>
             <li><a href="#iconic-button" class="u-nd">iconic-button</a></li>
             <li class="separator"></li>
@@ -66,7 +66,7 @@
     </iconic-announcement>
 
 
-    <a id="iconic-announcement"></a>
+    <a id="home/iconic-announcement"></a>
     <article class="u-pt u-pn">
         <div class="container">
             <div class="row">
@@ -473,19 +473,12 @@
             </div>
         </div>
     </article>
-    <iconic-footer>
-        <yield to="badge">
-            <i class="icon-anycode-badge"></i>
-        </yield>
-        <yield to="links">
-            <ul>
-                <li><a href="#iconic-announcement" class="u-nd">Privacy Policy</a></li>
-                <li><a href="#iconic-tip" class="u-nd">Terms of Use</a></li>
-            </ul>
-        </yield>
-        <yield to="social">
-            <p></p>
-        </yield>
+    <iconic-footer product="Iconic">
+        <ul>
+            <li><a href="#privacy-statement" class="u-nd">Privacy Statement</a></li>
+            <li><a href="#terms-of-use" class="u-nd">Terms of Use</a></li>
+            <li><a href="http://starve.me" target="_blank" class="u-nd">Starveling CSS</a></li>
+        </ul>
     </iconic-footer>
 </app>
 <script src="prism.js"></script>

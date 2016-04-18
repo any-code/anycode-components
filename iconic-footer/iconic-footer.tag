@@ -1,18 +1,23 @@
 <iconic-footer class="{ shrink: shrink }">
-    <article class="u-pn">
-            <div class="row">
-                <div class="three columns badge">
-                    <yield from="badge"/>
-                </div>
-                <div class="six columns links">
-                    <yield from="links"/>
-                </div>
-                <div class="three columns social">
-                    <yield from="social"/>
+    <article class="{ 'u-pn': pageHasNavigation }">
+        <div class="row">
+            <div class="twelve columns links">
+                <i class="icon-anycode-badge"></i>
+                <div>Create, Inspire, Be Anything.</div>
+                <yield/>
+                <div class="copy">
+                    copyright &copy; 2015-{ year } <em>{ opts.product }</em> is a product of Anycode
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="columns twelve">
+                <div class="tested-with u-center-text">
+                    <a class="browser-stack" href="https://www.browserstack.com/" target="_blank"><span>Tested with</span> <img src="https://d3but80xmlhqzj.cloudfront.net/production/images/static/header/header-logo.svg?1451465607"></a>
+                </div>
+            </div>
+        </div>
     <article>
-    <iconic-tip position="below" delay="1" name="links-tip" class="links-tip"></iconic-tip>
     <style scoped>
         :scope {
             display: block;
@@ -23,13 +28,14 @@
             transition: all 200ms ease-in-out;
             left: 0;
             right: 0;
-            height: 4.2rem;
             white-space: nowrap;
             height: 22rem;
+            height: auto;
+            background: #F5F5F5 no-repeat center top;
+            background-size: cover;
         }
 
         :scope .badge, :scope .links, :scope .social {
-            height: 10rem;
             margin-top: 5rem;
             text-align:center;
         }
@@ -41,14 +47,20 @@
             clear: both;
         }
 
-        :scope.shrink ul {
+        :scope .links > ul {
+            display: inline-block;
             text-align: center;
+            background: rgba(255,255,255,0.5);
+            text-align: center;
+            width: auto;
+            margin: 3.8rem auto;
+            padding: 0 5rem;
         }
 
-        :scope .links > ul {
-            margin: 3.8rem 0 0 0;
-            padding: 0;
+        :scope.shrink ul {
             text-align: center;
+            display: block;
+            padding: 0;
         }
 
         :scope .links > ul li {
@@ -117,13 +129,57 @@
         }
 
         .icon-anycode-badge {
-            font-size: 8rem;
+            font-size: 20rem;
+            color: #555;
+            line-height: 10rem;
         }
+
+        .copy {
+            font-size: 1.1rem;
+        	font-weight: 400;
+        	padding-top: 3rem;
+        }
+
+        .copy em {
+            font-weight: 700;
+        }
+
+        .tested-with {
+            margin: 0 auto;
+            font-weight: 300;
+            text-align: center;
+            background: rgba(0,0,0,0.3);
+            color: #FFF;
+            font-size: 1.1rem;
+            border-radius: 1rem;
+            max-width: 16.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .tested-with a {
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .tested-with img {
+            height: 2rem;
+            vertical-align: middle;
+            margin-top: -0.3rem;
+        }
+iconic-footer {
+
+}
+
+iconic-footer .links {
+    height: auto;
+}
+
     </style>
     <script>
         this.viewing = undefined;
         this.shrink = false;
         this.measured = false;
+        this.year = (new Date()).getFullYear()
 
         this.on('mount', function() {
             this.measured = this.root.scrollWidth;
