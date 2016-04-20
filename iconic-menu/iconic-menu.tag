@@ -4,6 +4,267 @@
     <div name="content">
         <yield/>
     </div>
+    <script>
+        var TRANSITION_TIMESPAN = 200;
+        this.timed = [];
+        this.queue = [];
+
+        this.on('mount', function() {
+            this._initializeTriggers()
+            this.root.addEventListener('mouseover', this.cancelHideHandler, true)
+        })
+
+        this._showTip = function(target) {
+            var el = this._findTarget(target),
+                name = this._getPosition(target),
+                top = this._measure(el, 'Top'),
+                pushUp = this.root.clientHeight + top > window.innerHeight;
+            this.root.style.zIndex = 9999;
+            this.left.style.display = "none"
+            this.right.style.display = "none"
+            if (el.clientHeight > 20) {
+                if (pushUp) {
+                    this.left.style.top = "" + this.root.clientHeight - 8 - (el.clientHeight / 2) + "px";
+                    this.right.style.top = "" + this.root.clientHeight - 8 - (el.clientHeight / 2) + "px";
+                } else {
+                    this.left.style.top = "" + ((el.clientHeight / 2) - 8) + "px";
+                    this.right.style.top = "" + ((el.clientHeight / 2) - 8) + "px";
+                }
+            } else {
+                if (pushUp) {
+                    this.left.style.top = "" + this.root.clientHeight - 20 - (el.clientHeight / 2) + "px";
+                    this.right.style.top = "" + this.root.clientHeight - 20 - (el.clientHeight / 2) + "px";
+                } else {
+                    this.left.style.top = "" + (((20 - el.clientHeight) / 2) + 10) + "px";
+                    this.right.style.top = "" + (((20 - el.clientHeight) / 2) + 10) + "px";
+                }
+            }
+            this[name].style.display = "block"
+
+            if (name=='right') this.root.style.left = "" + (this._measure(el, 'Left') + el.clientWidth + 10) + "px";
+            if (name=='left') this.root.style.left = "" + (this._measure(el, 'Left') - this.root.clientWidth - 10) + "px";
+
+            if (el.clientHeight > 20) {
+                this.root.style.top = "" + (this.root.clientHeight + top > window.innerHeight ? this._measure(el, 'Top') - (this.root.clientHeight - el.clientHeight - 2) : this._measure(el, 'Top')) + "px";
+            } else {
+                if (pushUp){
+                    this.root.style.top = "" + ((this._measure(el, 'Top') - this.root.clientHeight) + el.clientHeight + 12) + "px";
+                } else {
+                    this.root.style.top = "" + (this._measure(el, 'Top') - 10) + "px";
+                }
+            }
+
+            this.root.style.zIndex = 9999;
+            this.root.classList.add('fixed')
+            this.root.classList.add('active')
+            this.root.classList.add('show')
+        }
+
+        this._measure = function(el, attr, pixels) {
+            if (pixels === undefined) { pixels = 0; }
+            if (el == null) {
+                return pixels;
+            } else {
+                pixels = pixels + (el['offset' + attr] - el['scroll' + attr]);
+                return this._measure(el.offsetParent, attr, pixels);
+            }
+        }
+
+        this._findTarget = function(target) {
+            do {
+                if (target.__tip_target)
+                    return target
+
+                target = target.parentElement
+
+            } while (target !== null)
+
+            return target
+        }
+
+        this._getPosition = function(target) {
+            var target = this._findTarget(target),
+                left = this._measure(target, 'Left'),
+                position = 'right';
+
+            if (left > window.innerWidth * 0.75 && window.innerWidth > this.root.clientWidth) {
+                position ='left';
+            }
+
+            return position;
+        }.bind(this)
+
+        this.cancelHideHandler = function() {
+            this.timed.map(clearTimeout)
+            this.timed = []
+        }.bind(this)
+
+        this._hideControl = function(){
+            this.root.classList.remove('show')
+            this._sendToBack()
+        }
+
+        this._showControl = function(){
+
+            this.show()
+        }
+
+        this._hide = function(immediate) {
+            this.timed.push(setTimeout(function(){
+                this.documentClickUnbinder();
+                this.cancelHideHandler();
+                this.root.classList.remove('show')
+                this._sendToBack()
+            }.bind(this), immediate ? 1 : TRANSITION_TIMESPAN))
+        }
+
+        this.hideMenuHandler = function(event) {
+
+        }.bind(this)
+
+        this.showMenuHandler = function(event) {
+
+        }.bind(this)
+
+        this.documentClickHandler = function(event) {
+            this.cancelHideHandler();
+            this.documentClickUnbinder();
+            this._hide(true);
+        }.bind(this)
+
+        this.documentClickBinder = function() {
+            document.addEventListener('click', this.documentClickHandler, true)
+        }.bind(this)
+
+        this.documentClickUnbinder = function() {
+            document.removeEventListener('click', this.documentClickHandler, true)
+        }.bind(this)
+
+        this.hide = function() {
+            this._hide(false)
+        }.bind(this)
+
+        this.on('show', function() {
+
+        })
+
+        this.show = function(event) {
+            this.cancelHideHandler();
+
+            var hideAction = event.target.__off || 'mouseout',
+                showAction = event.target.__on || 'mouseover';
+
+            // Sanitize Events
+            this.root.removeEventListener('mouseout', this.hide, true)
+            this.documentClickUnbinder()
+
+            if (hideAction == 'mouseout')
+                this.root.addEventListener('mouseout', this.hide, true)
+
+            if (showAction != 'mouseover')
+
+            if (showAction == 'mouseover')
+                // When a menu item is clicked the menu should be dismissed
+                this.root.addEventListener('click', this.documentClickHandler, true)
+            else
+                this.documentClickBinder()
+
+            // When a element item is clicked the menu should be dismissed
+            if (showAction == 'mouseover')
+                this.root.addEventListener('click', this.documentClickHandler, true)
+
+            if (showAction == 'focus') {
+                event.target.addEventListener('click', this.cancelHideHandler, true)
+                this.documentClickBinder()
+            }
+
+            this.childFocusableClick = function() {
+                this.cancelHideHandler();
+                this.documentClickBinder();
+            }.bind(this)
+
+            if (hideAction == 'blur') {
+                var nodeList = this.root.querySelectorAll('input, select, textarea'),
+                    inputs = Array.prototype.slice.call(nodeList, 0);
+
+                inputs.forEach(function(_input_) {
+                    _input_.tabIndex = event.target.tabIndex;
+
+                    // Sanitize input event handlers
+                    _input_.removeEventListener('focus', this.cancelHideHandler, true);
+                    _input_.removeEventListener('click', this.childFocusableClick, true);
+                    _input_.addEventListener('click', this.childFocusableClick, true);
+                    if (_input_.getAttribute('type') !== 'checkbox') {
+                        _input_.addEventListener('focus', this.cancelHideHandler, true);
+                    }
+                }.bind(this))
+
+                if (inputs.length > 0) {
+                    inputs[inputs.length-1].addEventListener('keydown', function(_event_) {
+                        _event_ = _event_ || window.event;
+                        var key = _event_.which;
+                        if (key == 9 && !_event_.shiftKey) {
+                            event.target.focus()
+                        }
+                    })
+
+                    inputs[0].addEventListener('keydown', function(_event_) {
+                        _event_ = _event_ || window.event;
+                        var key = _event_.which;
+                        if (key == 9 && _event_.shiftKey) {
+                            event.target.focus()
+                            _event_.stopPropagation()
+                            _event_.preventDefault()
+                            return false;
+                        }
+                    })
+
+                    event.target.addEventListener('keydown', function(_event_) {
+                        _event_ = _event_ || window.event;
+                        var key = _event_.which;
+                        if (key == 9 && !_event_.shiftKey) {
+                            inputs[0].focus()
+                            _event_.stopPropagation()
+                            _event_.preventDefault()
+                            return false;
+                        }
+                    }.bind(this))
+                }
+            }
+
+            this._showTip.call(this, event.target);
+        }.bind(this)
+
+        this.mouseover = function(event) {
+            this.cancelHideHandler()
+        }.bind(this)
+
+        this._sendToBack = function() {
+            this.cancelHideHandler()
+
+            this.timed.push(setTimeout(function() {
+                this.root.style.zIndex = -1;
+                this.root.classList.remove('active')
+                this.root.style.top = "-10000px";
+            }.bind(this), TRANSITION_TIMESPAN))
+        }
+
+        this._initializeTriggers = function() {
+            var nodeList = this.root.parentElement.querySelectorAll('*[data-menu="' + opts.name +'"]');
+            this.triggers = Array.prototype.slice.call(nodeList, 0);
+            this.triggers.forEach(function(el) {
+                el.__on = el.getAttribute('data-menu-show') ? el.getAttribute('data-menu-show') : 'mouseover',
+                el.__off = el.getAttribute('data-menu-hide') ? el.getAttribute('data-menu-hide') : 'mouseout';
+                el.__tip_target = true;
+                el.addEventListener('mouseover', this.cancelHideHandler, true)
+                el.addEventListener(el.__on, this.show, true)
+                if (el.__off !== 'click')
+                    el.addEventListener(el.__off, this.hide, true)
+            }.bind(this))
+        }
+
+
+    </script>
     <style scoped>
         :scope {
             position: absolute;
@@ -17,7 +278,7 @@
             opacity: 0;
             margin: 0 auto;
             z-index: -1;
-            transition: z-index 1ms step-end -1ms, opacity 200ms ease-in-out 1ms;
+            transition: z-index 1ms step-end 0ms, opacity 200ms ease-in-out 0ms;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -41,7 +302,6 @@
 
         :scope.fixed {
             z-index: 9999;
-            opacity: 1;
             position: fixed!important;
         }
 
@@ -96,6 +356,16 @@
             position: relative;
         }
 
+        :scope div.form {
+            margin: 0;
+            padding: 1rem;
+        }
+
+        :scope div.form * {
+            margin: 0;
+            padding: 0;
+        }
+
         :scope a {
             padding: 0;
             margin: 0;
@@ -112,194 +382,4 @@
         }
 
     </style>
-    <script>
-        var TRANSITION_TIMESPAN = 200;
-        this.timed = [];
-
-        this.on('mount', function() {
-            this._initializeElements()
-        })
-
-        this._showTip = function(name, el) {
-            var top = measure(el, 'Top'),
-                pushUp = this.root.clientHeight + top > window.innerHeight;
-            this.root.style.zIndex = 9999;
-            this.left.style.display = "none"
-            this.right.style.display = "none"
-            if (el.clientHeight > 20) {
-                if (pushUp) {
-                    this.left.style.top = "" + this.root.clientHeight - 8 - (el.clientHeight / 2) + "px";
-                    this.right.style.top = "" + this.root.clientHeight - 8 - (el.clientHeight / 2) + "px";
-                } else {
-                    this.left.style.top = "" + ((el.clientHeight / 2) - 8) + "px";
-                    this.right.style.top = "" + ((el.clientHeight / 2) - 8) + "px";
-                }
-            } else {
-                if (pushUp) {
-                    this.left.style.top = "" + this.root.clientHeight - 20 - (el.clientHeight / 2) + "px";
-                    this.right.style.top = "" + this.root.clientHeight - 20 - (el.clientHeight / 2) + "px";
-                } else {
-                    this.left.style.top = "" + (((20 - el.clientHeight) / 2) + 10) + "px";
-                    this.right.style.top = "" + (((20 - el.clientHeight) / 2) + 10) + "px";
-                }
-            }
-            this[name].style.display = "block"
-
-            if (name=='right') this.root.style.left = "" + (measure(el, 'Left') + el.clientWidth + 10) + "px";
-            if (name=='left') this.root.style.left = "" + (measure(el, 'Left') - this.root.clientWidth - 10) + "px";
-
-            if (el.clientHeight > 20) {
-                this.root.style.top = "" + (this.root.clientHeight + top > window.innerHeight ? measure(el, 'Top') - (this.root.clientHeight - el.clientHeight - 2) : measure(el, 'Top')) + "px";
-            } else {
-                if (pushUp){
-                    this.root.style.top = "" + ((measure(el, 'Top') - this.root.clientHeight) + el.clientHeight + 12) + "px";
-                } else {
-                    this.root.style.top = "" + (measure(el, 'Top') - 10) + "px";
-                }
-            }
-        }
-
-        this.moveright = function(el) {
-            this._showTip('right', el);
-
-        }.bind(this)
-
-        this.moveleft = function(el) {
-            this._showTip('left', el);
-        }.bind(this)
-
-        var measure = function(el, attr, pixels) {
-            if (pixels === undefined) { pixels = 0; }
-            if (el == null) {
-                return pixels;
-            } else {
-                pixels = pixels + (el['offset' + attr] - el['scroll' + attr]);
-                return measure(el.offsetParent, attr, pixels);
-            }
-        }
-
-        this.clearTimed = function() {
-            this.timed.map(clearTimeout)
-            this.timed = []
-        }.bind(this)
-
-        this._hideMenu = function(documentClick) {
-            this.clearTimed()
-            this.timed.push(setTimeout(function(){
-                this.root.classList.remove('show')
-                this._sendToBack()
-                if (documentClick)
-                    document.removeEventListener('click', this.clickHide)
-            }.bind(this), documentClick ? 0 : TRANSITION_TIMESPAN))
-        }
-
-        this.hide = function() {
-            this._hideMenu(false)
-        }.bind(this)
-
-        this.clickHide = function() {
-            this._hideMenu(true)
-        }.bind(this)
-
-        this.on('show', function() {
-
-        })
-
-        this.show = function(event) {
-            var proceed = true;
-            if (this.beforeShow !== undefined) {
-                proceed = this.beforeShow();
-            }
-            if (proceed) {
-                this.clearTimed()
-                this.timed.push(setTimeout(function() {
-                    this.root.classList.add('fixed')
-                    var target = this._findTarget(event.target),
-                        left = measure(target, 'Left'),
-                        position = 'right',
-                        hideAction = target.getAttribute('data-menu-hide') || 'mouseout',
-                        showAction = target.getAttribute('data-menu-show') || 'mouseover';
-
-                    this.root.removeEventListener('mouseout', this.hide)
-                    this.root.removeEventListener('click', this.refocus.bind(target))
-                    document.removeEventListener('click', this.clickHide)
-
-                    if (left > window.innerWidth * 0.75 && window.innerWidth > this.root.clientWidth) {
-                        position ='left';
-                    }
-
-                    this['move' + position].call(this, target)
-                    this.root.style.zIndex = 9999;
-                    this.root.classList.add('active')
-                    this.root.classList.add('show')
-
-                    if (hideAction == 'mouseout' )
-                        this.root.addEventListener('mouseout', this.hide)
-
-                    if (hideAction != 'blur' && showAction != 'mouseover')
-                        document.addEventListener('click', this.clickHide)
-
-                    if (showAction == 'mouseover')
-                        this.root.addEventListener('click', this.clickHide)
-
-                    if (showAction == 'focus' )
-                        this.root.addEventListener('click', this.refocus.bind(target))
-
-                }.bind(this), parseInt(opts.delay,10) || 1000))
-            }
-        }.bind(this)
-
-        this.refocus = function(event) {
-            this.focus();
-        }
-
-        this.mouseover = function(event) {
-            this.clearTimed()
-        }.bind(this)
-
-        this._sendToBack = function() {
-            this.clearTimed()
-
-            this.timed.push(setTimeout(function() {
-                this.root.style.zIndex = -1;
-                this.root.classList.remove('active')
-                this.root.style.top = "-10000px";
-            }.bind(this), TRANSITION_TIMESPAN))
-        }
-
-        this._findTarget = function(target) {
-            do {
-                if (target._tip_target)
-                    return target
-
-                target = target.parentElement
-
-            } while (target !== null)
-
-            return target
-        }
-
-        this._initializeElements = function() {
-            var elements = this.root.parentElement.querySelectorAll('*[data-menu="' + opts.name +'"]'),
-                element;
-
-            for(element = 0; element < elements.length; element++) {
-                var on = elements[element].getAttribute('data-menu-show') ? elements[element].getAttribute('data-menu-show') : 'mouseover',
-                    off = elements[element].getAttribute('data-menu-hide') ? elements[element].getAttribute('data-menu-hide') : 'mouseout';
-                elements[element]._tip_target = true
-                if (on != 'mouseover') {
-                    elements[element].addEventListener('mouseover', this.mouseover)
-                }
-                elements[element].addEventListener(on, this.show)
-
-                if (off != 'click') {
-                    elements[element].addEventListener(off, this.hide)
-                }
-             }
-
-             this.root.addEventListener('mouseover', this.clearTimed)
-        }
-
-
-    </script>
 </iconic-menu>

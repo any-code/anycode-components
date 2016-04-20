@@ -292,7 +292,9 @@
             <div class="row u-pad-below">
                 <div class="five columns">
                     <h6>Display to right</h6>
-                    <input name="focal" data-menu="menu-right" data-menu-show="focus" data-menu-hide="blur" value="Give Me Focus">
+                    <input tab-index="9" name="beforeFocal" value="tI9"><br>
+                    <input tab-index="10" name="focal" data-menu="menu-input" data-menu-show="focus" data-menu-hide="blur" value="Give Me Focus (tI10)"><br>
+                    <input tab-index="11" name="afterFocal" value="tI11">
                 </div>
                 <div class="five columns">
                     <h6>Display to right</h6>
@@ -322,6 +324,15 @@
                 <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-home"></i></iconic-button>&nbsp;Second Menu Item</a></li>
                 <li><a onclick="{ parent.opts.alert }" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon button"><i class="icon-burger"></i></iconic-button>&nbsp; Third Menu Item</a></li>
             </ul></iconic-menu>
+            <iconic-menu name="menu-input"  delay="100"><div class="form">
+                <select>
+                    <option>First Option</option>
+                    <option>Second Option</option>
+                    <option>Third Option</option>
+                </select>
+                <input type="checkbox">
+                <input type="text">
+            </div></iconic-menu>
         </div>
     </article>
     <hr>
