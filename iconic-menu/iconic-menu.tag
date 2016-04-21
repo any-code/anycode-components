@@ -187,6 +187,8 @@
                 var nodeList = this.root.querySelectorAll('input, select, textarea'),
                     inputs = Array.prototype.slice.call(nodeList, 0);
 
+                this.root.removeEventListener('click', this.childFocusableClick, true);
+                this.root.addEventListener('click', this.childFocusableClick, true);
                 inputs.forEach(function(_input_) {
                     _input_.tabIndex = event.target.tabIndex;
 
