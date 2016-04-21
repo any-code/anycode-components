@@ -376,7 +376,7 @@
             display: block;
             position: relative;
             padding-top: 0rem;
-            padding:bottom: 0rem;
+            padding-bottom: 0rem;
             padding-right: 2rem;
             height: 3rem;
             margin: 0.2rem 0.2rem 0.3rem 0.1rem;
