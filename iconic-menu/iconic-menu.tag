@@ -99,32 +99,15 @@
             this.timed = []
         }.bind(this)
 
-        this._hideControl = function(){
-            this.root.classList.remove('show')
-            this._sendToBack()
-        }
-
-        this._showControl = function(){
-
-            this.show()
-        }
-
         this._hide = function(immediate) {
             this.timed.push(setTimeout(function(){
                 this.documentClickUnbinder();
                 this.cancelHideHandler();
                 this.root.classList.remove('show')
                 this._sendToBack()
+                this.trigger('hide');
             }.bind(this), immediate ? 1 : TRANSITION_TIMESPAN))
         }
-
-        this.hideMenuHandler = function(event) {
-
-        }.bind(this)
-
-        this.showMenuHandler = function(event) {
-
-        }.bind(this)
 
         this.documentClickHandler = function(event) {
             this.cancelHideHandler();
@@ -160,8 +143,6 @@
 
             if (hideAction == 'mouseout')
                 this.root.addEventListener('mouseout', this.hide, true)
-
-            if (showAction != 'mouseover')
 
             if (showAction == 'mouseover')
                 // When a menu item is clicked the menu should be dismissed
@@ -235,6 +216,7 @@
             }
 
             this._showTip.call(this, event.target);
+            this.trigger('show');
         }.bind(this)
 
         this.mouseover = function(event) {
