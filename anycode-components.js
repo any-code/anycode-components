@@ -175,7 +175,7 @@ riot.tag2('iconic-button', '<div name="container" class="inner"> <div name="text
                 var key = event.which, name = event.target.nodeName.toUpperCase();
                 if (key === 0 || event.target.contentEditable.toUpperCase() === "TRUE" || name === "TEXTAREA" ||
                     name === "INPUT") { return true; }
-                if (event.shiftKey && this.keyHelp) {
+                if (event.shiftKey && event.ctrlKey && this.keyHelp) {
                     this.hotkey.classList.add('help')
                 } else {
                     this.hotkey.classList.remove('help')
