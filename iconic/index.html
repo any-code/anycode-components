@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="prism.css">
 </head>
 <body>
-<app class="not-ready">
-    <iconic-navigation name="nav" data-fixed="left" data-overflow="menu-links-overflow">
+<iconic class="not-ready">
+    <iconic-navigation name="nav" data-fixed="left" data-effect="slide" data-overflow="menu-links-overflow">
         <ul>
             <li data-tip="navigation-tip"><a href="#home/iconic-announcement" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon" hotkey="aA  "><i class="icon-announcement"></i></iconic-button>&nbsp;iconic-announcement</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-navigation" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-navigation"></i></button>&nbsp;iconic-navigation</a></li>
@@ -185,6 +185,14 @@
                                     <li><label>Purpose</label> <p>specify if iconic-navigation should be fixed to the left or right of the viewport</p></li>
                                     <li><label>Value</label> <p>left | right | none</p></li>
                                     <li><label>Default</label> <p>none</p></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <h5><span>data-effect</span><label>attribute</label></h5>
+                                <ul>
+                                    <li><label>Purpose</label> <p>specify the expand effect</p></li>
+                                    <li><label>Value</label> <p>slide | overlay</p></li>
+                                    <li><label>Default</label> <p>overlay</p></li>
                                 </ul>
                             </li>
                         </ul>
@@ -491,67 +499,19 @@
             <li><a href="http://starve.me" target="_blank" class="u-nd">Starveling CSS</a></li>
         </ul>
     </iconic-footer>
-</app>
+</iconic>
 <script src="prism.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.3.15/riot+compiler.min.js"></script>
 <script src="../node_modules/anycode-mbs-footer/mbs-footer.min.js"></script>
 <script src="../node_modules/classlist-polyfill/src/index.js"></script>
+<script src="./computedStyleHelper.js"></script>
 <script src="../anycode-components.js"></script>
 <script>
-    function Style(element, original) {
-        this.prop = {}
-        this.element = element;
-        this.isOriginal = original;
-
-        if (original && element.__iconic_original_style === undefined) {
-            this.prop = element.__iconic_original_style = {}
-        } else if (original) {
-            this.prop = element.__iconic_original_style
-        }
-
-        if (this.prop['all'] === undefined) {
-            this._populate(element)
-        }
-    }
-
-    Style.prototype._populate = function(element) {
-        var styles = window.getComputedStyle(element)
-        for (style in styles) {
-            if (!parseInt(style, 10) && style != 0) {
-                this.prop[style] = styles[style]
-            }
-        }
-        this.prop.iconicInnerWidth = "" + element.scrollWidth + "px"
-    }
-
-    Style.prototype.update = function() {
-        if (this.isOriginal) {
-            throw Error("Won't update an original");
-        }
-        this._populate(this.element);
-    }
-
-    Style.prototype.get = function() {
-        return this.prop;
-    }
-
-    Style.prototype.asInt = function(name) {
-        return parseInt(this.prop[name], 10);
-    }
-
-    Style.prototype.asFloat = function(name) {
-        return parseFloat(this.prop[name]);
-    }
-
-    Style.prototype.asString = function(name) {
-        return this.prop[name];
-    }
-
     riot.mixin('computedStyleHelper', {
         Style: Style
     });
 
-    riot.mount('app', {
+    riot.mount('iconic', {
         burgerIcon: "icon-burger",
         navigationAutomatic: function() {
             this.nav.classList.add("auto")

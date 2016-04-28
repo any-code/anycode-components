@@ -34,12 +34,6 @@
             top: 0;
         }
 
-        button-primary.burger {
-            display: none;
-            margin: 0.6rem;
-            background: #FFF;
-        }
-
         iconic-button[name="menuButton"] {
             display: none;
             margin: 0.6rem;
@@ -88,6 +82,10 @@
             box-shadow: 10px 0px 15px rgba(0,0,0,0.095);
         }
 
+        :scope.expand.slide {
+            box-shadow: none;
+        }
+
         :scope > ul li {
             padding: 0;
             margin: 0;
@@ -99,15 +97,23 @@
             font-size: 2rem;
             text-align: left;
             display: block;
-            padding: 0.5rem;
+            padding: 0.4rem 0.5rem 0.5rem 0.5rem;
             transition: all 80ms ease-in-out;
             border-top: 1px solid white;
             text-decoration: none;
+            vertical-align:middle;
+        }
+
+        :scope > ul > li > a > iconic-button {
+            margin-right: 0.2rem;
+            line-height: 0;
         }
 
         :scope > ul li.separator {
-            height: 0;
-            border-top: 6px solid white;
+            height: 1px;
+            border-top: 3px solid white;
+            background: #EEE;
+            border-bottom: 2px solid white
         }
 
         :scope > ul li:first-child a {
@@ -149,22 +155,30 @@
 
         @media (min-width: 750px) {
             :scope[class^="fixed"].auto > ul {
-                top: 0rem;
+                /*top: 0rem;*/
             }
+
+            :scope[class^="fixed"].auto > .burger {
+                top: -4.2rem;
+            }
+
 
             :scope.auto.expand {
                 box-shadow: none;
             }
 
+
+
             :scope.auto {
-                width: 25.5rem;
+                width: 25rem;
                 background-color: #fff;
             }
 
             :scope.auto > ul {
-                top: 0rem;
+                top: 4.2rem;
                 width: 25rem;
             }
+
         }
     </style>
     <script>
@@ -234,6 +248,10 @@
         this.on('mount', function() {
             if (opts.dataFixed) {
                 this.root.classList.add("fixed-" + opts.dataFixed);
+            }
+
+            if (opts.dataEffect) {
+                this.root.classList.add(opts.dataEffect);
             }
 
             this.tags['navigation-tip'].beforeShow = function() {

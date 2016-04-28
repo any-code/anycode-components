@@ -198,7 +198,7 @@ body {
 }
 
 .navigation-icon {
-	vertical-align: -0.01rem;
+	margin-top: 0.15rem;
 	margin-right: 0.2rem;
 }
 
@@ -232,13 +232,31 @@ article.right {
 	padding-right: 2rem;
 }
 
+iconic-navigation.slide ~ article, iconic-navigation.slide ~ iconic-footer  {
+	transition: margin 200ms ease-in-out;
+}
+
+iconic-navigation.slide ~ .mega {
+	transition: padding 200ms ease-in-out;
+}
+
+iconic-navigation.slide.expand ~ article, iconic-navigation.slide.expand ~ iconic-footer  {
+	margin-left: 25rem;
+	transition: margin 200ms ease-in-out;
+}
+
+iconic-navigation.slide.expand ~ .mega {
+	padding-left: 27rem;
+	transition: padding 200ms ease-in-out;
+}
+
 @media (min-width: 750px) {
-	iconic-navigation.auto ~ article.right {
-		padding: 4rem 6rem 0 32rem;
+	iconic-navigation.auto ~ article, iconic-navigation.auto ~ iconic-footer  {
+		margin-left: 25rem;
 	}
 
-	iconic-navigation.auto ~ .mega article.right {
-		padding: 4rem 6rem 0 32rem;
+	iconic-navigation.auto ~ .mega {
+		padding-left: 27rem;
 	}
 }
 
