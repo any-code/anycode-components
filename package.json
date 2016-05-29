@@ -1,6 +1,6 @@
 {
   "name": "anycode-components",
-  "version": "0.1.31",
+  "version": "0.1.32",
   "description": "anycode-components (RiotJS Tag Library) - A set of common RiotJS tags used by Anycode",
   "main": "anycode-components.min.js",
   "directories": {
