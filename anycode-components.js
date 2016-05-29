@@ -567,7 +567,7 @@ riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="nav
 
             this.tags['navigation-tip'].beforeShow = function() {
                 var el = this.navigation.querySelector('li:hover'),
-                    prop = el.textContent ? 'textContent' : 'innerText';
+                    prop = el && el.textContent ? 'textContent' : 'innerText';
 
                 if (this.navigation.clientWidth !== 42 || el === null || el[prop].trim().length === 0) {
                     return false;
