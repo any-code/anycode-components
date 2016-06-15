@@ -135,9 +135,15 @@
         }
 
         .copy {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
         	font-weight: 400;
         	padding-top: 3rem;
+        }
+
+        @media (min-width: 400px) {
+            .copy {
+                font-size: 1.1rem;
+            }
         }
 
         .copy em {
@@ -176,18 +182,17 @@ iconic-footer .links {
 
     </style>
     <script>
-        this.viewing = undefined;
-        this.shrink = false;
-        this.measured = false;
         this.year = (new Date()).getFullYear()
         this.gaTrackingCode = opts.gaTrackingCode || 'UA-69299537-1'
         this.gaId = opts.gaId || window.location.host + window.location.pathname + window.location.hash
 
+        this.shrink = false;
+        this.measured = false;
+
         this.on('mount', function() {
             this.measured = this.root.scrollWidth;
-            this.update({
-                shrink: this.root.clientWidth < this.root.scrollWidth
-            });
+            this.shrink = this.root.clientWidth < this.measured;
+            this.update();
 
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -198,15 +203,12 @@ iconic-footer .links {
         })
 
         window.addEventListener('resize', function() {
-            this.update({
-                shrink: false
-            })
-            this.update({
-                measured: this.root.scrollWidth
-            })
-            this.update({
-                shrink: this.root.clientWidth < this.root.scrollWidth
-            })
+            // expand
+            this.update({ shrink: false })
+            // measure
+            this.update({ measured: this.root.scrollWidth })
+            // adjust
+            this.update({ shrink: this.root.clientWidth < this.root.scrollWidth })
         }.bind(this))
     </script>
 </iconic-footer>

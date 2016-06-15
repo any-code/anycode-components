@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <meta charset="UTF-8">
+    <title>Anycode Components - Iconic Minimal</title>
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="starveling.css">
+    <link rel="stylesheet" href="iconic.css">
+    <link rel="stylesheet" href="iconic-components-theme.css">
+    <link rel="stylesheet" href="iconic-font.css">
+    <link rel="stylesheet" href="iconic-theme.css">
+
+</head>
+<body>
+<iconic class="not-ready">
+    <iconic-header>
+        <div class="brand">
+            <i class="icon-anycode-logo"></i><span>any<b>code</b></span>
+        </div>
+        <ul style="text-align: right;">
+            <li><a href="#iconic-menu" class="u-nd">iconic-menu</a></li>
+            <li><a href="#iconic-tip" class="u-nd">iconic-tip</a></li>
+            <li class="menu">
+                <iconic-dropdown>
+                    <yield to="trigger"><span>The Cat's Hat</span><i class="icon-menu opener"></i></yield>
+                    <yield to="links">
+                        <a href="#iconic-tip">Thing 1</a>
+                        <a href="#iconic-button">Thing 2</a>
+                    </yield>
+                </iconic-dropdown>
+            </li>
+            <li class="separator"></li>
+            <li class="pinned"><a href="#" data-menu="menu-links" class="u-nd button button-extra-small button-primary">Sign-In</a></li>
+            <li class="restricted menu">
+                <iconic-dropdown>
+                    <yield to="trigger"><i class="icon-burger opener"></i></yield>
+                    <yield to="links">
+                        <a href="#iconic-tip">Banana is funny</a>
+                        <div class="overflow">
+                            <a href="#home/iconic-announcement" class="u-nd">iconic-announcement</a>
+                            <a href="#iconic-tip" class="u-nd">iconic-tip</a>
+                            <a href="#iconic-button" class="u-nd">iconic-button</a>
+                        </div>
+                        <a href="#" class="u-nd primary">Sign In</a>
+                    </yield>
+                </iconic-dropdown>
+            </li>
+        </ul>
+    </iconic-header>
+    <div class="mega u-cf">
+        <article class="u-pn u-pt">
+            <div class="container">
+                <div class="row">
+                    <div class="twelve columns">
+                        <div class="u-well u-center-text">
+                            <i class="icon-iconic"></i>
+                        </div>
+                        <h1>iconic</h1>
+                        <blockquote>Iconic theme and components for RiotJS</blockquote>
+                        <p>The <em>iconic</em> theme is built atop <a href="http://starve.me" title="Starveling - Responsive CSS boilerplate">Starveling</a> building out a minimal set of additional classes to support <em>iconic</em>'s button styles and the document's visual elements.</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+
+    <a id="article-1"></a>
+
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    <h1 class="tag">Article <em>One</em></h1>
+                    <blockquote>Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</blockquote>
+                    <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Vestibulum id ligula porta felis euismod semper.</p>
+                    <p>Nulla vitae elit libero, a pharetra augue. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Etiam porta sem malesuada magna mollis euismod. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Curabitur blandit tempus porttitor. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                </div>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    <h1 class="tag">Article <em>Two</em></h1>
+                    <blockquote>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Curabitur blandit tempus porttitor.</blockquote>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec ullamcorper nulla non metus auctor fringilla. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod. Aenean lacinia bibendum nulla sed consectetur.</p>
+                    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec sed odio dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                    <p>&nbsp;</p>
+                </div>
+            </div>
+        </div>
+    </article>
+    <iconic-footer product="Iconic">
+        <ul>
+            <li><a href="#privacy-statement" class="u-nd">Privacy Statement</a></li>
+            <li><a href="#terms-of-use" class="u-nd">Terms of Use</a></li>
+            <li><a href="http://starve.me" target="_blank" class="u-nd">Starveling CSS</a></li>
+        </ul>
+    </iconic-footer>
+</iconic>
+<script src="prism.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.3.15/riot+compiler.min.js"></script>
+<script src="../node_modules/anycode-mbs-footer/mbs-footer.min.js"></script>
+<script src="../node_modules/classlist-polyfill/src/index.js"></script>
+<script src="./computedStyleHelper.js"></script>
+<script src="../anycode-components.js"></script>
+<script>
+    riot.mixin('computedStyleHelper', {
+        Style: Style
+    });
+
+    riot.mount('iconic', {
+        burgerIcon: "icon-burger",
+        navigationAutomatic: function() {
+            this.nav.classList.add("auto")
+            this.nav.classList.add("fixed-left")
+        },
+        navigationManual: function() {
+            this.nav.classList.remove("auto")
+        },
+        showWarning: function() {
+            this.tags.warning.show(6000)
+        },
+        showManual: function() {
+            this.tags.manual.show()
+        },
+        showAnnouncement: function() {
+            this.tags.announcement.show(2000)
+        },
+        alert: function(e) {
+            console.log("YOU CLICKED", e.target.innerText);
+        }
+    })
+
+
+
+</script>
+</body>
+</html>

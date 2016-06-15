@@ -2,6 +2,7 @@ body {
 	background: #FFF;
 	margin: 0;
 	padding: 0;
+	overflow-x: hidden;
 }
 
 .not-ready {
@@ -10,14 +11,97 @@ body {
 
 .mega {
 	background-color: rgba(0,0,0,0.05);
-	margin: 1rem;
-	padding: 6rem 3rem;
-	text-align: center;
-	height: 55rem;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	height: auto;
 	width: 100vw;
+	box-sizing: border-box;
 	display: table-cell;
 	vertical-align: middle;
 }
+
+.mega article.u-pn {
+	margin-left: 0;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.mega article.u-pt {
+	padding-top: 0rem;
+}
+
+@media (min-height: 500px) {
+	.mega article.u-pt {
+		padding-top: 4.2rem;
+	}
+}
+
+.mega h1 {
+	font-size: 5rem;
+}
+
+
+.brand { display: block; position: absolute; left: 0.5rem; top: 0.8rem; }
+
+.brand i {
+    font-size: 1.8rem;
+	vertical-align: middle;
+}
+
+.brand span {
+	font-size: 1.2rem;
+	font-weight: 300;
+	line-height: 1rem;
+	vertical-align: middle;
+}
+
+.brand span b {
+	font-weight: 700;
+}
+
+@media (min-width: 400px) {
+
+	.mega article.u-pn {
+		margin-left: 3rem;
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.mega {
+		background-color: rgba(0,0,0,0.05);
+		margin: 1rem;
+		padding: 0rem 0rem;
+		text-align: center;
+		height: 55rem;
+		width: 100vw;
+		box-sizing: border-box;
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.mega h1 {
+		font-size: 10rem;
+	}
+
+}
+
+@media (min-width: 400px) {
+	.mega {
+		padding: 6rem 3rem;
+		text-align: center;
+		height: 55rem;
+		width: 100vw;
+		box-sizing: border-box;
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.mega article.u-pn {
+		margin-left: auto;
+	}
+}
+
 
 .mega .links {
 	position: absolute;
@@ -29,9 +113,7 @@ body {
 	padding: 0 2rem;
 }
 
-.mega h1 {
-	font-size: 10rem;
-}
+
 
 .attributes ul {
 	list-style: none;
@@ -222,9 +304,18 @@ article.u-pt {
 }
 
 article.u-pn {
-	padding-left: 6rem;
+	padding-left: 2rem;
 	padding-right: 2rem;
 }
+
+@media (min-width: 400px) {
+	article.u-pn {
+		padding-left: 6rem;
+		padding-right: 2rem;
+	}
+}
+
+
 
 article.right {
 	padding-top: 4rem;
@@ -260,7 +351,6 @@ iconic-navigation.slide.expand ~ .mega {
 	}
 }
 
-
 blockquote .icon {
 	font-size: 6rem;
 	color: rgba(100,100,100,0.5);
@@ -271,9 +361,4 @@ blockquote .icon {
 	vertical-align: bottom;
 	float: left;
 	height: 6rem;
-}
-
-mbs-footer {
-	margin-top: 4rem;
-	z-index: 2;
 }

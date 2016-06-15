@@ -116,9 +116,9 @@
             border-bottom: 2px solid white
         }
 
-        :scope > ul li:first-child a {
+        /*:scope > ul li:first-child a {
             border-top: none;
-        }
+        }*/
 
         :scope > ul li ul {
             padding: 0;

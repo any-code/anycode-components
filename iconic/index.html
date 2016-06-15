@@ -8,14 +8,19 @@
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="starveling.css">
     <link rel="stylesheet" href="iconic.css">
+    <link rel="stylesheet" href="iconic-components-theme.css">
     <link rel="stylesheet" href="iconic-font.css">
     <link rel="stylesheet" href="iconic-theme.css">
-    <link rel="stylesheet" href="prism.css">
+
 </head>
 <body>
 <iconic class="not-ready">
     <iconic-navigation name="nav" data-fixed="left" data-effect="slide" data-overflow="menu-links-overflow">
-        <ul>
+        <ul class="navigation">
+            <li class="overflow" data-tip="navigation-tip"><a href="#iconic-menu" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-menu"></i></iconic-button>&nbsp;iconic-menu</a></li>
+            <li class="overflow" data-tip="navigation-tip"><a href="#iconic-tip" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-tip"></i></button>&nbsp;iconic-tip</a></li>
+            <li class="overflow" data-tip="navigation-tip"><a href="#iconic-button" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-button"></i></button>&nbsp;iconic-button</a></li>
+            <li class="overflow separator"></li>
             <li data-tip="navigation-tip"><a href="#home/iconic-announcement" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon" hotkey="aA  "><i class="icon-announcement"></i></iconic-button>&nbsp;iconic-announcement</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-navigation" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-navigation"></i></button>&nbsp;iconic-navigation</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-tip" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-tip"></i></button>&nbsp;iconic-tip</a></li>
@@ -45,12 +50,12 @@
     </div>
     <iconic-links>
         <ul style="text-align: right;">
-            <li><a href="#home/iconic-announcement" class="u-nd">iconic-announcement</a></li>
+            <li><a href="#iconic-menu" class="u-nd">iconic-menu</a></li>
             <li><a href="#iconic-tip" class="u-nd">iconic-tip</a></li>
             <li><a href="#iconic-button" class="u-nd">iconic-button</a></li>
             <li class="separator"></li>
             <li><a href="#" data-menu="menu-links" class="u-nd button button-extra-small button-primary">Action</a></li>
-            <li><a href="#" class="u-nd button button-extra-small">Another Action</a></li>
+            <li><a href="#" data-menu="menu-links" class="u-nd button button-extra-small">Another Action</a></li>
         </ul>
     </iconic-links>
     <iconic-announcement name="warning" class="warning" icon="icon-announcement">
@@ -288,6 +293,16 @@
         <div class="container">
             <div class="row">
                 <div class="twelve columns">
+                    <iconic-dropdown>
+                        <yield to="trigger">
+                            Show Things
+                        </yield>
+                        <yield to="links">
+                            <a href="#">Thing 1</a>
+                            <a href="#">Thing 2</a>
+                            <a href="#">Thing 3</a>
+                        </yield>
+                    </iconic-dropdown>
                     <h1 class="tag">iconic <em>menu</em></h1>
                     <blockquote><i class="icon-tip icon"></i>
                         iconic-<em>menu</em> is a left-right hover menu styled consistently with iconic-tip.
@@ -310,12 +325,12 @@
                 </div>
                 <div class="two columns">
                     <h6>Display to left</h6>
-                    <button class="button-small" data-menu="menu-left">Hover over me</button>
+                    <button class="button-small" data-menu="menu-left">Hover</button>
                 </div>
             </div>
             <div class="row u-pad-below">
                 <h6>Tiny Trigger Positioning</h6>
-                <div class="u-cf" style="display: block; position: relative; border: 1px dashed #222; height: 10rem;">
+                <div class="u-cf" style="display: block; position: relative; border: 1px dashed #222; height: 20rem;">
                     <div class="u-cf" style="position: absolute; display: block; right: 5.5rem; top: 3.5rem;">
                       <i class="icon-browser" data-menu="menu-left" style="display: block; position: relative; height: 16px;"></i>
                     </div>
