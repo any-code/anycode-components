@@ -1,5 +1,4 @@
 <iconic-links class="{ shrink: shrink }">
-    <iconic-tip position="below" delay="1" name="links-tip" class="links-tip"></iconic-tip>
     <div>
         <yield/>
     <div>

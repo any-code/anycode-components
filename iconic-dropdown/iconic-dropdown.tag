@@ -13,7 +13,7 @@
 
             // set the width of the dropdown to be
             // at least the width of the trigger
-            this.ddContent.style.minWidth = (this.ddTrigger.clientWidth -1) + 'px'
+            this.ddContent.style.minWidth = (this.ddTrigger.clientWidth) + 'px'
 
             // toggle the dropdown
             this.dd.classList.toggle("open")

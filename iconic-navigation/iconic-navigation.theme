@@ -1,13 +1,52 @@
+/*
+    ICONIC-NAVIGATION THEME
+*/
 
+iconic-navigation {
+	display: none;
+	border-right: 0.1rem solid #EEE;
+}
 
+iconic-navigation.expand {
+	box-shadow: 10px 0px 15px rgba(0,0,0,0.095);
+}
 
-.navigation .overflow {
-	display: block;
+@media (min-width: 550px) {
+	iconic-navigation {
+		display: block;
+	}
 }
 
 @media (min-width: 750px) {
-	.navigation .overflow {
-		display: none;
-		line-height: 0;
+	iconic-navigation.auto {
+		background-color: #fff;
 	}
+}
+
+/*
+	ITEMS
+*/
+
+iconic-navigation > ul li.separator {
+	height: 1px; border-top: 3px solid white;
+	background: #EEE;
+	border-bottom: 2px solid white
+}
+
+iconic-navigation > ul li ul li a {
+	border-top: 1px solid white;
+}
+
+
+
+/*
+	brand
+*/
+iconic-navigation .brand {
+	color: rgba(0, 0, 0, 0.7);
+}
+
+iconic-navigation iconic-button[name="menuButton"] {
+	background-color: rgba(255,255,255,0.25);
+	border-color: #DFDFDF;
 }

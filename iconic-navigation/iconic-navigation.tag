@@ -2,202 +2,8 @@
     <iconic-tip position="right" delay="1" name="navigation-tip" class="navigation-tip"></iconic-tip>
     <iconic-button class="icon-extra-small burger" name="menuButton" onclick="{ expand }" hotkey="~`" data-menu="{ opts.dataOverflow }"><i class="icon-burger"></i></iconic-button>
     <yield/>
-    <style scoped>
-        :scope {
-            display: none;
-        }
-
-        @media (min-width: 550px) {
-            :scope {
-                display: block;
-            }
-        }
-
-        :scope {
-            position: relative;
-            margin: 0;
-            padding: 0;
-            height: auto;
-            width: 4.2rem;
-            transition: all 200ms ease-in-out;
-            overflow: hidden;
-            border-right: 0.1rem solid #EEE;
-            z-index: 2;
-        }
-
-        :scope.fixed-left {
-            position: fixed;
-            z-index: 3;
-            bottom: 0rem;
-            left: 0;
-            right: auto;
-            top: 0;
-        }
-
-        :scope.fixed-right {
-            position: fixed;
-            z-index: 3;
-            bottom: 0rem;
-            left: auto;
-            right: 0;
-            top: 0;
-        }
-
-        :scope .brand { position: absolute; display: block; margin-top: 0.8rem; margin-left:5.2rem; top:0; color: rgba(0, 0, 0, 0.7); }
-        :scope .brand i { font-size: 1.8rem; vertical-align: middle; }
-        :scope .brand span { font-size: 1.2rem; font-weight: 300; line-height: 1rem; vertical-align: middle; }
-        :scope .brand span b { font-weight: 700; }
-
-        iconic-button[name="menuButton"] {
-            display: none;
-            margin: 0.6rem;
-            border: none!important;
-            background: #CCC!important;
-        }
-
-        :scope[class^="fixed"] iconic-button[name="menuButton"] {
-            display: block;
-        }
-
-        :scope > ul {
-            position: relative;
-            bottom: 0rem;
-            height: auto;
-            left: 0;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            right: auto;
-            top: 0rem;
-            width: 4.2rem;
-            overflow: hidden;
-            white-space: nowrap;
-            transition: all 200ms ease-in-out;
-        }
-
-        :scope:not([class^="fixed"]) {
-            width: auto;
-        }
-
-        :scope:not([class^="fixed"]) ul {
-            width: auto;
-        }
-
-        :scope[class^="fixed"] > ul {
-            top: 4.2rem;
-        }
-
-        :scope[class^="fixed"] > ul {
-            position: absolute;
-        }
-
-        :scope.expand {
-            width: 25rem;
-            box-shadow: 10px 0px 15px rgba(0,0,0,0.095);
-        }
-
-        :scope.expand.slide {
-            box-shadow: none;
-        }
-
-        :scope > ul li {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-
-
-        :scope > ul li a {
-            font-size: 2rem;
-            text-align: left;
-            display: block;
-            padding: 0.4rem 0.5rem 0.5rem 0.5rem;
-            transition: all 80ms ease-in-out;
-            border-top: 1px solid white;
-            text-decoration: none;
-            vertical-align:middle;
-        }
-
-        :scope > ul > li > a > iconic-button {
-            margin-right: 0.2rem;
-            line-height: 0;
-        }
-
-        :scope > ul li.separator {
-            height: 1px;
-            border-top: 3px solid white;
-            background: #EEE;
-            border-bottom: 2px solid white
-        }
-
-        /*:scope > ul li:first-child a {
-            border-top: none;
-        }*/
-
-        :scope > ul li ul {
-            padding: 0;
-            margin: 0;
-        }
-
-        :scope > ul li ul li {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-        }
-
-        :scope > ul li ul li a {
-            font-size: 1rem;
-            display: block;
-            padding: 0.1rem 0.1rem 0.1rem 2rem;
-            -webkit-transition: .5s all ease-out;
-            -moz-transition: .5s all ease-out;
-            transition: .5s all ease-out;
-            border-top: 1px solid white;
-            text-decoration: none;
-        }
-
-        :scope.expand > ul {
-            z-index: 500;
-            width: 25rem;
-        }
-
-
-        :scope.expand > ul {
-            width: 25rem;
-            z-index: 100;
-        }
-
-        @media (min-width: 750px) {
-            :scope[class^="fixed"].auto > ul {
-                /*top: 0rem;*/
-            }
-
-            :scope[class^="fixed"].auto > .burger {
-                top: -4.2rem;
-            }
-
-
-            :scope.auto.expand {
-                box-shadow: none;
-            }
-
-
-
-            :scope.auto {
-                width: 25rem;
-                background-color: #fff;
-            }
-
-            :scope.auto > ul {
-                top: 4.2rem;
-                width: 25rem;
-            }
-
-        }
-    </style>
     <script>
         this.viewing = undefined;
-
 
         this._mapLinkToAnchor = function(element) {
             return this._elFromHref(element.href)
@@ -320,4 +126,44 @@
             }
         }.bind(this)
     </script>
+
+    <style scoped>
+        :scope { height: auto; margin: 0; overflow: hidden; padding: 0; position: relative;
+            transition: all 200ms ease-in-out; width: 4.2rem; z-index: 2; }
+        :scope.fixed-left { position: fixed; z-index: 3; bottom: 0rem; left: 0; right: auto; top: 0; }
+        :scope.fixed-right { position: fixed; z-index: 3; bottom: 0rem; left: auto; right: 0; top: 0; }
+        :scope .brand { display: block; position: absolute; margin-top: 0.8rem; margin-left:5.2rem; top:0; }
+        :scope[class^="fixed"].expand .brand { display: block; margin-left:5.2rem; }
+        :scope .brand i { font-size: 1.8rem; vertical-align: middle; }
+        :scope .brand span { font-size: 1.2rem; font-weight: 300; line-height: 1rem; vertical-align: middle; }
+        :scope .brand span b { font-weight: 700; }
+        iconic-button[name="menuButton"] { display: none; margin: 0.6rem; }
+        :scope[class^="fixed"] iconic-button[name="menuButton"] { display: block; }
+        :scope > ul { position: relative; bottom: 0rem; height: auto; left: 0; list-style: none; margin: 0; padding: 0;
+            right: auto; top: 0rem; width: 4.2rem; overflow: hidden; white-space: nowrap;
+            transition: all 200ms ease-in-out; }
+        :scope:not([class^="fixed"]) { width: auto; }
+        :scope:not([class^="fixed"]) ul { width: auto; }
+        :scope[class^="fixed"] > ul { top: 4.2rem; }
+        :scope[class^="fixed"] > ul { position: absolute; }
+        :scope.expand { width: 25rem; }
+        :scope.expand.slide { box-shadow: none; }
+        :scope > ul li { padding: 0; margin: 0; list-style: none; }
+        :scope > ul li a { font-size: 2rem; text-align: left; display: block; padding: 0.4rem 0.5rem 0.5rem 0.5rem;
+            transition: all 80ms ease-in-out; border-top: 1px solid white; text-decoration: none; vertical-align:middle; }
+        :scope > ul > li > a > iconic-button { margin-right: 0.2rem; line-height: 0; }
+        :scope > ul li ul { padding: 0; margin: 0; }
+        :scope > ul li ul li { padding: 0; margin: 0; list-style: none; }
+        :scope > ul li ul li a { font-size: 1rem; display: block; padding: 0.1rem 0.1rem 0.1rem 2rem;
+            -webkit-transition: .5s all ease-out; -moz-transition: .5s all ease-out;
+            transition: .5s all ease-out; text-decoration: none; }
+        :scope.expand > ul { z-index: 500; width: 25rem; }
+        @media (min-width: 750px) {
+            :scope[class^="fixed"].auto .brand { margin-left: 1rem; }
+            :scope[class^="fixed"].auto > .burger { top: -4.2rem; }
+            :scope.auto.expand { box-shadow: none; }
+            :scope.auto { width: 25rem; }
+            :scope.auto > ul { top: 4.2rem; width: 25rem;}
+        }
+    </style>
 </iconic-navigation>
