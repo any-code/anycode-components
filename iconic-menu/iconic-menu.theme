@@ -1,0 +1,20 @@
+/* <iconic-menu/> */
+
+iconic-menu a:hover {
+	color: #FFF;
+	background: -moz-linear-gradient(left, rgba(244, 226, 195, 0.34) 0%, rgba(118, 255, 183, 0.18) 100%);
+	background: -webkit-linear-gradient(left, rgba(244, 226, 195, 0.34) 0%, rgba(100, 100, 100, 0.0) 100%);
+	background: linear-gradient(to right, rgba(118, 255, 183, 0.18) 0%, rgba(118, 255, 183, 0.1) 100%);
+	border-radius: 0.3rem;
+	border: 0.1rem solid rgba(100,200,200,0.2);
+	box-shadow: 0 0 4px rgba(0,0,0,1);
+}
+
+iconic-menu a:hover .icon-extra-small {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+iconic-menu {
+	bakcgorund: #FFF;
+}

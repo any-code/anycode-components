@@ -1,0 +1,69 @@
+/*
+    ICONIC-DROPDOWN THEME
+*/
+
+iconic-header  {
+    background: #F3F3F3 url(img/pattern.png) fixed;
+    position: relative;
+    min-width: 127px;
+}
+
+@media (min-width: 550px) {
+    .navigation-margin iconic-header {
+        margin-left: 4.2rem;
+    }
+}
+
+@media (min-height: 550px) {
+    iconic-header  {
+        position: fixed;
+        left: 0;
+        margin: 0;
+        right: 0;
+        top:0;
+        z-index:2;
+    }
+}
+
+
+iconic-header div > ul li {
+    display: none;
+}
+
+iconic-header div > ul li.restricted {
+    display: inline-block;
+}
+
+@media (min-width: 220px) {
+    iconic-header div > ul li.pinned {
+        display: inline-block;
+    }
+
+    .navigation-margin iconic-header div > ul li.pinned {
+        display: none;
+    }
+}
+
+@media (min-width: 300px) {
+    .navigation-margin iconic-header div > ul li.pinned {
+        display: inline-block;
+    }
+}
+
+@media (min-width: 550px) {
+    iconic-header div > ul li {
+        display: inline-block;
+    }
+
+    iconic-header div > ul li.restricted {
+        display: none;
+    }
+}
+
+/*
+    ITEMS
+*/
+
+iconic-header div > ul li a {
+    color: rgba(0, 0, 0, 0.7);
+}

@@ -1,0 +1,6 @@
+
+/* <iconic-button/> */
+
+iconic-button i {
+	display: inline-flex;
+}

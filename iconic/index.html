@@ -5,17 +5,51 @@
     <meta charset="UTF-8">
     <title>Anycode Components - Iconic Demo</title>
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="normalize.css">
-    <link rel="stylesheet" href="starveling.css">
     <link rel="stylesheet" href="iconic.css">
-    <link rel="stylesheet" href="iconic-font.css">
-    <link rel="stylesheet" href="iconic-theme.css">
-    <link rel="stylesheet" href="prism.css">
 </head>
 <body>
 <iconic class="not-ready">
-    <iconic-navigation name="nav" data-fixed="left" data-effect="slide" data-overflow="menu-links-overflow">
-        <ul>
+    <iconic-header>
+        <ul class="u-pull-left">
+            <li class="restricted">
+                <iconic-dropdown>
+                    <yield to="trigger"><i class="icon-burger opener"></i></yield>
+                    <yield to="links">
+                        <a href="#iconic-tip">Banana is funny</a>
+                        <div class="overflow">
+                            <a href="#home/iconic-announcement" class="u-nd">iconic-announcement</a>
+                            <a href="#iconic-tip" class="u-nd">iconic-tip</a>
+                            <a href="#iconic-button" class="u-nd">iconic-button</a>
+                        </div>
+                        <a href="#" class="u-nd primary">Sign In</a>
+                    </yield>
+                </iconic-dropdown>
+            </li>
+        </ul>
+        <div class="brand">
+            <i class="icon-anycode-logo"></i><span>any<b>code</b></span>
+        </div>
+        <ul class="u-pull-right">
+            <li><a href="#iconic-menu" class="u-nd">iconic-menu</a></li>
+            <li><a href="#iconic-tip" class="u-nd">iconic-tip</a></li>
+            <li class="menu">
+                <iconic-dropdown>
+                    <yield to="trigger"><span>The Cat's Hat</span><i class="icon-menu opener"></i></yield>
+                    <yield to="links">
+                        <a href="#iconic-tip">Thing 1</a>
+                        <a href="#iconic-button">Thing 2</a>
+                    </yield>
+                </iconic-dropdown>
+            </li>
+            <li class="separator"></li>
+            <li class="pinned"><a href="#" data-menu="menu-links" class="u-nd button button-extra-small button-primary">Sign-In</a></li>
+        </ul>
+    </iconic-header>
+    <iconic-navigation name="nav" data-fixed="left" data-overflow="menu-links-overflow">
+        <div class="brand">
+            <i class="icon-anycode-logo"></i><span>any<b>code</b></span>
+        </div>
+        <ul class="navigation">
             <li data-tip="navigation-tip"><a href="#home/iconic-announcement" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon" hotkey="aA  "><i class="icon-announcement"></i></iconic-button>&nbsp;iconic-announcement</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-navigation" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-navigation"></i></button>&nbsp;iconic-navigation</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-tip" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-tip"></i></button>&nbsp;iconic-tip</a></li>
@@ -43,16 +77,7 @@
             </div>
         </article>
     </div>
-    <iconic-links>
-        <ul style="text-align: right;">
-            <li><a href="#home/iconic-announcement" class="u-nd">iconic-announcement</a></li>
-            <li><a href="#iconic-tip" class="u-nd">iconic-tip</a></li>
-            <li><a href="#iconic-button" class="u-nd">iconic-button</a></li>
-            <li class="separator"></li>
-            <li><a href="#" data-menu="menu-links" class="u-nd button button-extra-small button-primary">Action</a></li>
-            <li><a href="#" class="u-nd button button-extra-small">Another Action</a></li>
-        </ul>
-    </iconic-links>
+
     <iconic-announcement name="warning" class="warning" icon="icon-announcement">
         <em>WARNING</em><br>You are running on reserve inspiration. Be creative immediately!
     </iconic-announcement>
@@ -288,6 +313,16 @@
         <div class="container">
             <div class="row">
                 <div class="twelve columns">
+                    <iconic-dropdown>
+                        <yield to="trigger">
+                            Show Things
+                        </yield>
+                        <yield to="links">
+                            <a href="#">Thing 1</a>
+                            <a href="#">Thing 2</a>
+                            <a href="#">Thing 3</a>
+                        </yield>
+                    </iconic-dropdown>
                     <h1 class="tag">iconic <em>menu</em></h1>
                     <blockquote><i class="icon-tip icon"></i>
                         iconic-<em>menu</em> is a left-right hover menu styled consistently with iconic-tip.
@@ -310,12 +345,12 @@
                 </div>
                 <div class="two columns">
                     <h6>Display to left</h6>
-                    <button class="button-small" data-menu="menu-left">Hover over me</button>
+                    <button class="button-small" data-menu="menu-left">Hover</button>
                 </div>
             </div>
             <div class="row u-pad-below">
                 <h6>Tiny Trigger Positioning</h6>
-                <div class="u-cf" style="display: block; position: relative; border: 1px dashed #222; height: 10rem;">
+                <div class="u-cf" style="display: block; position: relative; border: 1px dashed #222; height: 20rem;">
                     <div class="u-cf" style="position: absolute; display: block; right: 5.5rem; top: 3.5rem;">
                       <i class="icon-browser" data-menu="menu-left" style="display: block; position: relative; height: 16px;"></i>
                     </div>
@@ -413,8 +448,8 @@
             </div>
         </div>
     </article>
-    <hr>
-    <a id="iconic-well"></a>
+
+    <!--     <hr><a id="iconic-well"></a>
 
     <article class="u-pt u-pn">
         <div class="container">
@@ -491,7 +526,7 @@
                 </div>
             </div>
         </div>
-    </article>
+    </article> -->
     <iconic-footer product="Iconic">
         <ul>
             <li><a href="#privacy-statement" class="u-nd">Privacy Statement</a></li>
@@ -500,9 +535,7 @@
         </ul>
     </iconic-footer>
 </iconic>
-<script src="prism.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.3.15/riot+compiler.min.js"></script>
-<script src="../node_modules/anycode-mbs-footer/mbs-footer.min.js"></script>
 <script src="../node_modules/classlist-polyfill/src/index.js"></script>
 <script src="./computedStyleHelper.js"></script>
 <script src="../anycode-components.js"></script>
