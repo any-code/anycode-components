@@ -245,7 +245,7 @@ riot.tag2('iconic-footer', '<article class="{\'u-pn\': pageHasNavigation}"> <div
 }, '{ }');
 
 
-riot.tag2('iconic-header', '<div> <yield></yield> <div>', 'iconic-header,[riot-tag="iconic-header"] { display: block; height: 4.2rem; padding: 0; transition: all 200ms ease-in-out; white-space: nowrap; } iconic-header .brand,[riot-tag="iconic-header"] .brand { float: left; display: block; margin-top: 0.8rem; margin-left:1rem; } iconic-header .brand i,[riot-tag="iconic-header"] .brand i { font-size: 1.8rem; vertical-align: middle; } iconic-header .brand span,[riot-tag="iconic-header"] .brand span { font-size: 1.2rem; font-weight: 300; line-height: 1rem; vertical-align: middle; } iconic-header .brand span b,[riot-tag="iconic-header"] .brand span b { font-weight: 700; } iconic-header div > ul,[riot-tag="iconic-header"] div > ul { margin: 0; padding: 0; float: right; } iconic-header div > ul li,[riot-tag="iconic-header"] div > ul li { list-style: none; margin: 0; padding: 0; } iconic-header div > ul.u-pull-right li,[riot-tag="iconic-header"] div > ul.u-pull-right li { padding-right: 0.5rem; } iconic-header div > ul.u-pull-left li,[riot-tag="iconic-header"] div > ul.u-pull-left li { padding-left: 0.5rem; } iconic-header div > ul li.pinned,[riot-tag="iconic-header"] div > ul li.pinned,iconic-header div > ul li.restricted,[riot-tag="iconic-header"] div > ul li.restricted { margin-top: 0.8rem; } iconic-header div > ul li *,[riot-tag="iconic-header"] div > ul li * { margin-top: -2px; } iconic-header div > ul li a,[riot-tag="iconic-header"] div > ul li a { margin-top: 0px; padding-top: 3px; display: block; font-size: 1.4rem; padding: 0.8rem 0.8rem 0 0.8rem; text-align: left; text-decoration: none; transition: all 80ms ease-in-out; } iconic-header div > ul li a.button,[riot-tag="iconic-header"] div > ul li a.button { margin-top: -2px; padding-top: 0; } iconic-header div > ul li.separator,[riot-tag="iconic-header"] div > ul li.separator { width: 0.6rem; }', '', function(opts) {
+riot.tag2('iconic-header', '<div> <yield></yield> <div>', 'iconic-header,[riot-tag="iconic-header"] { display: block; height: 4.2rem; padding: 0; transition: all 200ms ease-in-out; white-space: nowrap; } iconic-header .brand,[riot-tag="iconic-header"] .brand { float: left; display: block; margin-top: 0.8rem; margin-left:1rem; } iconic-header .brand i,[riot-tag="iconic-header"] .brand i { font-size: 1.8rem; vertical-align: middle; } iconic-header .brand span,[riot-tag="iconic-header"] .brand span { font-size: 1.2rem; font-weight: 300; line-height: 1rem; vertical-align: middle; } iconic-header .brand span b,[riot-tag="iconic-header"] .brand span b { font-weight: 700; } iconic-header div > ul,[riot-tag="iconic-header"] div > ul { margin: 0; padding: 0; float: right; } iconic-header div > ul li,[riot-tag="iconic-header"] div > ul li { list-style: none; margin: 0; padding: 0; } iconic-header div > ul.u-pull-right li,[riot-tag="iconic-header"] div > ul.u-pull-right li { padding-right: 0.5rem; } iconic-header div > ul.u-pull-left li,[riot-tag="iconic-header"] div > ul.u-pull-left li { padding-left: 0.5rem; } iconic-header div > ul li.pinned,[riot-tag="iconic-header"] div > ul li.pinned,iconic-header div > ul li.restricted,[riot-tag="iconic-header"] div > ul li.restricted { margin-top: 0.8rem; } iconic-header div > ul li *,[riot-tag="iconic-header"] div > ul li * { margin-top: -2px; } iconic-header div > ul li a,[riot-tag="iconic-header"] div > ul li a { margin-top: 0px; padding-top: 3px; display: block; font-size: 1.4rem; padding: 0.8rem 0.8rem 0 0rem; text-align: left; text-decoration: none; transition: all 80ms ease-in-out; } iconic-header div > ul li a.button,[riot-tag="iconic-header"] div > ul li a.button { margin-top: -2px; padding-top: 0; } iconic-header div > ul li.separator,[riot-tag="iconic-header"] div > ul li.separator { width: 0.6rem; }', '', function(opts) {
 });
 
 
@@ -581,8 +581,6 @@ riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="nav
         }
 
         this.on('mount', function() {
-            document.body.classList.add('navigation-margin');
-
             if (opts.dataFixed) {
                 this.root.classList.add("fixed-" + opts.dataFixed);
             }
@@ -609,10 +607,13 @@ riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="nav
             this.tags['navigation-tip'].content[prop] = this.tip;
             this.tags['navigation-tip'].update()
 
-            setTimeout(function() {
-                window.addEventListener('hashchange', this.getFromHash )
-            }.bind(this), 0)
+            ;(function(ctx) {
+                document.body.classList.add('navigation-margin')
+                window.addEventListener('hashchange', ctx.getFromHash )
+            })(this)
         })
+
+        this.on('unmount', function() { document.body.classList.remove('navigation-margin') })
 
         this.getFromHash = function() {
             var has = false;

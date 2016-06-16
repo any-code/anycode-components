@@ -15,7 +15,7 @@
         :scope div > ul.u-pull-left li { padding-left: 0.5rem; }
         :scope div > ul li.pinned, :scope div > ul li.restricted { margin-top: 0.8rem; }
         :scope div > ul li * { margin-top: -2px; }
-        :scope div > ul li a { margin-top: 0px; padding-top: 3px; display: block; font-size: 1.4rem; padding: 0.8rem 0.8rem 0 0.8rem; text-align: left;
+        :scope div > ul li a { margin-top: 0px; padding-top: 3px; display: block; font-size: 1.4rem; padding: 0.8rem 0.8rem 0 0rem; text-align: left;
             text-decoration: none; transition: all 80ms ease-in-out; }
         :scope div > ul li a.button { margin-top: -2px; padding-top: 0; }
 

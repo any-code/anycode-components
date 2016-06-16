@@ -68,9 +68,9 @@
             }
         }
 
+
+
         this.on('mount', function() {
-            document.body.classList.add('navigation-margin');
-            
             if (opts.dataFixed) {
                 this.root.classList.add("fixed-" + opts.dataFixed);
             }
@@ -97,10 +97,13 @@
             this.tags['navigation-tip'].content[prop] = this.tip;
             this.tags['navigation-tip'].update()
 
-            setTimeout(function() {
-                window.addEventListener('hashchange', this.getFromHash )
-            }.bind(this), 0)
+            ;(function(ctx) {
+                document.body.classList.add('navigation-margin')
+                window.addEventListener('hashchange', ctx.getFromHash )
+            })(this)
         })
+
+        this.on('unmount', function() { document.body.classList.remove('navigation-margin') })
 
         this.getFromHash = function() {
             var has = false;
