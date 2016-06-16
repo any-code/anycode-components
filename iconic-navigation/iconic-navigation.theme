@@ -2,8 +2,11 @@
     ICONIC-NAVIGATION THEME
 */
 
+/* <iconic-navigation/> */
+
 iconic-navigation {
 	display: none;
+	background: #F3F3F3 url(img/pattern.png) fixed;
 	border-right: 0.1rem solid #EEE;
 }
 
@@ -23,6 +26,10 @@ iconic-navigation.expand {
 	}
 }
 
+iconic-navigation > ul {
+	background: #FFFFFF;
+}
+
 /*
 	ITEMS
 */
@@ -37,10 +44,28 @@ iconic-navigation > ul li ul li a {
 	border-top: 1px solid white;
 }
 
+iconic-navigation > ul a {
+	color: #999;
+	background: #FFFFFF;
+}
 
+iconic-navigation > ul a:hover {
+	color: #222;
+	background: #95f2e2;
+}
+
+iconic-navigation > ul a.active {
+	background: #00d4b4;
+	color: #FFF;
+}
+
+iconic-navigation > ul a.active:hover {
+	background: #00b4a9;
+	color: #FFF;
+}
 
 /*
-	brand
+	BRAND
 */
 iconic-navigation .brand {
 	color: rgba(0, 0, 0, 0.7);
@@ -49,4 +74,14 @@ iconic-navigation .brand {
 iconic-navigation iconic-button[name="menuButton"] {
 	background-color: rgba(255,255,255,0.25);
 	border-color: #DFDFDF;
+}
+
+/*
+	TOOLTIP
+*/
+
+iconic-navigation iconic-tip a {
+	color: #fff;
+	font-size: 2rem;
+	text-decoration: none;
 }

@@ -1,0 +1,57 @@
+/* <iconic-announcement/> */
+
+iconic-announcement {
+	background: rgba(100,100,100,0.9);
+	color: rgba(255,255,255,0.8);
+}
+
+iconic-announcement .badge {
+	background: #ff6e66;
+	border-right: 1px solid rgba(255,255,255,0.1);
+	color: rgba(255,255,255,0.3);
+}
+
+iconic-announcement em {
+	font-style: normal;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+iconic-announcement.warning {
+	background:  #ff2d4d;
+	color: rgba(255,255,255,0.8);
+}
+
+iconic-announcement.warning .badge {
+	background: #ff2d4d;
+	border-right: 1px solid rgba(255,255,255,0.1);
+	color: rgba(255,255,255,0.3);
+}
+
+iconic-announcement.warning .content {
+	background:  #ff2d4d;
+}
+
+iconic-announcement.warning em {
+	font-style: normal;
+	color: rgba(255, 255, 255, 0.9);
+}
+
+iconic-announcement.success {
+	background: #089;
+	color: rgba(255,255,255,0.8);
+}
+
+iconic-announcement.success .badge {
+	background: #089;
+	border-right: 1px solid rgba(255,255,255,0.1);
+	color: rgba(255,255,255,0.3);
+}
+
+iconic-announcement.success .content {
+	background: #089;
+}
+
+iconic-announcement.success em {
+	font-style: normal;
+	color: rgba(255, 255, 255, 0.9);
+}

@@ -1,8 +1,11 @@
 <iconic-navigation>
+
     <iconic-tip position="right" delay="1" name="navigation-tip" class="navigation-tip"></iconic-tip>
     <iconic-button class="icon-extra-small burger" name="menuButton" onclick="{ expand }" hotkey="~`" data-menu="{ opts.dataOverflow }"><i class="icon-burger"></i></iconic-button>
     <yield/>
+
     <script>
+
         this.viewing = undefined;
 
         this._mapLinkToAnchor = function(element) {
@@ -66,6 +69,8 @@
         }
 
         this.on('mount', function() {
+            document.body.classList.add('navigation-margin');
+            
             if (opts.dataFixed) {
                 this.root.classList.add("fixed-" + opts.dataFixed);
             }

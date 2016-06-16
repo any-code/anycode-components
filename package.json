@@ -9,7 +9,7 @@
   "scripts": {
     "test": "karma start",
     "watch": "./watch",
-    "pub-pack": "node scripts/pack.js index.js **/*.tag anycode-components.js & cat iconic-**/*.theme | cleancss -o iconic/iconic-components-theme.css",
+    "pub-pack": "node scripts/pack.js index.js **/*.tag anycode-components.js & cat iconic/normalize.css iconic/starveling.css iconic/iconic-theme.css iconic/iconic-font.css iconic-**/*.theme | cleancss -o iconic/iconic.css",
     "pub-minify": "uglifyjs anycode-components.js --compress --screw-ie8 --mangle > anycode-components.min.js",
     "pub-build": "npm run pub-pack && npm run pub-minify && npm run test",
     "pub-npm": "npm version patch && npm publish"
