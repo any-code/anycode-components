@@ -3,11 +3,18 @@
 */
 
 iconic-header  {
-    background-color: #f3f3f3;
+    background: #F3F3F3 url(img/pattern.png) fixed;
     position: relative;
+    min-width: 127px;
 }
 
-@media (min-height: 500px) {
+@media (min-width: 550px) {
+    .navigation-margin iconic-header {
+        margin-left: 4.2rem;
+    }
+}
+
+@media (min-height: 550px) {
     iconic-header  {
         position: fixed;
         left: 0;
@@ -31,9 +38,19 @@ iconic-header div > ul li.restricted {
     iconic-header div > ul li.pinned {
         display: inline-block;
     }
+
+    .navigation-margin iconic-header div > ul li.pinned {
+        display: none;
+    }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 300px) {
+    .navigation-margin iconic-header div > ul li.pinned {
+        display: inline-block;
+    }
+}
+
+@media (min-width: 550px) {
     iconic-header div > ul li {
         display: inline-block;
     }

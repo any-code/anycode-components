@@ -10,7 +10,7 @@ body {
 }
 
 .mega {
-	background-color: rgba(0,0,0,0.05);
+	background: #F3F3F3 url(img/pattern.png) fixed;
 	margin: 0;
 	padding: 0;
 	text-align: left;
@@ -20,6 +20,7 @@ body {
 	display: table-cell;
 	vertical-align: middle;
 }
+
 
 .mega article.u-pn {
 	margin-left: 0;
@@ -38,26 +39,13 @@ body {
 }
 
 .mega h1 {
-	font-size: 5rem;
+	font-size: 3.5rem;
 }
 
-
-.brand { display: block; position: absolute; left: 0.5rem; top: 0.8rem; }
-
-.brand i {
-    font-size: 1.8rem;
-	vertical-align: middle;
-}
-
-.brand span {
-	font-size: 1.2rem;
-	font-weight: 300;
-	line-height: 1rem;
-	vertical-align: middle;
-}
-
-.brand span b {
-	font-weight: 700;
+@media (min-width: 300px) {
+	.mega h1 {
+		font-size: 5rem;
+	}
 }
 
 @media (min-width: 400px) {

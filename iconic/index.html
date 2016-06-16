@@ -13,14 +13,49 @@
     <link rel="stylesheet" href="iconic-theme.css">
 
 </head>
-<body>
+<body class="navigation-margin">
 <iconic class="not-ready">
-    <iconic-navigation name="nav" data-fixed="left" data-effect="slide" data-overflow="menu-links-overflow">
+    <iconic-header>
+        <ul class="u-pull-left">
+            <li class="restricted">
+                <iconic-dropdown>
+                    <yield to="trigger"><i class="icon-burger opener"></i></yield>
+                    <yield to="links">
+                        <a href="#iconic-tip">Banana is funny</a>
+                        <div class="overflow">
+                            <a href="#home/iconic-announcement" class="u-nd">iconic-announcement</a>
+                            <a href="#iconic-tip" class="u-nd">iconic-tip</a>
+                            <a href="#iconic-button" class="u-nd">iconic-button</a>
+                        </div>
+                        <a href="#" class="u-nd primary">Sign In</a>
+                    </yield>
+                </iconic-dropdown>
+            </li>
+        </ul>
+        <div class="brand">
+            <i class="icon-anycode-logo"></i><span>any<b>code</b></span>
+        </div>
+        <ul class="u-pull-right">
+            <li><a href="#iconic-menu" class="u-nd">iconic-menu</a></li>
+            <li><a href="#iconic-tip" class="u-nd">iconic-tip</a></li>
+            <li class="menu">
+                <iconic-dropdown>
+                    <yield to="trigger"><span>The Cat's Hat</span><i class="icon-menu opener"></i></yield>
+                    <yield to="links">
+                        <a href="#iconic-tip">Thing 1</a>
+                        <a href="#iconic-button">Thing 2</a>
+                    </yield>
+                </iconic-dropdown>
+            </li>
+            <li class="separator"></li>
+            <li class="pinned"><a href="#" data-menu="menu-links" class="u-nd button button-extra-small button-primary">Sign-In</a></li>
+        </ul>
+    </iconic-header>
+    <iconic-navigation name="nav" data-fixed="left" data-overflow="menu-links-overflow">
+        <div class="brand">
+            <i class="icon-anycode-logo"></i><span>any<b>code</b></span>
+        </div>
         <ul class="navigation">
-            <li class="overflow" data-tip="navigation-tip"><a href="#iconic-menu" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-menu"></i></iconic-button>&nbsp;iconic-menu</a></li>
-            <li class="overflow" data-tip="navigation-tip"><a href="#iconic-tip" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-tip"></i></button>&nbsp;iconic-tip</a></li>
-            <li class="overflow" data-tip="navigation-tip"><a href="#iconic-button" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-button"></i></button>&nbsp;iconic-button</a></li>
-            <li class="overflow separator"></li>
             <li data-tip="navigation-tip"><a href="#home/iconic-announcement" class="u-nd"><iconic-button class="icon-extra-small icon-inverted navigation-icon" hotkey="aA  "><i class="icon-announcement"></i></iconic-button>&nbsp;iconic-announcement</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-navigation" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-navigation"></i></button>&nbsp;iconic-navigation</a></li>
             <li data-tip="navigation-tip"><a href="#iconic-tip" class="u-nd"><button class="icon-extra-small icon-inverted navigation-icon"><i class="icon-tip"></i></button>&nbsp;iconic-tip</a></li>
@@ -48,16 +83,7 @@
             </div>
         </article>
     </div>
-    <iconic-links>
-        <ul style="text-align: right;">
-            <li><a href="#iconic-menu" class="u-nd">iconic-menu</a></li>
-            <li><a href="#iconic-tip" class="u-nd">iconic-tip</a></li>
-            <li><a href="#iconic-button" class="u-nd">iconic-button</a></li>
-            <li class="separator"></li>
-            <li><a href="#" data-menu="menu-links" class="u-nd button button-extra-small button-primary">Action</a></li>
-            <li><a href="#" data-menu="menu-links" class="u-nd button button-extra-small">Another Action</a></li>
-        </ul>
-    </iconic-links>
+
     <iconic-announcement name="warning" class="warning" icon="icon-announcement">
         <em>WARNING</em><br>You are running on reserve inspiration. Be creative immediately!
     </iconic-announcement>
@@ -428,8 +454,8 @@
             </div>
         </div>
     </article>
-    <hr>
-    <a id="iconic-well"></a>
+
+    <!--     <hr><a id="iconic-well"></a>
 
     <article class="u-pt u-pn">
         <div class="container">
@@ -506,7 +532,7 @@
                 </div>
             </div>
         </div>
-    </article>
+    </article> -->
     <iconic-footer product="Iconic">
         <ul>
             <li><a href="#privacy-statement" class="u-nd">Privacy Statement</a></li>

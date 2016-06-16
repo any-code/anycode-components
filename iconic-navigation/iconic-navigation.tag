@@ -4,7 +4,16 @@
     <yield/>
     <style scoped>
         :scope {
-            display: block;
+            display: none;
+        }
+
+        @media (min-width: 550px) {
+            :scope {
+                display: block;
+            }
+        }
+
+        :scope {
             position: relative;
             margin: 0;
             padding: 0;
@@ -33,6 +42,11 @@
             right: 0;
             top: 0;
         }
+
+        :scope .brand { position: absolute; display: block; margin-top: 0.8rem; margin-left:5.2rem; top:0; color: rgba(0, 0, 0, 0.7); }
+        :scope .brand i { font-size: 1.8rem; vertical-align: middle; }
+        :scope .brand span { font-size: 1.2rem; font-weight: 300; line-height: 1rem; vertical-align: middle; }
+        :scope .brand span b { font-weight: 700; }
 
         iconic-button[name="menuButton"] {
             display: none;

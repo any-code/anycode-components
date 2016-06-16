@@ -106,7 +106,7 @@ iconic-button i {
 /* <iconic-navigation/> */
 
 iconic-navigation {
-	background: #cdcdcd;
+	background: #F3F3F3 url(img/pattern.png) fixed;
 }
 
 iconic-navigation > ul {
@@ -165,8 +165,4 @@ iconic-menu a:hover .icon-extra-small {
 
 iconic-menu {
 	bakcgorund: #FFF;
-}
-
-iconic-footer {
-    background: rgba(0,0,0,0.05);
 }
