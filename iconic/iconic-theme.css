@@ -21,7 +21,7 @@ body { background: #FFF; margin: 0; padding: 0; overflow-x: hidden; }
 
 @media (min-height: 500px) {
 	.mega article.u-pt {
-		padding-top: 4.2rem;
+		padding-top: 2.2rem;
 	}
 }
 
@@ -34,6 +34,11 @@ body { background: #FFF; margin: 0; padding: 0; overflow-x: hidden; }
 		font-size: 5rem;
 	}
 }
+
+h3 { margin-top: 2rem; }
+@media (min-width: 400px) { h3 { margin-top: 4.5rem; } }
+@media (min-width: 550px) { h3 { margin-top: 6rem; } }
+
 
 @media (min-width: 400px) {
 
@@ -86,55 +91,76 @@ body { background: #FFF; margin: 0; padding: 0; overflow-x: hidden; }
 	padding: 0 2rem;
 }
 
+.alternative {
+    background: rgba(0,0,0,0.05);
+}
+
 .attributes ul {
 	list-style: none;
+}
+
+.attributes ul ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
 }
 
 .attributes > ul > li {
 	clear: both;
 	display: block;
-	margin-bottom: 3rem;
-	padding-bottom: 1rem;
+	margin-bottom: 1rem;
+	padding-bottom: 0rem;
 }
 
-.attributes > ul > li > ul {
-	clear: both;
+@media (min-width: 300px) {
+
+	.attributes > ul > li {
+		margin-bottom: 3rem;
+		padding-bottom: 1rem;
+	}
+
+	.attributes > ul > li > ul {
+		clear: both;
+	}
+
+	.attributes li > h5 {
+		border-bottom: 1px solid #DDD;
+	}
+
+	.attributes li > h5 > label {
+		display: inline;
+		font-size: 2rem;
+		font-weight: normal;
+		margin: 0;
+		padding: 0 0 0 0.5rem;
+	}
+
+	.attributes li > h5 > span {
+		display: inline;
+		font-size: 2rem;
+		font-weight: bold;
+	}
+
+	.attributes > ul > li > ul > li {
+		clear: both;
+		min-height: 3rem;
+	}
+
+	.attributes li > label {
+		float: left;
+		font-size: 1.5rem;
+		height: 3rem;
+		width: 9rem;
+		padding: 0 1rem 0 1rem;
+	}
+
+	.attributes li > p {
+		font-size: 1.5rem;
+		margin-left: 12rem;
+	}
 }
 
-.attributes li > h5 {
-	border-bottom: 1px solid #DDD;
-}
 
-.attributes li > h5 > label {
-	display: inline;
-	font-size: 2rem;
-	font-weight: normal;
-	margin: 0;
-	padding: 0 0 0 0.5rem;
-}
-
-.attributes li > h5 > span {
-	display: inline;
-	font-size: 2rem;
-	font-weight: bold;
-}
-
-.attributes > ul > li > ul > li {
-	clear: both;
-	min-height: 3rem;
-}
-
-.attributes li > label {
-	float: left;
-	font-size: 1.5rem;
-	height: 3rem;
-	width: 9rem;
-	padding: 0 1rem 0 1rem;
-}
-
-.attributes li > p {
-	font-size: 1.5rem;
-}
 
 .button-icon {
 	height: 5rem;

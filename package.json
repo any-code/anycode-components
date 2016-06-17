@@ -1,6 +1,6 @@
 {
   "name": "anycode-components",
-  "version": "0.1.35",
+  "version": "0.1.36",
   "description": "anycode-components (RiotJS Tag Library) - A set of common RiotJS tags used by Anycode",
   "main": "anycode-components.min.js",
   "directories": {
@@ -9,7 +9,7 @@
   "scripts": {
     "test": "karma start",
     "watch": "./watch",
-    "pub-pack": "node scripts/pack.js index.js **/*.tag anycode-components.js & cat iconic/normalize.css iconic/starveling.css iconic/iconic-theme.css iconic-**/*.theme | cleancss -o iconic/iconic.css",
+    "pub-pack": "node scripts/pack.js index.js **/*.tag anycode-components.js && cat iconic/normalize.css iconic/starveling.css iconic/iconic-theme.css iconic-**/*.theme | cleancss -o iconic/iconic.css",
     "pub-minify": "uglifyjs anycode-components.js --compress --screw-ie8 --mangle > anycode-components.min.js",
     "pub-build": "npm run pub-pack && npm run pub-minify && npm run test",
     "pub-npm": "npm version patch && npm publish"
