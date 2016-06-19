@@ -1,0 +1,125 @@
+/*
+    ICONIC-TAGGER THEME
+*/
+
+iconic-tagger .dd-content .overflow {
+    display: block;
+}
+
+@media (min-width: 500px) {
+    iconic-tagger .dd-content .overflow {
+        display: none;
+    }
+}
+
+/*
+    TRIGGER
+*/
+iconic-tagger .dd-trigger {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: #DFDFDF;
+}
+
+iconic-tagger .dd-trigger span {
+    border: 1px solid rgba(0, 180, 170, 1);
+    background: rgba(0, 180, 170, 0.7);
+    color: #FFF;
+}
+
+iconic-tagger .dd-trigger:hover {
+    background-color: rgba(255,255,255,1);
+    border-color: #DFDFDF;
+}
+
+iconic-tagger .open .dd-trigger {
+    background-color: rgba(255,255,255,1);
+    border-bottom: 1px dotted #E5E5E5;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+iconic-tagger .dd-trigger.disabled .opener {
+    color: #CCC;
+}
+
+/*
+    CONTENT
+*/
+iconic-tagger .dd-content {
+    background-color: #FFFFFF;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-left: 1px solid #DFDFDF;
+    border-right: 1px solid #DFDFDF;
+    box-shadow: 0px 1rem 2rem 0 rgba(0,0,0,0.1);
+    left: auto;
+    margin-top: 0px;
+    overflow-x: hidden;
+    position: absolute;
+    right: 0;
+    width: 81vw;
+    z-index: 1;
+}
+
+.u-pull-left iconic-tagger .dd-content {
+    left: 0;
+    right: auto;
+}
+
+@media (min-width: 180px) { iconic-tagger .dd-content { width: 83vw; } }
+@media (min-width: 220px) { iconic-tagger .dd-content { width: 85.5vw; } }
+@media (min-width: 280px) { iconic-tagger .dd-content { width: 88vw; } }
+
+
+iconic-tagger .oversize .dd-content {
+    border-top-left-radius: 0.65rem;
+}
+
+.u-pull-left iconic-tagger .oversize .dd-content {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0.65rem;
+}
+
+@media (min-width: 300px) {
+    iconic-tagger .dd-content {
+        left: auto;
+        margin-top: 0px;
+        position: absolute;
+        right: 0;
+        width: auto;
+    }
+}
+
+/*
+    DEFAULT CONTENT LINKS
+*/
+iconic-tagger .dd-content item {
+    color: #000;
+    text-decoration: none;
+    white-space: normal;
+}
+
+iconic-tagger .dd-content item:hover {
+    background-color: #95f2e2;
+    color: #000;
+}
+
+iconic-tagger .oversize .dd-content > *:hover:first-child {
+    border-top-left-radius: 0.65rem;
+}
+
+.u-pull-left iconic-tagger .oversize .dd-content > *:hover:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0.65rem;
+}
+
+iconic-tagger .dd-content > *:last-child {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+@media (min-width: 300px) {
+    iconic-tagger .dd-content > * {
+        white-space: nowrap;
+    }
+}

@@ -1,0 +1,118 @@
+/*
+    iconic-select THEME
+*/
+
+iconic-select .dd-content .overflow {
+    display: block;
+}
+
+@media (min-width: 500px) {
+    iconic-select .dd-content .overflow {
+        display: none;
+    }
+}
+
+/*
+    TRIGGER
+*/
+iconic-select .dd-trigger {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: #DFDFDF;
+}
+
+iconic-select .dd-trigger:hover {
+    background-color: rgba(255,255,255,1);
+    border-color: #DFDFDF;
+}
+
+iconic-select .open .dd-trigger {
+    background-color: rgba(255,255,255,1);
+    border-bottom: 1px dotted #E5E5E5;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/*
+    CONTENT
+*/
+iconic-select .dd-content {
+    background-color: #FFFFFF;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-left: 1px solid #DFDFDF;
+    border-right: 1px solid #DFDFDF;
+    box-shadow: 0px 1rem 2rem 0 rgba(0,0,0,0.1);
+    left: auto;
+    margin-top: 0px;
+    overflow-x: hidden;
+    position: absolute;
+    right: 0;
+    width: 81vw;
+    z-index: 1;
+}
+
+.u-pull-left iconic-select .dd-content {
+    left: 0;
+    right: auto;
+}
+
+@media (min-width: 180px) { iconic-select .dd-content { width: 83vw; } }
+@media (min-width: 220px) { iconic-select .dd-content { width: 85.5vw; } }
+@media (min-width: 280px) { iconic-select .dd-content { width: 88vw; } }
+
+
+iconic-select .oversize .dd-content {
+    border-top-left-radius: 0.65rem;
+}
+
+.u-pull-left iconic-select .oversize .dd-content {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0.65rem;
+}
+
+@media (min-width: 300px) {
+    iconic-select .dd-content {
+        left: auto;
+        margin-top: 0px;
+        position: absolute;
+        right: 0;
+        width: auto;
+    }
+}
+
+/*
+    DEFAULT CONTENT LINKS
+*/
+iconic-select .dd-content item {
+    color: #000;
+    text-decoration: none;
+    white-space: normal;
+}
+
+iconic-select .dd-content item:hover {
+    background-color: #95f2e2;
+    color: #000;
+}
+
+iconic-select .dd-content item.selected { background: rgba(0,215,180,.9); color: #FFF; }
+iconic-select .dd-content item.selected:hover { background: rgba(0, 180, 170, 0.7); }
+
+iconic-select .oversize .dd-content > *:hover:first-child {
+    border-top-left-radius: 0.65rem;
+}
+
+.u-pull-left iconic-select .oversize .dd-content > *:hover:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0.65rem;
+}
+
+iconic-select .dd-content > *:last-child {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+@media (min-width: 300px) {
+    iconic-select .dd-content > * {
+        white-space: nowrap;
+    }
+}
