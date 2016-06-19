@@ -416,6 +416,7 @@ form {
 	margin-left: 1rem;
 }
 
+.u-cp * { cursor: pointer; }
 
 .u-full-width {
 	width: 100%;
