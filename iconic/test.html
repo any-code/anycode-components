@@ -12,7 +12,7 @@
 <body>
 <iconic class="not-ready">
     <iconic-header>
-        <div class="brand">
+        <div class="brand" onclick="{ parent.opts.more }">
             <i class="icon-anycode-logo"></i><span>any<b>code</b></span>
         </div>
         <ul>
@@ -169,6 +169,11 @@
         },
         alert: function(e) {
             console.log("YOU CLICKED", e.target.innerText);
+        },
+        more: function(e) {
+            this.parent.opts.tagList.push("Good Choice");
+            this.parent.update();
+            console.log(this.parent, "FU");
         }
     })
 

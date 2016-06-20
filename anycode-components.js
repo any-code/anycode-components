@@ -703,80 +703,90 @@ riot.tag2('iconic-select', '<div name="dd" class="dd"> <div name="ddTrigger" onc
 }, '{ }');
 
 
-riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onclick="{onTriggerClick}" class="dd-trigger opener u-nd"> <items name="selectedNode"> <span each="{item, index in selected}">{item}</span> </items> <placeholder if="{placeholder}">{placeholder}</placeholder> <i class="icon-add opener"></i> </div> <div name="ddContent" onclick="{onItemClick}" class="dd-content"> <item class="interactive" each="{item, index in unused}">{item}</item> </div> </div>', 'iconic-tagger,[riot-tag="iconic-tagger"] { display: inline-block; text-transform: uppercase; } iconic-tagger placeholder,[riot-tag="iconic-tagger"] placeholder { padding: 0 0 0 0.8rem; line-height: 2.4rem; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; } iconic-tagger .dd-trigger items,[riot-tag="iconic-tagger"] .dd-trigger items { max-width: 26rem; white-space: normal; display: inline-block; position: relative; text-align: left; line-height: 2.4rem; } iconic-tagger .dd,[riot-tag="iconic-tagger"] .dd { position: relative; display: inline-block; } iconic-tagger .dd-trigger,[riot-tag="iconic-tagger"] .dd-trigger { border-radius: 4px; border-style: solid; border-width: 1px; box-sizing: border-box; cursor: pointer; font-size: 1.2rem; height: auto; letter-spacing: 0; line-height: 2.8rem; min-width: 3rem; padding:0; text-align: center; vertical-align: top; } iconic-tagger .dd-trigger i,[riot-tag="iconic-tagger"] .dd-trigger i { padding-left: 0.8rem; line-height: 0; } iconic-tagger .dd-trigger span,[riot-tag="iconic-tagger"] .dd-trigger span { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; border-radius: 0.3rem; white-space: nowrap; margin: 0.2rem; padding: 0rem 0.4rem; display: inline-block; line-height: 1.8rem; } iconic-tagger .dd-trigger span:after,[riot-tag="iconic-tagger"] .dd-trigger span:after { content: "\\00D7"; font-size: 1.8rem; margin-left: 0.3rem; display: inline-block; line-height: 0;} iconic-tagger .dd-trigger .opener,[riot-tag="iconic-tagger"] .dd-trigger .opener { margin-top: 0; font-size: 1rem; } iconic-tagger .dd-trigger i:only-child,[riot-tag="iconic-tagger"] .dd-trigger i:only-child { padding: 0; } iconic-tagger .dd-trigger i + span,[riot-tag="iconic-tagger"] .dd-trigger i + span { padding-left: 0.5rem; padding-right: 0.8rem } iconic-tagger .dd-trigger items + i,[riot-tag="iconic-tagger"] .dd-trigger items + i { padding-right: 0.8rem } iconic-tagger .dd-trigger placeholder + i,[riot-tag="iconic-tagger"] .dd-trigger placeholder + i { padding-right: 0.8rem } iconic-tagger .dd-content item,[riot-tag="iconic-tagger"] .dd-content item { cursor: pointer; display: block; padding: 0.7rem 1rem; font-size: 1.2rem; text-transform: uppercase; white-space: nowrap; padding-top:0.5rem; padding-bottom:0.5rem; } iconic-tagger .dd-content,[riot-tag="iconic-tagger"] .dd-content { display: none; } iconic-tagger .open .dd-content,[riot-tag="iconic-tagger"] .open .dd-content { display:block; }', '', function(opts) {
-        this.contentClickable = !!opts.contentClickable;
+riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onclick="{onTriggerClick}" class="dd-trigger opener u-nd"> <items name="selectedNode"> <span each="{item, index in selected}">{item}</span> </items> <placeholder if="{placeholder}">{placeholder}</placeholder> <i class="icon-add opener"></i> </div> <div name="ddContent" onclick="{onItemClick}" class="dd-content"> <item class="interactive" each="{item, index in ddList}">{item}</item> </div> </div>', 'iconic-tagger,[riot-tag="iconic-tagger"] { display: inline-block; text-transform: uppercase; } iconic-tagger placeholder,[riot-tag="iconic-tagger"] placeholder { padding: 0 0 0 0.8rem; line-height: 2.4rem; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; } iconic-tagger .dd-trigger items,[riot-tag="iconic-tagger"] .dd-trigger items { max-width: 26rem; white-space: normal; display: inline-block; position: relative; text-align: left; line-height: 2.4rem; } iconic-tagger .dd,[riot-tag="iconic-tagger"] .dd { position: relative; display: inline-block; } iconic-tagger .dd-trigger,[riot-tag="iconic-tagger"] .dd-trigger { border-radius: 4px; border-style: solid; border-width: 1px; box-sizing: border-box; cursor: pointer; font-size: 1.2rem; height: auto; letter-spacing: 0; line-height: 2.8rem; min-width: 3rem; padding:0; text-align: center; vertical-align: top; } iconic-tagger .dd-trigger i,[riot-tag="iconic-tagger"] .dd-trigger i { padding-left: 0.8rem; line-height: 0; } iconic-tagger .dd-trigger span,[riot-tag="iconic-tagger"] .dd-trigger span { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; border-radius: 0.3rem; white-space: nowrap; margin: 0.2rem; padding: 0rem 0.4rem; display: inline-block; line-height: 1.8rem; } iconic-tagger .dd-trigger span:after,[riot-tag="iconic-tagger"] .dd-trigger span:after { content: "\\00D7"; font-size: 1.8rem; margin-left: 0.3rem; display: inline-block; line-height: 0;} iconic-tagger .dd-trigger .opener,[riot-tag="iconic-tagger"] .dd-trigger .opener { margin-top: 0; font-size: 1rem; } iconic-tagger .dd-trigger i:only-child,[riot-tag="iconic-tagger"] .dd-trigger i:only-child { padding: 0; } iconic-tagger .dd-trigger i + span,[riot-tag="iconic-tagger"] .dd-trigger i + span { padding-left: 0.5rem; padding-right: 0.8rem } iconic-tagger .dd-trigger items + i,[riot-tag="iconic-tagger"] .dd-trigger items + i { padding-right: 0.8rem } iconic-tagger .dd-trigger placeholder + i,[riot-tag="iconic-tagger"] .dd-trigger placeholder + i { padding-right: 0.8rem } iconic-tagger .dd-content item,[riot-tag="iconic-tagger"] .dd-content item { cursor: pointer; display: block; padding: 0.7rem 1rem; font-size: 1.2rem; text-transform: uppercase; white-space: nowrap; padding-top:0.5rem; padding-bottom:0.5rem; } iconic-tagger .dd-content,[riot-tag="iconic-tagger"] .dd-content { display: none; } iconic-tagger .open .dd-content,[riot-tag="iconic-tagger"] .open .dd-content { display:block; }', '', function(opts) {
         this._placeholder = opts.placeholder || 'All...';
-        this.items = opts.items || [];
-        this.selected = opts.selected ? opts.selected.split(',') : [];
-        this.unused = [].concat(this.items);
-        this.placeholder = this.selected.length > 0 ? false : this._placeholder;
+        this.selected = opts.selected ? opts.selected.split(',') : []
+        this.placeholder = this.selected.length > 0 ? false : this._placeholder
+        this.ddList = []
+
+        opts.items.forEach(function(item) {
+
+            if (this.selected.indexOf(item) === -1)
+                this.ddList.push(item)
+        }.bind(this))
+
+        this.on('update', function() {
+            if (!this.isMounted || !opts.items) return
+
+            var ddList = []
+            opts.items.forEach(function(item) {
+                console.log(item);
+                if (this.selected.indexOf(item) === -1)
+                    ddList.push(item)
+            }.bind(this))
+
+            ddList.sort(function (a, b) { return a > b ? 1 : -1 })
+
+            if (ddList.length > 0) {
+
+                this.ddTrigger.classList.remove('disabled')
+            }
+
+            this.ddList = ddList;
+        })
 
         this.onItemClick = function(event) {
-            var t = event.target;
+            var t = event.target
+
             while (t && !t.tagName.toUpperCase() == 'ITEM') t = t.parentElement
+            if (!t) return
 
-            if (t) {
-                var el = document.createElement('span'),
-                    text = document.createTextNode(t.textContent);
-                el.appendChild(text);
+            var selected = [].concat(this.selected)
+            selected.push(t.textContent);
+            selected.sort(function (a, b) { return a > b ? 1 : -1 })
 
-                this.selected.push(t.textContent);
+            var ddList = [].concat(this.ddList);
+            ddList.splice(ddList.indexOf(t.textContent), 1)
 
-                if (this.selected.length > 0) { this.update({ placeholder: false }) }
+            if (ddList.length === 0) {
 
-                this.ddContent.removeChild(t);
+                this.ddTrigger.classList.add('disabled')
 
-                var itemList = this.ddContent.querySelectorAll('item');
-                if (itemList.length == 0) {
-                    this.ddTrigger.classList.add('disabled');
-                    this.dd.classList.remove("open")
-                }
-
-                var sort = this.selectedNode.childNodes,
-                    sArr = [].slice.call(sort).sort(function (a, b) {
-                        return a.textContent > b.textContent ? 1 : -1
-                    })
-
-                sArr.forEach(function (n) {
-                    this.selectedNode.appendChild(n);
-                }.bind(this));
+                this.dd.classList.remove("open")
             }
+
+            this.update({
+                ddList: ddList,
+                placeholder: selected.length === 0 ? this._placeholder : false,
+                selected: selected
+            })
+        }
+
+        this.onSelectedTagClick = function(event) {
+
+            if (event.target.tagName.toUpperCase() != 'SPAN') return false
+
+            var ddList = [].concat(this.ddList)
+            ddList.push(event.target.textContent)
+            ddList.sort(function (a, b) { return a > b ? 1 : -1 })
+
+            var selected = [].concat(this.selected)
+            selected.splice(selected.indexOf(event.target.textContent), 1)
+
+            this.ddTrigger.classList.remove('disabled')
+
+            this.update({
+                ddList: ddList,
+                placeholder: selected.length === 0 ? this._placeholder : false,
+                selected: selected
+            })
+
+            return true
         }
 
         this.onTriggerClick = function(event) {
-            if (event.target.tagName.toUpperCase() == 'SPAN') {
-                this.unused.push(event.target.textContent);
-                this.ddTrigger.classList.remove('disabled');
 
-                if (this.selected.length > 0) { this.update({ placeholder: false }) }
-
-                if (this.selected.indexOf(event.target.textContent) > -1) {
-                    var selected = [].concat(this.selected);
-                    selected.splice(selected.indexOf(event.target.textContent), 1);
-                    this.update({
-                        selected: selected
-                    })
-                }
-
-                if (this.selected.length == 0) {
-                    this.update({
-                        placeholder: this._placeholder
-                    })
-                }
-
-                var sort = this.ddContent.childNodes,
-                    sArr = [].slice.call(sort).sort(function (a, b) {
-                        return a.textContent > b.textContent ? 1 : -1
-                    })
-
-                sArr.forEach(function (n) {
-                    this.ddContent.appendChild(n);
-                }.bind(this));
-
-                return;
-            }
-
-            if (this.ddContent.querySelectorAll('item').length == 0) return;
+            if (this.onSelectedTagClick(event) || this.ddList.length == 0) return;
 
             this.ddContent.style.minWidth = (this.ddTrigger.clientWidth) + 'px'
 
@@ -784,13 +794,12 @@ riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onc
 
             this.ddTrigger.clientWidth < this.ddContent.clientWidth ?
                 this.dd.classList.add('oversize') : this.dd.classList.remove('oversize')
-
         }.bind(this)
 
         this.onWindowClick = function(event) {
 
             var t = event.target,
-                c = event.target;
+                c = event.target
 
             while (t && !t.classList.contains('dd-trigger')) t = t.parentElement
             while (c && !c.classList.contains('interactive')) c = c.parentElement

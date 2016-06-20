@@ -9,84 +9,106 @@
             <i class="icon-add opener"></i>
         </div>
         <div name="ddContent" onclick="{ onItemClick }" class="dd-content">
-            <item class="interactive" each="{ item, index in unused }">{ item }</item>
+            <item class="interactive" each="{ item, index in ddList }">{ item }</item>
         </div>
     </div>
 
     <script>
-        this.contentClickable = !!opts.contentClickable;
         this._placeholder = opts.placeholder || 'All...';
-        this.items = opts.items || [];
-        this.selected = opts.selected ? opts.selected.split(',') : [];
-        this.unused = [].concat(this.items);
-        this.placeholder = this.selected.length > 0 ? false : this._placeholder;
+        this.selected = opts.selected ? opts.selected.split(',') : []
+        this.placeholder = this.selected.length > 0 ? false : this._placeholder
+        this.ddList = []
 
-        this.onItemClick = function(event) {
-            var t = event.target;
-            while (t && !t.tagName.toUpperCase() == 'ITEM') t = t.parentElement
+        opts.items.forEach(function(item) {
+            // only add unselected items to the ddList
+            if (this.selected.indexOf(item) === -1)
+                this.ddList.push(item)
+        }.bind(this))
 
-            if (t) {
-                var el = document.createElement('span'),
-                    text = document.createTextNode(t.textContent);
-                el.appendChild(text);
+        this.on('update', function() {
+            if (!this.isMounted || !opts.items) return
 
-                this.selected.push(t.textContent);
+            var ddList = []
+            opts.items.forEach(function(item) {
+                console.log(item);
+                if (this.selected.indexOf(item) === -1)
+                    ddList.push(item)
+            }.bind(this))
 
-                if (this.selected.length > 0) { this.update({ placeholder: false }) }
+            ddList.sort(function (a, b) { return a > b ? 1 : -1 })
 
-                this.ddContent.removeChild(t);
-
-                var itemList = this.ddContent.querySelectorAll('item');
-                if (itemList.length == 0) {
-                    this.ddTrigger.classList.add('disabled');
-                    this.dd.classList.remove("open")
-                }
-
-                var sort = this.selectedNode.childNodes,
-                    sArr = [].slice.call(sort).sort(function (a, b) {
-                        return a.textContent > b.textContent ? 1 : -1
-                    })
-
-                sArr.forEach(function (n) {
-                    this.selectedNode.appendChild(n);
-                }.bind(this));
+            if (ddList.length > 0) {
+                // enable the opener so the user can
+                // see theres new items in the list
+                this.ddTrigger.classList.remove('disabled')
             }
+
+            this.ddList = ddList;
+        })
+
+        // clicking a dropdown list item
+        this.onItemClick = function(event) {
+            var t = event.target
+
+            // find the clicked item
+            while (t && !t.tagName.toUpperCase() == 'ITEM') t = t.parentElement
+            if (!t) return
+
+            // add the tag to the selected list
+            var selected = [].concat(this.selected)
+            selected.push(t.textContent);
+            selected.sort(function (a, b) { return a > b ? 1 : -1 })
+
+            // remove the selected item from the dropdown list
+            var ddList = [].concat(this.ddList);
+            ddList.splice(ddList.indexOf(t.textContent), 1)
+
+            if (ddList.length === 0) {
+                // disable the opener so the user can
+                // see theres nothing else left to select
+                this.ddTrigger.classList.add('disabled')
+                // close the list, theres nothing left to see
+                this.dd.classList.remove("open")
+            }
+
+            this.update({
+                ddList: ddList,
+                placeholder: selected.length === 0 ? this._placeholder : false,
+                selected: selected
+            })
+        }
+
+        // clicking on a selected tag
+        this.onSelectedTagClick = function(event) {
+            // the user didn't click a tag so return
+            if (event.target.tagName.toUpperCase() != 'SPAN') return false
+
+            // add the item back to the ddList
+            var ddList = [].concat(this.ddList)
+            ddList.push(event.target.textContent)
+            ddList.sort(function (a, b) { return a > b ? 1 : -1 })
+
+            // remove tag from the selected list
+            var selected = [].concat(this.selected)
+            selected.splice(selected.indexOf(event.target.textContent), 1)
+
+            // since there is now something to select
+            // in the ddList reenable the opener
+            this.ddTrigger.classList.remove('disabled')
+
+            this.update({
+                ddList: ddList,
+                placeholder: selected.length === 0 ? this._placeholder : false,
+                selected: selected
+            })
+
+            return true
         }
 
         this.onTriggerClick = function(event) {
-            if (event.target.tagName.toUpperCase() == 'SPAN') {
-                this.unused.push(event.target.textContent);
-                this.ddTrigger.classList.remove('disabled');
-
-                if (this.selected.length > 0) { this.update({ placeholder: false }) }
-
-                if (this.selected.indexOf(event.target.textContent) > -1) {
-                    var selected = [].concat(this.selected);
-                    selected.splice(selected.indexOf(event.target.textContent), 1);
-                    this.update({
-                        selected: selected
-                    })
-                }
-
-                if (this.selected.length == 0) {
-                    this.update({
-                        placeholder: this._placeholder
-                    })
-                }
-
-                var sort = this.ddContent.childNodes,
-                    sArr = [].slice.call(sort).sort(function (a, b) {
-                        return a.textContent > b.textContent ? 1 : -1
-                    })
-
-                sArr.forEach(function (n) {
-                    this.ddContent.appendChild(n);
-                }.bind(this));
-
-                return;
-            }
-
-            if (this.ddContent.querySelectorAll('item').length == 0) return;
+            // don't show the list if the user
+            // clicked a tag or the list is empty
+            if (this.onSelectedTagClick(event) || this.ddList.length == 0) return;
 
             // set the width of the dropdown to be
             // at least the width of the trigger
@@ -95,18 +117,16 @@
             // toggle the dropdown
             this.dd.classList.toggle("open")
 
-            // add class if dropdown width is actually
-            // greater than the trigger width
+            // add oversize class if dropdown width is
+            // actually greater than the trigger width
             this.ddTrigger.clientWidth < this.ddContent.clientWidth ?
                 this.dd.classList.add('oversize') : this.dd.classList.remove('oversize')
-
         }.bind(this)
 
         this.onWindowClick = function(event) {
-
             // find the trigger element of the event target if it has one
             var t = event.target,
-                c = event.target;
+                c = event.target
 
             while (t && !t.classList.contains('dd-trigger')) t = t.parentElement
             while (c && !c.classList.contains('interactive')) c = c.parentElement
@@ -119,13 +139,11 @@
         }
 
         this.on('mount', function() {
-
             // when the tag is mounted add the window click event listener
             window.addEventListener('click', this.onWindowClick.bind(this), false)
         })
 
         this.on('unmount', function() {
-
             // when the tag is unmounted kill the window click event listener
             window.removeEventListener('click', this.onWindowClick.bind(this), false)
         })
