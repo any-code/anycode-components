@@ -12,7 +12,6 @@
     </div>
 
     <script>
-        console.log(opts);
         this.contentClickable = !!opts.contentClickable;
         this.selected = opts.selected || false;
         this._placeholder = opts.placeholder || 'Select...';

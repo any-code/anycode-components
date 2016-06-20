@@ -2,19 +2,24 @@
 
     <div name="dd" class="dd">
         <div name="ddTrigger" onclick="{ onTriggerClick }" class="dd-trigger opener u-nd">
-            <items name="selectedNode"><yield from="trigger"/></items>
+            <items name="selectedNode">
+                <span each="{ item, index in selected }">{ item }</span>
+            </items>
             <placeholder if="{ placeholder }" >{ placeholder }</placeholder>
             <i class="icon-add opener"></i>
         </div>
         <div name="ddContent" onclick="{ onItemClick }" class="dd-content">
-            <yield from="items"/>
+            <item class="interactive" each="{ item, index in unused }">{ item }</item>
         </div>
     </div>
 
     <script>
         this.contentClickable = !!opts.contentClickable;
         this._placeholder = opts.placeholder || 'All...';
-        this.placeholder = this.selectedNode.childNodes.length > 0 ? false : this._placeholder;
+        this.items = opts.items || [];
+        this.selected = opts.selected ? opts.selected.split(',') : [];
+        this.unused = [].concat(this.items);
+        this.placeholder = this.selected.length > 0 ? false : this._placeholder;
 
         this.onItemClick = function(event) {
             var t = event.target;
@@ -25,9 +30,9 @@
                     text = document.createTextNode(t.textContent);
                 el.appendChild(text);
 
-                this.selectedNode.appendChild(el);
+                this.selected.push(t.textContent);
 
-                if (this.selectedNode.childNodes.length > 0) { this.update({ placeholder: false }) }
+                if (this.selected.length > 0) { this.update({ placeholder: false }) }
 
                 this.ddContent.removeChild(t);
 
@@ -50,18 +55,20 @@
 
         this.onTriggerClick = function(event) {
             if (event.target.tagName.toUpperCase() == 'SPAN') {
-
-                var el = document.createElement('item'),
-                    text = document.createTextNode(event.target.textContent);
-                el.appendChild(text);
-                el.classList.add('interactive');
-                this.ddContent.appendChild(el);
-
-                if (this.selectedNode.childNodes.length > 0) { this.update({ placeholder: false }) }
-
-                this.selectedNode.removeChild(event.target);
+                this.unused.push(event.target.textContent);
                 this.ddTrigger.classList.remove('disabled');
-                if (this.selectedNode.childNodes.length == 0) {
+
+                if (this.selected.length > 0) { this.update({ placeholder: false }) }
+
+                if (this.selected.indexOf(event.target.textContent) > -1) {
+                    var selected = [].concat(this.selected);
+                    selected.splice(selected.indexOf(event.target.textContent), 1);
+                    this.update({
+                        selected: selected
+                    })
+                }
+
+                if (this.selected.length == 0) {
                     this.update({
                         placeholder: this._placeholder
                     })
@@ -148,11 +155,7 @@
         .dd-trigger i + span { padding-left: 0.5rem; padding-right: 0.8rem }
         .dd-trigger items + i { padding-right: 0.8rem }
         .dd-trigger placeholder + i { padding-right: 0.8rem }
-        .dd-content .interactive { padding-top:0.5rem; padding-bottom:0.5rem; }
-        .dd-content item { cursor: pointer; display: block; padding: 0.7rem 1rem; font-size: 1.2rem; text-transform: uppercase; }
-        .dd-content .interactive label, .dd-content .interactive span { -webkit-touch-callout: none;
-            -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none;
-            user-select: none; }
+        .dd-content item { cursor: pointer; display: block; padding: 0.7rem 1rem; font-size: 1.2rem; text-transform: uppercase; white-space: nowrap; padding-top:0.5rem; padding-bottom:0.5rem; }
         .dd-content { display: none; }
         .open .dd-content { display:block; }
     </style>
