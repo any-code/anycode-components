@@ -18,25 +18,8 @@
         <ul>
             <li class="menu pinned">
                 <iconic-select selected="Most Recent" items="{ parent.opts.sortList }"></iconic-select>
-                <iconic-tagger placeholder="Every Status...">
-                    <yield to="trigger"><span>Planning</span></yield>
-                    <yield to="items">
-                        <item class="interactive">Planning</item>
-                        <item class="interactive">In Progress</item>
-                        <item class="interactive">In Review</item>
-                        <item class="interactive">Completed</item>
-                        <item class="interactive">Archived</item>
-                        <item class="interactive">Planning 2</item>
-                        <item class="interactive">In Progress 2</item>
-                        <item class="interactive">In Review 2</item>
-                        <item class="interactive">Completed 2</item>
-                        <item class="interactive">Archived 2</item>
-                    </yield>
-                </iconic-tagger>
-                <iconic-tagger placeholder="Every Attribute...">
-                    <yield to="trigger"><span>Deadline</span></yield>
-                    <yield to="items"><item class="interactive">Incomplete</item><item class="interactive">Unread</item></yield>
-                </iconic-tagger>
+                <iconic-tagger placeholder="Every Status..." selected="Planning,In Progress" items="{ parent.opts.tagList }"></iconic-tagger>
+                <iconic-tagger placeholder="Every Attribute..."  items="{ parent.opts.attrList }"></iconic-tagger>
             </li>
             <li class="interactive-menu">
                 <iconic-dropdown content-clickable="yep">
@@ -152,6 +135,21 @@
             "Due, Status",
             "Alpha-numeric"
         ],
+
+        tagList: [
+            'Planning',
+            'In Progress',
+            'In Review',
+            'Completed',
+            'Archived'
+        ],
+
+        attrList: [
+            'Due',
+            'Overdue',
+            'Magical Gorilla'
+        ],
+
         burgerIcon: "icon-burger",
         navigationAutomatic: function() {
             this.nav.classList.add("auto")

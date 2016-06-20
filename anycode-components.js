@@ -651,7 +651,6 @@ riot.tag2('iconic-navigation', '<iconic-tip position="right" delay="1" name="nav
 
 
 riot.tag2('iconic-select', '<div name="dd" class="dd"> <div name="ddTrigger" onclick="{onTriggerClick}" class="dd-trigger opener u-nd"> <selected-item name="selectedNode">{selected}</selected-item> <placeholder if="{placeholder}">{placeholder}</placeholder> <i class="icon-menu opener"></i> </div> <div name="ddContent" onclick="{onItemClick}" class="dd-content"> <item each="{item, index in opts.items}" class="{selected: item === parent.selected}">{item}</item> </div> </div>', 'iconic-select,[riot-tag="iconic-select"] { display: inline-block; text-transform: uppercase; } iconic-select placeholder,[riot-tag="iconic-select"] placeholder,iconic-select selected-item,[riot-tag="iconic-select"] selected-item { line-height: 2.4rem; padding: 0 0 0 0.8rem; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; } iconic-select selected-item,[riot-tag="iconic-select"] selected-item { display: inline-block; line-height: 2.4rem; } iconic-select .dd,[riot-tag="iconic-select"] .dd { position: relative; display: inline-block; } iconic-select .dd-trigger,[riot-tag="iconic-select"] .dd-trigger { border-radius: 4px; border-style: solid; border-width: 1px; box-sizing: border-box; cursor: pointer; font-size: 1.2rem; height: auto; letter-spacing: 0; line-height: 2.8rem; min-width: 3rem; padding:0; text-align: center; vertical-align: top; } iconic-select .dd-trigger i,[riot-tag="iconic-select"] .dd-trigger i { padding-left: 0.8rem; } iconic-select .dd-trigger span,[riot-tag="iconic-select"] .dd-trigger span { padding-left: 0.8rem; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } iconic-select .dd-trigger i:only-child,[riot-tag="iconic-select"] .dd-trigger i:only-child { padding: 0; } iconic-select .dd-trigger placeholder + i,[riot-tag="iconic-select"] .dd-trigger placeholder + i,iconic-select selected-item + i,[riot-tag="iconic-select"] selected-item + i { padding-right: 0.8rem } iconic-select .dd-content item,[riot-tag="iconic-select"] .dd-content item { cursor: pointer; display: block; padding: 0.7rem 1rem; font-size: 1.2rem; text-transform: uppercase; } iconic-select .dd-content,[riot-tag="iconic-select"] .dd-content { display: none; } iconic-select .open .dd-content,[riot-tag="iconic-select"] .open .dd-content { display:block; }', '', function(opts) {
-        console.log(opts);
         this.contentClickable = !!opts.contentClickable;
         this.selected = opts.selected || false;
         this._placeholder = opts.placeholder || 'Select...';
@@ -704,10 +703,13 @@ riot.tag2('iconic-select', '<div name="dd" class="dd"> <div name="ddTrigger" onc
 }, '{ }');
 
 
-riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onclick="{onTriggerClick}" class="dd-trigger opener u-nd"> <items name="selectedNode"><yield from="trigger"></yield></items> <placeholder if="{placeholder}">{placeholder}</placeholder> <i class="icon-add opener"></i> </div> <div name="ddContent" onclick="{onItemClick}" class="dd-content"> <yield from="items"></yield> </div> </div>', 'iconic-tagger,[riot-tag="iconic-tagger"] { display: inline-block; text-transform: uppercase; } iconic-tagger placeholder,[riot-tag="iconic-tagger"] placeholder { padding: 0 0 0 0.8rem; line-height: 2.4rem; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; } iconic-tagger .dd-trigger items,[riot-tag="iconic-tagger"] .dd-trigger items { max-width: 26rem; white-space: normal; display: inline-block; position: relative; text-align: left; line-height: 2.4rem; } iconic-tagger .dd,[riot-tag="iconic-tagger"] .dd { position: relative; display: inline-block; } iconic-tagger .dd-trigger,[riot-tag="iconic-tagger"] .dd-trigger { border-radius: 4px; border-style: solid; border-width: 1px; box-sizing: border-box; cursor: pointer; font-size: 1.2rem; height: auto; letter-spacing: 0; line-height: 2.8rem; min-width: 3rem; padding:0; text-align: center; vertical-align: top; } iconic-tagger .dd-trigger i,[riot-tag="iconic-tagger"] .dd-trigger i { padding-left: 0.8rem; line-height: 0; } iconic-tagger .dd-trigger span,[riot-tag="iconic-tagger"] .dd-trigger span { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; border-radius: 0.3rem; white-space: nowrap; margin: 0.2rem; padding: 0rem 0.4rem; display: inline-block; line-height: 1.8rem; } iconic-tagger .dd-trigger span:after,[riot-tag="iconic-tagger"] .dd-trigger span:after { content: "\\00D7"; font-size: 1.8rem; margin-left: 0.3rem; display: inline-block; line-height: 0;} iconic-tagger .dd-trigger .opener,[riot-tag="iconic-tagger"] .dd-trigger .opener { margin-top: 0; font-size: 1rem; } iconic-tagger .dd-trigger i:only-child,[riot-tag="iconic-tagger"] .dd-trigger i:only-child { padding: 0; } iconic-tagger .dd-trigger i + span,[riot-tag="iconic-tagger"] .dd-trigger i + span { padding-left: 0.5rem; padding-right: 0.8rem } iconic-tagger .dd-trigger items + i,[riot-tag="iconic-tagger"] .dd-trigger items + i { padding-right: 0.8rem } iconic-tagger .dd-trigger placeholder + i,[riot-tag="iconic-tagger"] .dd-trigger placeholder + i { padding-right: 0.8rem } iconic-tagger .dd-content .interactive,[riot-tag="iconic-tagger"] .dd-content .interactive { padding-top:0.5rem; padding-bottom:0.5rem; } iconic-tagger .dd-content item,[riot-tag="iconic-tagger"] .dd-content item { cursor: pointer; display: block; padding: 0.7rem 1rem; font-size: 1.2rem; text-transform: uppercase; } iconic-tagger .dd-content .interactive label,[riot-tag="iconic-tagger"] .dd-content .interactive label,iconic-tagger .dd-content .interactive span,[riot-tag="iconic-tagger"] .dd-content .interactive span { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } iconic-tagger .dd-content,[riot-tag="iconic-tagger"] .dd-content { display: none; } iconic-tagger .open .dd-content,[riot-tag="iconic-tagger"] .open .dd-content { display:block; }', '', function(opts) {
+riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onclick="{onTriggerClick}" class="dd-trigger opener u-nd"> <items name="selectedNode"> <span each="{item, index in selected}">{item}</span> </items> <placeholder if="{placeholder}">{placeholder}</placeholder> <i class="icon-add opener"></i> </div> <div name="ddContent" onclick="{onItemClick}" class="dd-content"> <item class="interactive" each="{item, index in unused}">{item}</item> </div> </div>', 'iconic-tagger,[riot-tag="iconic-tagger"] { display: inline-block; text-transform: uppercase; } iconic-tagger placeholder,[riot-tag="iconic-tagger"] placeholder { padding: 0 0 0 0.8rem; line-height: 2.4rem; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; } iconic-tagger .dd-trigger items,[riot-tag="iconic-tagger"] .dd-trigger items { max-width: 26rem; white-space: normal; display: inline-block; position: relative; text-align: left; line-height: 2.4rem; } iconic-tagger .dd,[riot-tag="iconic-tagger"] .dd { position: relative; display: inline-block; } iconic-tagger .dd-trigger,[riot-tag="iconic-tagger"] .dd-trigger { border-radius: 4px; border-style: solid; border-width: 1px; box-sizing: border-box; cursor: pointer; font-size: 1.2rem; height: auto; letter-spacing: 0; line-height: 2.8rem; min-width: 3rem; padding:0; text-align: center; vertical-align: top; } iconic-tagger .dd-trigger i,[riot-tag="iconic-tagger"] .dd-trigger i { padding-left: 0.8rem; line-height: 0; } iconic-tagger .dd-trigger span,[riot-tag="iconic-tagger"] .dd-trigger span { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; border-radius: 0.3rem; white-space: nowrap; margin: 0.2rem; padding: 0rem 0.4rem; display: inline-block; line-height: 1.8rem; } iconic-tagger .dd-trigger span:after,[riot-tag="iconic-tagger"] .dd-trigger span:after { content: "\\00D7"; font-size: 1.8rem; margin-left: 0.3rem; display: inline-block; line-height: 0;} iconic-tagger .dd-trigger .opener,[riot-tag="iconic-tagger"] .dd-trigger .opener { margin-top: 0; font-size: 1rem; } iconic-tagger .dd-trigger i:only-child,[riot-tag="iconic-tagger"] .dd-trigger i:only-child { padding: 0; } iconic-tagger .dd-trigger i + span,[riot-tag="iconic-tagger"] .dd-trigger i + span { padding-left: 0.5rem; padding-right: 0.8rem } iconic-tagger .dd-trigger items + i,[riot-tag="iconic-tagger"] .dd-trigger items + i { padding-right: 0.8rem } iconic-tagger .dd-trigger placeholder + i,[riot-tag="iconic-tagger"] .dd-trigger placeholder + i { padding-right: 0.8rem } iconic-tagger .dd-content item,[riot-tag="iconic-tagger"] .dd-content item { cursor: pointer; display: block; padding: 0.7rem 1rem; font-size: 1.2rem; text-transform: uppercase; white-space: nowrap; padding-top:0.5rem; padding-bottom:0.5rem; } iconic-tagger .dd-content,[riot-tag="iconic-tagger"] .dd-content { display: none; } iconic-tagger .open .dd-content,[riot-tag="iconic-tagger"] .open .dd-content { display:block; }', '', function(opts) {
         this.contentClickable = !!opts.contentClickable;
         this._placeholder = opts.placeholder || 'All...';
-        this.placeholder = this.selectedNode.childNodes.length > 0 ? false : this._placeholder;
+        this.items = opts.items || [];
+        this.selected = opts.selected ? opts.selected.split(',') : [];
+        this.unused = [].concat(this.items);
+        this.placeholder = this.selected.length > 0 ? false : this._placeholder;
 
         this.onItemClick = function(event) {
             var t = event.target;
@@ -718,9 +720,9 @@ riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onc
                     text = document.createTextNode(t.textContent);
                 el.appendChild(text);
 
-                this.selectedNode.appendChild(el);
+                this.selected.push(t.textContent);
 
-                if (this.selectedNode.childNodes.length > 0) { this.update({ placeholder: false }) }
+                if (this.selected.length > 0) { this.update({ placeholder: false }) }
 
                 this.ddContent.removeChild(t);
 
@@ -743,18 +745,20 @@ riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onc
 
         this.onTriggerClick = function(event) {
             if (event.target.tagName.toUpperCase() == 'SPAN') {
-
-                var el = document.createElement('item'),
-                    text = document.createTextNode(event.target.textContent);
-                el.appendChild(text);
-                el.classList.add('interactive');
-                this.ddContent.appendChild(el);
-
-                if (this.selectedNode.childNodes.length > 0) { this.update({ placeholder: false }) }
-
-                this.selectedNode.removeChild(event.target);
+                this.unused.push(event.target.textContent);
                 this.ddTrigger.classList.remove('disabled');
-                if (this.selectedNode.childNodes.length == 0) {
+
+                if (this.selected.length > 0) { this.update({ placeholder: false }) }
+
+                if (this.selected.indexOf(event.target.textContent) > -1) {
+                    var selected = [].concat(this.selected);
+                    selected.splice(selected.indexOf(event.target.textContent), 1);
+                    this.update({
+                        selected: selected
+                    })
+                }
+
+                if (this.selected.length == 0) {
                     this.update({
                         placeholder: this._placeholder
                     })
