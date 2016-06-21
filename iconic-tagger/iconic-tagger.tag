@@ -14,17 +14,24 @@
     </div>
 
     <script>
+        function asc(a, b) { return a > b ? 1 : -1 }
         function inside(index) { return index > -1 }
         function outside(index) { return index === -1 }
+
+        // Pick will work with a comma separated
+        // checkList or an array of strings checkList
+        // because javascript.
         function pick(checkList, items, fn) {
-            var list = [];
+            if (!checkList) return items
+            var list = []
             items.forEach(function(item) {
                 if (fn(checkList.indexOf(item)))
-                    list.push(item);
+                    list.push(item)
             })
-            list.sort(function (a, b) { return a > b ? 1 : -1 })
+            list.sort(asc)
             return list
         }
+
         function move(from, to, name) {
             var names = name && typeof name == "string" ? [name] : name
             names.forEach(function(name) {
@@ -32,27 +39,27 @@
                 if (fi > -1) from.splice(fi, 1)
                 if (to.indexOf(name) === -1) to.push(name)
             })
-            from.sort(function (a, b) { return a > b ? 1 : -1 })
-            to.sort(function (a, b) { return a > b ? 1 : -1 })
+            from.sort(asc)
+            to.sort(asc)
             return to
         }
 
         this.setSelected = function(list) {
             var unselected = [].concat(this.selected, this.unselected)
+            list = list || [];
             this.update({
                 selected: move([], [], pick(list, unselected, inside)),
                 unselected: move([], [], pick(list, unselected, outside))
             })
-
             this.draw()
         }
 
         this.setItems = function(list) {
+            list = list || [];
             this.update({
                 selected: move([], [], pick(this.selected, list, inside)),
                 unselected: move([], [], pick(this.selected, list, outside))
             })
-
             this.draw()
         }
 
@@ -62,15 +69,12 @@
         // clicking a dropdown list item
         this.onItemClick = function(event) {
             var t = event.target
-
             // find the clicked item
             while (t && !t.tagName.toUpperCase() == 'ITEM') t = t.parentElement
             if (!t) return
 
             move(this.unselected, this.selected, t.textContent);
-
             this.draw()
-
             this.update({ placeholder: this.selected.length === 0 ? this._placeholder : false })
         }
 
@@ -78,9 +82,7 @@
         this.onSelectedTagClick = function(event) {
             if (event.target.tagName.toUpperCase() != 'SPAN') return false
             move(this.selected, this.unselected, event.target.textContent)
-
             this.draw()
-
             return true
         }
 
@@ -91,7 +93,6 @@
             } else {
                 this.ddTrigger.classList.remove('disabled')
             }
-
             this.update({ placeholder: this.selected.length === 0 ? this._placeholder : false })
         }
 
@@ -131,10 +132,14 @@
         this.on('mount', function() {
             // when the tag is mounted add the window click event listener
             window.addEventListener('click', this.onWindowClick.bind(this), false)
+            var selected = opts.selected || [],
+                items = opts.items && typeof opts.items == "string" ? opts.items.split(',') : opts.items
+
+            if (!items) items = []
 
             this.update({
-                selected: move([], [], pick(opts.selected, opts.items, inside)),
-                unselected: move([], [], pick(opts.selected, opts.items, outside))
+                selected: move([], [], pick(selected, items, inside)),
+                unselected: move([], [], pick(selected, items, outside))
             })
 
             this._placeholder = opts.placeholder || 'All...'

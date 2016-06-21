@@ -704,17 +704,21 @@ riot.tag2('iconic-select', '<div name="dd" class="dd"> <div name="ddTrigger" onc
 
 
 riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onclick="{onTriggerClick}" class="dd-trigger opener u-nd"> <items name="selectedNode"> <span each="{item, index in selected}">{item}</span> </items> <placeholder if="{placeholder}">{placeholder}</placeholder> <i class="{opts.icon} opener"></i> </div> <div name="ddContent" onclick="{onItemClick}" class="dd-content"> <item class="interactive" each="{item, index in unselected}">{item}</item> </div> </div>', 'iconic-tagger,[riot-tag="iconic-tagger"] { display: inline-block; text-transform: uppercase; } iconic-tagger placeholder,[riot-tag="iconic-tagger"] placeholder { padding: 0 0 0 0.8rem; line-height: 2.4rem; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; } iconic-tagger .dd-trigger items,[riot-tag="iconic-tagger"] .dd-trigger items { max-width: 26rem; white-space: normal; display: inline-block; position: relative; text-align: left; line-height: 2.4rem; } iconic-tagger .dd,[riot-tag="iconic-tagger"] .dd { position: relative; display: inline-block; } iconic-tagger .dd-trigger,[riot-tag="iconic-tagger"] .dd-trigger { border-radius: 4px; border-style: solid; border-width: 1px; box-sizing: border-box; cursor: pointer; font-size: 1.2rem; height: auto; letter-spacing: 0; line-height: 2.8rem; min-width: 3rem; padding:0; text-align: center; vertical-align: top; } iconic-tagger .dd-trigger i,[riot-tag="iconic-tagger"] .dd-trigger i { padding-left: 0.8rem; line-height: 0; } iconic-tagger .dd-trigger span,[riot-tag="iconic-tagger"] .dd-trigger span { -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; border-radius: 0.3rem; white-space: nowrap; margin: 0.2rem; padding: 0rem 0.4rem; display: inline-block; line-height: 1.8rem; } iconic-tagger .dd-trigger span:after,[riot-tag="iconic-tagger"] .dd-trigger span:after { content: "\\00D7"; font-size: 1.8rem; margin-left: 0.3rem; display: inline-block; line-height: 0;} iconic-tagger .dd-trigger i:only-child,[riot-tag="iconic-tagger"] .dd-trigger i:only-child { padding: 0; } iconic-tagger .dd-trigger i + span,[riot-tag="iconic-tagger"] .dd-trigger i + span { padding-left: 0.5rem; padding-right: 0.8rem } iconic-tagger .dd-trigger items + i,[riot-tag="iconic-tagger"] .dd-trigger items + i { padding-right: 0.8rem } iconic-tagger .dd-trigger placeholder + i,[riot-tag="iconic-tagger"] .dd-trigger placeholder + i { padding-right: 0.8rem } iconic-tagger .dd-content item,[riot-tag="iconic-tagger"] .dd-content item { cursor: pointer; display: block; padding: 0.7rem 1rem; font-size: 1.2rem; text-transform: uppercase; white-space: nowrap; padding-top:0.5rem; padding-bottom:0.5rem; } iconic-tagger .dd-content,[riot-tag="iconic-tagger"] .dd-content { display: none; } iconic-tagger .open .dd-content,[riot-tag="iconic-tagger"] .open .dd-content { display:block; }', '', function(opts) {
+        function asc(a, b) { return a > b ? 1 : -1 }
         function inside(index) { return index > -1 }
         function outside(index) { return index === -1 }
+
         function pick(checkList, items, fn) {
-            var list = [];
+            if (!checkList) return items
+            var list = []
             items.forEach(function(item) {
                 if (fn(checkList.indexOf(item)))
-                    list.push(item);
+                    list.push(item)
             })
-            list.sort(function (a, b) { return a > b ? 1 : -1 })
+            list.sort(asc)
             return list
         }
+
         function move(from, to, name) {
             var names = name && typeof name == "string" ? [name] : name
             names.forEach(function(name) {
@@ -722,27 +726,27 @@ riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onc
                 if (fi > -1) from.splice(fi, 1)
                 if (to.indexOf(name) === -1) to.push(name)
             })
-            from.sort(function (a, b) { return a > b ? 1 : -1 })
-            to.sort(function (a, b) { return a > b ? 1 : -1 })
+            from.sort(asc)
+            to.sort(asc)
             return to
         }
 
         this.setSelected = function(list) {
             var unselected = [].concat(this.selected, this.unselected)
+            list = list || [];
             this.update({
                 selected: move([], [], pick(list, unselected, inside)),
                 unselected: move([], [], pick(list, unselected, outside))
             })
-
             this.draw()
         }
 
         this.setItems = function(list) {
+            list = list || [];
             this.update({
                 selected: move([], [], pick(this.selected, list, inside)),
                 unselected: move([], [], pick(this.selected, list, outside))
             })
-
             this.draw()
         }
 
@@ -756,18 +760,14 @@ riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onc
             if (!t) return
 
             move(this.unselected, this.selected, t.textContent);
-
             this.draw()
-
             this.update({ placeholder: this.selected.length === 0 ? this._placeholder : false })
         }
 
         this.onSelectedTagClick = function(event) {
             if (event.target.tagName.toUpperCase() != 'SPAN') return false
             move(this.selected, this.unselected, event.target.textContent)
-
             this.draw()
-
             return true
         }
 
@@ -778,7 +778,6 @@ riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onc
             } else {
                 this.ddTrigger.classList.remove('disabled')
             }
-
             this.update({ placeholder: this.selected.length === 0 ? this._placeholder : false })
         }
 
@@ -810,10 +809,14 @@ riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onc
         this.on('mount', function() {
 
             window.addEventListener('click', this.onWindowClick.bind(this), false)
+            var selected = opts.selected || [],
+                items = opts.items && typeof opts.items == "string" ? opts.items.split(',') : opts.items
+
+            if (!items) items = []
 
             this.update({
-                selected: move([], [], pick(opts.selected, opts.items, inside)),
-                unselected: move([], [], pick(opts.selected, opts.items, outside))
+                selected: move([], [], pick(selected, items, inside)),
+                unselected: move([], [], pick(selected, items, outside))
             })
 
             this._placeholder = opts.placeholder || 'All...'

@@ -23,8 +23,8 @@
         <ul>
             <li class="menu pinned">
                 <iconic-select icon="icon-menu" selected="Most Recent" items="{ parent.opts.sortList }"></iconic-select>
-                <iconic-tagger name="tagger1" icon="icon-menu" placeholder="Every Status..." selected="{ parent.opts.selList }" items="{ parent.opts.tagList }"></iconic-tagger>
-                <iconic-tagger icon="icon-menu" placeholder="Every Attribute..."  selected="{ parent.opts.attrSelList }" items="{ parent.opts.attrList }"></iconic-tagger>
+                <iconic-tagger icon="icon-menu" placeholder="Every Status..." selected="{ parent.opts.selList }" items="{ parent.opts.tagList }"></iconic-tagger>
+                <iconic-tagger name="tagger1" icon="icon-menu" placeholder="Every Attribute..." selected="Due"></iconic-tagger>
             </li>
             <li class="interactive-menu">
                 <iconic-dropdown content-clickable="yep">
@@ -191,7 +191,7 @@
         },
         sel: function(e) {
             console.log(this.tags.tagger1)
-            this.tags.tagger1.setItems(['A', 'B', 'C', 'In Review']);
+            this.tags.tagger1.setItems(['A', 'B', 'C', 'Due']);
         }
     })
 
