@@ -4,7 +4,7 @@
         <div name="ddTrigger" onclick="{ onTriggerClick }" class="dd-trigger opener u-nd">
             <selected-item name="selectedNode">{ selected }</selected-item>
             <placeholder if="{ placeholder }" >{ placeholder }</placeholder>
-            <i class="icon-menu opener"></i>
+            <i class="{ opts.icon } opener"></i>
         </div>
         <div name="ddContent" onclick="{ onItemClick }" class="dd-content">
             <item each="{ item, index in opts.items }" class="{ selected: item === parent.selected }">{ item }</item>
