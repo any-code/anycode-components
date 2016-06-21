@@ -52,6 +52,7 @@
                 unselected: move([], [], pick(list, unselected, outside))
             })
             this.draw()
+            this.setValue()
         }
 
         this.setItems = function(list) {
@@ -61,6 +62,7 @@
                 unselected: move([], [], pick(this.selected, list, outside))
             })
             this.draw()
+            this.setValue()
         }
 
         this.on('set-selected', this.setSelected)
@@ -70,12 +72,18 @@
         this.onItemClick = function(event) {
             var t = event.target
             // find the clicked item
-            while (t && !t.tagName.toUpperCase() == 'ITEM') t = t.parentElement
+            while (t && t.tagName.toUpperCase() != 'ITEM') t = t.parentElement
             if (!t) return
 
             move(this.unselected, this.selected, t.textContent);
             this.draw()
+            this.setValue()
             this.update({ placeholder: this.selected.length === 0 ? this._placeholder : false })
+        }
+
+        this.setValue = function() {
+            this.root.value = this.selected;
+            this.trigger('change', this.root.value);
         }
 
         // clicking on a selected tag
@@ -83,6 +91,7 @@
             if (event.target.tagName.toUpperCase() != 'SPAN') return false
             move(this.selected, this.unselected, event.target.textContent)
             this.draw()
+            this.setValue()
             return true
         }
 

@@ -22,7 +22,7 @@
         </div>
         <ul>
             <li class="menu pinned">
-                <iconic-select icon="icon-menu" selected="Most Recent" items="{ parent.opts.sortList }"></iconic-select>
+                <iconic-select name="selection1" icon="icon-menu" selected="Most Recent" items="{ parent.opts.sortList }"></iconic-select>
                 <iconic-tagger icon="icon-menu" placeholder="Every Status..." selected="{ parent.opts.selList }" items="{ parent.opts.tagList }"></iconic-tagger>
                 <iconic-tagger name="tagger1" icon="icon-menu" placeholder="Every Attribute..." selected="Due"></iconic-tagger>
             </li>
@@ -190,8 +190,16 @@
             console.log(this.parent, "FU");
         },
         sel: function(e) {
-            console.log(this.tags.tagger1)
+
             this.tags.tagger1.setItems(['A', 'B', 'C', 'Due']);
+
+            this.tags.tagger1.on('change', function(selected) {
+                console.log("CHANGED TAGGER", this.root.value, selected);
+            })
+
+            this.tags.selection1.on('change', function(selected) {
+                console.log("CHANGED SELECTION", this.root.value, selected);
+            })
         }
     })
 

@@ -656,13 +656,18 @@ riot.tag2('iconic-select', '<div name="dd" class="dd"> <div name="ddTrigger" onc
         this._placeholder = opts.placeholder || 'Select...';
         this.placeholder = this.selected ? false : this._placeholder;
 
+        this.setValue = function() {
+            this.root.value = this.selected;
+            this.trigger('change', this.root.value);
+        }
+
         this.onItemClick = function(event) {
             var t = event.target;
-            while (t && !t.tagName.toUpperCase() == 'ITEM') t = t.parentElement
-
+            while (t && t.tagName.toUpperCase() != 'ITEM') t = t.parentElement
             if (t) {
                 this.selected = t.textContent;
                 this.update({ placeholder: this.selected ? false : this._placeholder })
+                this.setValue()
             }
         }
 
@@ -739,6 +744,7 @@ riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onc
                 unselected: move([], [], pick(list, unselected, outside))
             })
             this.draw()
+            this.setValue()
         }
 
         this.setItems = function(list) {
@@ -748,6 +754,7 @@ riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onc
                 unselected: move([], [], pick(this.selected, list, outside))
             })
             this.draw()
+            this.setValue()
         }
 
         this.on('set-selected', this.setSelected)
@@ -756,18 +763,25 @@ riot.tag2('iconic-tagger', '<div name="dd" class="dd"> <div name="ddTrigger" onc
         this.onItemClick = function(event) {
             var t = event.target
 
-            while (t && !t.tagName.toUpperCase() == 'ITEM') t = t.parentElement
+            while (t && t.tagName.toUpperCase() != 'ITEM') t = t.parentElement
             if (!t) return
 
             move(this.unselected, this.selected, t.textContent);
             this.draw()
+            this.setValue()
             this.update({ placeholder: this.selected.length === 0 ? this._placeholder : false })
+        }
+
+        this.setValue = function() {
+            this.root.value = this.selected;
+            this.trigger('change', this.root.value);
         }
 
         this.onSelectedTagClick = function(event) {
             if (event.target.tagName.toUpperCase() != 'SPAN') return false
             move(this.selected, this.unselected, event.target.textContent)
             this.draw()
+            this.setValue()
             return true
         }
 

@@ -17,13 +17,18 @@
         this._placeholder = opts.placeholder || 'Select...';
         this.placeholder = this.selected ? false : this._placeholder;
 
+        this.setValue = function() {
+            this.root.value = this.selected;
+            this.trigger('change', this.root.value);
+        }
+
         this.onItemClick = function(event) {
             var t = event.target;
-            while (t && !t.tagName.toUpperCase() == 'ITEM') t = t.parentElement
-
+            while (t && t.tagName.toUpperCase() != 'ITEM') t = t.parentElement
             if (t) {
                 this.selected = t.textContent;
                 this.update({ placeholder: this.selected ? false : this._placeholder })
+                this.setValue()
             }
         }
 
