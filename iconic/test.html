@@ -8,18 +8,23 @@
     <link href='https://fonts.googleapis.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="iconic.css">
     <link rel="stylesheet" href="iconic-font.css">
+    <style>
+        .interactive-menu .dd-content {
+            width: 170px;
+        }
+    </style>
 </head>
 <body>
 <iconic class="not-ready">
-    <iconic-header>
-        <div class="brand" onclick="{ parent.opts.more }">
+    <iconic-header name="header">
+        <div class="brand" onclick="{ parent.opts.sel }">
             <i class="icon-anycode-logo"></i><span>any<b>code</b></span>
         </div>
         <ul>
             <li class="menu pinned">
-                <iconic-select selected="Most Recent" items="{ parent.opts.sortList }"></iconic-select>
-                <iconic-tagger placeholder="Every Status..." selected="Planning,In Progress" items="{ parent.opts.tagList }"></iconic-tagger>
-                <iconic-tagger placeholder="Every Attribute..."  items="{ parent.opts.attrList }"></iconic-tagger>
+                <iconic-select icon="icon-menu" selected="Most Recent" items="{ parent.opts.sortList }"></iconic-select>
+                <iconic-tagger name="tagger1" icon="icon-menu" placeholder="Every Status..." selected="{ parent.opts.selList }" items="{ parent.opts.tagList }"></iconic-tagger>
+                <iconic-tagger icon="icon-menu" placeholder="Every Attribute..."  selected="{ parent.opts.attrSelList }" items="{ parent.opts.attrList }"></iconic-tagger>
             </li>
             <li class="interactive-menu">
                 <iconic-dropdown content-clickable="yep">
@@ -127,7 +132,7 @@
         Style: Style
     });
 
-    riot.mount('iconic', {
+    var iconic = riot.mount('iconic', {
         sortList: [
             "Most Recent",
             "Most Activity",
@@ -136,12 +141,21 @@
             "Alpha-numeric"
         ],
 
+        selList: [
+            'Planning',
+            'Toilet Breaks'
+        ],
+
         tagList: [
             'Planning',
             'In Progress',
             'In Review',
             'Completed',
             'Archived'
+        ],
+
+        attrSelList: [
+            'Magical Gorilla'
         ],
 
         attrList: [
@@ -174,10 +188,12 @@
             this.parent.opts.tagList.push("Good Choice");
             this.parent.update();
             console.log(this.parent, "FU");
+        },
+        sel: function(e) {
+            console.log(this.tags.tagger1)
+            this.tags.tagger1.setItems(['A', 'B', 'C', 'In Review']);
         }
     })
-
-
 
 </script>
 <style>

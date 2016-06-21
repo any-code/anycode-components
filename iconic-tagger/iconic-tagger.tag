@@ -6,45 +6,58 @@
                 <span each="{ item, index in selected }">{ item }</span>
             </items>
             <placeholder if="{ placeholder }" >{ placeholder }</placeholder>
-            <i class="icon-add opener"></i>
+            <i class="{ opts.icon } opener"></i>
         </div>
         <div name="ddContent" onclick="{ onItemClick }" class="dd-content">
-            <item class="interactive" each="{ item, index in ddList }">{ item }</item>
+            <item class="interactive" each="{ item, index in unselected }">{ item }</item>
         </div>
     </div>
 
     <script>
-        this._placeholder = opts.placeholder || 'All...';
-        this.selected = opts.selected ? opts.selected.split(',') : []
-        this.placeholder = this.selected.length > 0 ? false : this._placeholder
-        this.ddList = []
+        function inside(index) { return index > -1 }
+        function outside(index) { return index === -1 }
+        function pick(checkList, items, fn) {
+            var list = [];
+            items.forEach(function(item) {
+                if (fn(checkList.indexOf(item)))
+                    list.push(item);
+            })
+            list.sort(function (a, b) { return a > b ? 1 : -1 })
+            return list
+        }
+        function move(from, to, name) {
+            var names = name && typeof name == "string" ? [name] : name
+            names.forEach(function(name) {
+                var fi = from.indexOf(name)
+                if (fi > -1) from.splice(fi, 1)
+                if (to.indexOf(name) === -1) to.push(name)
+            })
+            from.sort(function (a, b) { return a > b ? 1 : -1 })
+            to.sort(function (a, b) { return a > b ? 1 : -1 })
+            return to
+        }
 
-        opts.items.forEach(function(item) {
-            // only add unselected items to the ddList
-            if (this.selected.indexOf(item) === -1)
-                this.ddList.push(item)
-        }.bind(this))
+        this.setSelected = function(list) {
+            var unselected = [].concat(this.selected, this.unselected)
+            this.update({
+                selected: move([], [], pick(list, unselected, inside)),
+                unselected: move([], [], pick(list, unselected, outside))
+            })
 
-        this.on('update', function() {
-            if (!this.isMounted || !opts.items) return
+            this.draw()
+        }
 
-            var ddList = []
-            opts.items.forEach(function(item) {
-                console.log(item);
-                if (this.selected.indexOf(item) === -1)
-                    ddList.push(item)
-            }.bind(this))
+        this.setItems = function(list) {
+            this.update({
+                selected: move([], [], pick(this.selected, list, inside)),
+                unselected: move([], [], pick(this.selected, list, outside))
+            })
 
-            ddList.sort(function (a, b) { return a > b ? 1 : -1 })
+            this.draw()
+        }
 
-            if (ddList.length > 0) {
-                // enable the opener so the user can
-                // see theres new items in the list
-                this.ddTrigger.classList.remove('disabled')
-            }
-
-            this.ddList = ddList;
-        })
+        this.on('set-selected', this.setSelected)
+        this.on('set-items', this.setItems)
 
         // clicking a dropdown list item
         this.onItemClick = function(event) {
@@ -54,61 +67,38 @@
             while (t && !t.tagName.toUpperCase() == 'ITEM') t = t.parentElement
             if (!t) return
 
-            // add the tag to the selected list
-            var selected = [].concat(this.selected)
-            selected.push(t.textContent);
-            selected.sort(function (a, b) { return a > b ? 1 : -1 })
+            move(this.unselected, this.selected, t.textContent);
 
-            // remove the selected item from the dropdown list
-            var ddList = [].concat(this.ddList);
-            ddList.splice(ddList.indexOf(t.textContent), 1)
+            this.draw()
 
-            if (ddList.length === 0) {
-                // disable the opener so the user can
-                // see theres nothing else left to select
-                this.ddTrigger.classList.add('disabled')
-                // close the list, theres nothing left to see
-                this.dd.classList.remove("open")
-            }
-
-            this.update({
-                ddList: ddList,
-                placeholder: selected.length === 0 ? this._placeholder : false,
-                selected: selected
-            })
+            this.update({ placeholder: this.selected.length === 0 ? this._placeholder : false })
         }
 
         // clicking on a selected tag
         this.onSelectedTagClick = function(event) {
-            // the user didn't click a tag so return
             if (event.target.tagName.toUpperCase() != 'SPAN') return false
+            move(this.selected, this.unselected, event.target.textContent)
 
-            // add the item back to the ddList
-            var ddList = [].concat(this.ddList)
-            ddList.push(event.target.textContent)
-            ddList.sort(function (a, b) { return a > b ? 1 : -1 })
-
-            // remove tag from the selected list
-            var selected = [].concat(this.selected)
-            selected.splice(selected.indexOf(event.target.textContent), 1)
-
-            // since there is now something to select
-            // in the ddList reenable the opener
-            this.ddTrigger.classList.remove('disabled')
-
-            this.update({
-                ddList: ddList,
-                placeholder: selected.length === 0 ? this._placeholder : false,
-                selected: selected
-            })
+            this.draw()
 
             return true
+        }
+
+        this.draw = function() {
+            if (this.unselected.length === 0) {
+                this.ddTrigger.classList.add('disabled')
+                this.dd.classList.remove("open")
+            } else {
+                this.ddTrigger.classList.remove('disabled')
+            }
+
+            this.update({ placeholder: this.selected.length === 0 ? this._placeholder : false })
         }
 
         this.onTriggerClick = function(event) {
             // don't show the list if the user
             // clicked a tag or the list is empty
-            if (this.onSelectedTagClick(event) || this.ddList.length == 0) return;
+            if (this.onSelectedTagClick(event) || this.unselected.length == 0) return;
 
             // set the width of the dropdown to be
             // at least the width of the trigger
@@ -141,6 +131,14 @@
         this.on('mount', function() {
             // when the tag is mounted add the window click event listener
             window.addEventListener('click', this.onWindowClick.bind(this), false)
+
+            this.update({
+                selected: move([], [], pick(opts.selected, opts.items, inside)),
+                unselected: move([], [], pick(opts.selected, opts.items, outside))
+            })
+
+            this._placeholder = opts.placeholder || 'All...'
+            this.draw()
         })
 
         this.on('unmount', function() {
@@ -168,7 +166,6 @@
         }
         .dd-trigger span:after { content: "\00D7"; font-size: 1.8rem; margin-left: 0.3rem; display: inline-block;
             line-height: 0;}
-        .dd-trigger .opener { margin-top: 0; font-size: 1rem; }
         .dd-trigger i:only-child { padding: 0; }
         .dd-trigger i + span { padding-left: 0.5rem; padding-right: 0.8rem }
         .dd-trigger items + i { padding-right: 0.8rem }
