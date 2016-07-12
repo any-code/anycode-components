@@ -285,7 +285,6 @@ riot.tag2('iconic-menu', '<div name="left" class="arrow-left"></div> <div name="
         this.queue = [];
 
         this.on('mount', function() {
-            document.body.appendChild(this.root);
             this._initializeTriggers()
             this.root.addEventListener('mouseover', this.cancelHideHandler, true)
         })
