@@ -10,6 +10,7 @@
         this.queue = [];
 
         this.on('mount', function() {
+            document.body.appendChild(this.root);
             this._initializeTriggers()
             this.root.addEventListener('mouseover', this.cancelHideHandler, true)
         })
@@ -275,9 +276,11 @@
             border-radius: 0.4rem;
         }
 
-        :scope.navigation-tip iconic-button {
+        :scope.navigation-tip iconic-button, .navigation-icon {
             vertical-align: middle;
-            margin: 0;
+            padding: 0;
+            margin-top: 0;
+            top: -0.1rem;
         }
 
         :scope.navigation-tip .arrow-right {
@@ -361,6 +364,7 @@
             padding-bottom: 0rem;
             padding-right: 2rem;
             height: 3rem;
+            line-height: 3rem;
             margin: 0.2rem 0.2rem 0.3rem 0.1rem;
             border: 0.1rem solid rgba(0,0,0,0);
         }

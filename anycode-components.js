@@ -279,12 +279,13 @@ riot.tag2('iconic-links', '<div> <yield></yield> <div>', 'iconic-links,[riot-tag
 }, '{ }');
 
 
-riot.tag2('iconic-menu', '<div name="left" class="arrow-left"></div> <div name="right" class="arrow-right"></div> <div name="content"> <yield></yield> </div>', 'iconic-menu,[riot-tag="iconic-menu"] { position: absolute; display: block; box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.6); background: #222; padding: 0.3rem 0.2rem 0.2rem 0.3rem; font-size: 1.5rem; border-radius: 0.3rem; color: #FFF; opacity: 0; margin: 0 auto; z-index: -1; transition: z-index 1ms step-end 0ms, opacity 200ms ease-in-out 0ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; pointer-events: none; } iconic-menu.navigation-tip,[riot-tag="iconic-menu"].navigation-tip { padding: 0.2rem 1rem 0.2rem 0.2rem; border-radius: 0.4rem; } iconic-menu.navigation-tip iconic-button,[riot-tag="iconic-menu"].navigation-tip iconic-button { vertical-align: middle; margin: 0; } iconic-menu.navigation-tip .arrow-right,[riot-tag="iconic-menu"].navigation-tip .arrow-right { top: 0.78rem; } iconic-menu.fixed,[riot-tag="iconic-menu"].fixed { z-index: 9999; position: fixed!important; } iconic-menu.active,[riot-tag="iconic-menu"].active { pointer-events: auto; } iconic-menu .content,[riot-tag="iconic-menu"] .content { padding: 0; margin: 0; } iconic-menu .arrow-left,[riot-tag="iconic-menu"] .arrow-left { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 10px solid #222; right: -10px; transition: opacity 200ms ease-in-out; } iconic-menu .arrow-right,[riot-tag="iconic-menu"] .arrow-right { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 10px solid #222; left: -10px; transition: opacity 200ms ease-in-out; } iconic-menu.show,[riot-tag="iconic-menu"].show { opacity: 0.95; z-index: 9999; } iconic-menu ul,[riot-tag="iconic-menu"] ul { list-style: none; padding: 0; margin: 0; } iconic-menu ul li,[riot-tag="iconic-menu"] ul li { padding: 0; margin: 0; display: block; position: relative; } iconic-menu div.form,[riot-tag="iconic-menu"] div.form { margin: 0; padding: 1rem; } iconic-menu div.form *,[riot-tag="iconic-menu"] div.form * { margin: 0; padding: 0; } iconic-menu a,[riot-tag="iconic-menu"] a { padding: 0; margin: 0; color: #FFF; cursor: pointer; display: block; position: relative; padding-top: 0rem; padding-bottom: 0rem; padding-right: 2rem; height: 3rem; margin: 0.2rem 0.2rem 0.3rem 0.1rem; border: 0.1rem solid rgba(0,0,0,0); }', '', function(opts) {
+riot.tag2('iconic-menu', '<div name="left" class="arrow-left"></div> <div name="right" class="arrow-right"></div> <div name="content"> <yield></yield> </div>', 'iconic-menu,[riot-tag="iconic-menu"] { position: absolute; display: block; box-shadow: 0 0 0.8rem rgba(0, 0, 0, 0.6); background: #222; padding: 0.3rem 0.2rem 0.2rem 0.3rem; font-size: 1.5rem; border-radius: 0.3rem; color: #FFF; opacity: 0; margin: 0 auto; z-index: -1; transition: z-index 1ms step-end 0ms, opacity 200ms ease-in-out 0ms; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; pointer-events: none; } iconic-menu.navigation-tip,[riot-tag="iconic-menu"].navigation-tip { padding: 0.2rem 1rem 0.2rem 0.2rem; border-radius: 0.4rem; } iconic-menu.navigation-tip iconic-button,[riot-tag="iconic-menu"].navigation-tip iconic-button,iconic-menu .navigation-icon,[riot-tag="iconic-menu"] .navigation-icon { vertical-align: middle; padding: 0; margin-top: 0; top: -0.1rem; } iconic-menu.navigation-tip .arrow-right,[riot-tag="iconic-menu"].navigation-tip .arrow-right { top: 0.78rem; } iconic-menu.fixed,[riot-tag="iconic-menu"].fixed { z-index: 9999; position: fixed!important; } iconic-menu.active,[riot-tag="iconic-menu"].active { pointer-events: auto; } iconic-menu .content,[riot-tag="iconic-menu"] .content { padding: 0; margin: 0; } iconic-menu .arrow-left,[riot-tag="iconic-menu"] .arrow-left { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 10px solid #222; right: -10px; transition: opacity 200ms ease-in-out; } iconic-menu .arrow-right,[riot-tag="iconic-menu"] .arrow-right { position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-right: 10px solid #222; left: -10px; transition: opacity 200ms ease-in-out; } iconic-menu.show,[riot-tag="iconic-menu"].show { opacity: 0.95; z-index: 9999; } iconic-menu ul,[riot-tag="iconic-menu"] ul { list-style: none; padding: 0; margin: 0; } iconic-menu ul li,[riot-tag="iconic-menu"] ul li { padding: 0; margin: 0; display: block; position: relative; } iconic-menu div.form,[riot-tag="iconic-menu"] div.form { margin: 0; padding: 1rem; } iconic-menu div.form *,[riot-tag="iconic-menu"] div.form * { margin: 0; padding: 0; } iconic-menu a,[riot-tag="iconic-menu"] a { padding: 0; margin: 0; color: #FFF; cursor: pointer; display: block; position: relative; padding-top: 0rem; padding-bottom: 0rem; padding-right: 2rem; height: 3rem; line-height: 3rem; margin: 0.2rem 0.2rem 0.3rem 0.1rem; border: 0.1rem solid rgba(0,0,0,0); }', '', function(opts) {
         var TRANSITION_TIMESPAN = 200;
         this.timed = [];
         this.queue = [];
 
         this.on('mount', function() {
+            document.body.appendChild(this.root);
             this._initializeTriggers()
             this.root.addEventListener('mouseover', this.cancelHideHandler, true)
         })
@@ -947,6 +948,8 @@ riot.tag2('iconic-tip', '<div name="left" class="arrow-left"></div> <div name="r
         }
 
         this._initializeElements = function() {
+            document.body.appendChild(this.root);
+
             var elements = this.root.parentElement.querySelectorAll('*[data-tip="' + opts.name +'"]'),
                 element;
 
@@ -954,7 +957,7 @@ riot.tag2('iconic-tip', '<div name="left" class="arrow-left"></div> <div name="r
                 elements[element]._tip_target = true
                 elements[element].addEventListener('mouseover', this.show)
                 elements[element].addEventListener('mouseout', this.hide)
-             }
+            }
         }
 
         this._showTip = function(name) {

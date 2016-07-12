@@ -211,6 +211,8 @@
         }
 
         this._initializeElements = function() {
+            document.body.appendChild(this.root); 
+
             var elements = this.root.parentElement.querySelectorAll('*[data-tip="' + opts.name +'"]'),
                 element;
 
@@ -218,7 +220,7 @@
                 elements[element]._tip_target = true
                 elements[element].addEventListener('mouseover', this.show)
                 elements[element].addEventListener('mouseout', this.hide)
-             }
+            }
         }
 
         this._showTip = function(name) {
