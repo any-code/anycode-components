@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <anycode-ga></anycode-ga>
+        <anycode-ga ga-tracking-code="{ opts.gaTrackingCode }"></anycode-ga>
     <article>
 
     <script>
