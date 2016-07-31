@@ -58,17 +58,16 @@
                         this.links[0].classList.add('active');
                     }
                     this.anchors = this.links.map(this._mapLinkToAnchor);
+                    this.initializeScrollListener()
                 }
             }
         }
 
         this.initializeScrollListener = function() {
-            if (this.anchors.length > 0) {
+            if (this.anchors && this.anchors.length > 0) {
                 window.addEventListener('scroll', this._scroll);
             }
         }
-
-
 
         this.on('mount', function() {
             if (opts.dataFixed) {
@@ -91,7 +90,6 @@
             }.bind(this)
 
             this.initializeReferences()
-            this.initializeScrollListener()
             this.tip = "iconic-navigation";
             var prop = this.tags['navigation-tip'].content.textContent ? 'textContent' : 'innerText';
             this.tags['navigation-tip'].content[prop] = this.tip;
